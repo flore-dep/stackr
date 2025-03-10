@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_10_111319) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_10_144607) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -41,15 +41,12 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_111319) do
     t.string "role"
     t.date "start_date"
     t.date "end_date"
-    t.bigint "organization_id", null: false
     t.bigint "team_id", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
-    t.index ["organization_id"], name: "index_users_on_organization_id"
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
   add_foreign_key "teams", "organizations"
-  add_foreign_key "users", "organizations"
   add_foreign_key "users", "teams"
 end
