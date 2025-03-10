@@ -20,7 +20,8 @@ User.create!(
   email: "john@test.com",
   password: "test12345",
   role: "Founder",
-  team_id: team.id
+  team_id: team.id,
+  start_date: "2025-01-01"
 )
 puts "Created User"
 
