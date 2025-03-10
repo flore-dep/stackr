@@ -1,4 +1,17 @@
-<h1>Pages#home</h1>
-<p>Find me in app/views/pages/home.html.erb</p>
+<div class="container mt-5">
+  <h1 class="mb-5">HOME</h1>
 
-<%= current_user.email %>
+  <div class="d-flex flex-column">
+      <p><i class="fa-solid fa-envelope me-2"></i><%= current_user.email %></p>
+      <p>Full Name:
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+      </p>
+      <p><i class="fa-solid fa-user-tie me-2"></i><%= current_user.role %></p>
+      <p><i class="fa-solid fa-briefcase me-2"></i><%= current_user.organization.name %></p>
+      <p><i class="fa-solid fa-people-group me-2"></i><%= current_user.team.name %></p>
+  </div>
+
+  <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success mb-3" %>
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+</div>
