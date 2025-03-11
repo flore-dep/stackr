@@ -6,7 +6,7 @@
   <div class="d-flex flex-wrap">
     <% @teams.each do |team| %>
       <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
-        <div class="team-card">
+        <div class="card-background team-card">
           <p class="team-title bg-success"><%= team.name.upcase %></p>
           <div class="card-team-container">
             <div class="row">
