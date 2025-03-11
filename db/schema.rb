@@ -10,14 +10,51 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_10_144607) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_11_095437) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "licenses", force: :cascade do |t|
+    t.date "start_date"
+    t.date "end_date"
+    t.string "status", array: true
+    t.string "access_type", array: true
+    t.bigint "plan_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "scope_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_licenses_on_plan_id"
+    t.index ["scope_id"], name: "index_licenses_on_scope_id"
+    t.index ["user_id"], name: "index_licenses_on_user_id"
+  end
 
   create_table "organizations", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "name"
+  end
+
+  create_table "plans", force: :cascade do |t|
+    t.jsonb "formula", default: {}
+    t.string "status", array: true
+    t.bigint "organization_id", null: false
+    t.bigint "tool_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["organization_id"], name: "index_plans_on_organization_id"
+    t.index ["tool_id"], name: "index_plans_on_tool_id"
+  end
+
+  create_table "scopes", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "tool_id", null: false
+    t.bigint "plan_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["plan_id"], name: "index_scopes_on_plan_id"
+    t.index ["team_id"], name: "index_scopes_on_team_id"
+    t.index ["tool_id"], name: "index_scopes_on_tool_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -26,6 +63,15 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_144607) do
     t.string "name"
     t.bigint "organization_id", null: false
     t.index ["organization_id"], name: "index_teams_on_organization_id"
+  end
+
+  create_table "tools", force: :cascade do |t|
+    t.string "name"
+    t.string "category"
+    t.jsonb "formulas", default: {}
+    t.string "access_types", array: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
@@ -47,6 +93,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_144607) do
     t.index ["team_id"], name: "index_users_on_team_id"
   end
 
+  add_foreign_key "licenses", "plans"
+  add_foreign_key "licenses", "scopes"
+  add_foreign_key "licenses", "users"
+  add_foreign_key "plans", "organizations"
+  add_foreign_key "plans", "tools"
+  add_foreign_key "scopes", "plans"
+  add_foreign_key "scopes", "teams"
+  add_foreign_key "scopes", "tools"
   add_foreign_key "teams", "organizations"
   add_foreign_key "users", "teams"
 end
