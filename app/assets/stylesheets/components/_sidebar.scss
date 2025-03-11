@@ -53,6 +53,20 @@
   &.active + .dropdown-container {
     display: block;
   }
+
+  &.bottom-element {
+    position: absolute;
+    padding: 16px 8px 16px 8px;
+    display: block;
+    bottom: 0;
+    z-index: 6;
+    border-top: solid;
+
+    p {
+      color: #1EDD88;
+    }
+  }
+
 }
 
 .main {

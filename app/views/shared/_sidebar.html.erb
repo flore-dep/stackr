@@ -1,5 +1,5 @@
-<div id="organization">
-
+<div class="top-element">
+  
 </div>
 
 <div class="sidebar" data-controller="dropdown">
@@ -24,6 +24,12 @@
   <span>App Store</span>
 </div>
 
-<div id="user">
-  
+<div class="bottom-element">
+  <div class="image">
+
+  </div>
+  <p>
+    <%= current_user.first_name %>
+    <%= current_user.last_name %>
+  </p>
 </div>
