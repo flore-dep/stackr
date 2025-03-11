@@ -1,11 +1,16 @@
 <div class="container">
-  <h1><%= @organization.name %></h1>
-  <div class="d-flex d-wrap">
+  <h1 class="m-4" ><%= @organization.name %></h1>
+  <div class="line"></div>
+  <div class="d-flex flex-wrap">
     <% @teams.each do |team| %>
-    <div class="team-card">
-      <p><%= link_to team.name, team_path(team) %></p>
-      <p><%= team.tools %></p>
-    </div>
-    <% end %>
+      <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
+        <div class="team-card">
+          <p class="team-title"><%= team.name %></p>
+          <% team.plans.each do |plan| %>
+            <p> <%= plan.tool.name %> to remplace by image</p>
+          <% end %>
+      <% end %>
+      </div>
+  <% end %>
   </div>
 </div>
