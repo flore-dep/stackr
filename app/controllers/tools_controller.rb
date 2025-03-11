@@ -1,7 +1,7 @@
 class ToolsController < ApplicationController
   before_action :set_team
   def index
-    @tools = team.tools
+    @tools = @team.tools
   end
 
   private
