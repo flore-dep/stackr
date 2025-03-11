@@ -1,0 +1,47 @@
+.card-background {
+  background-color: $light-gray;
+  box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+};
+
+.card-title {
+  font-weight: 700;
+};
+
+.team-card {
+  width: 300px;
+  height: 250px;
+  text-align: center;
+  margin: 30px;
+};
+
+$random-color: rgba(random(256), random(256), random(256), 0.3);
+
+.team-title {
+  background-color: $random-color;
+  border-radius: 90px;
+  margin: 30px;
+  padding: 5px;
+  font-weight: 700;
+};
+
+.tool-stack-card {
+  display: grid;
+  grid-template-columns: 2fr 3fr;
+  gap: 10px;
+  width: 500px;
+  height: 250px;
+  margin: 10px;
+};
+
+.tool-stack-gray-part {
+  background-color: $google-gray;
+  border-radius: 15px 0px 0px 15px;
+  height: 100%;
+  padding: 10px;
+  padding-bottom: 0px;
+};
+
+.tool-stack-infos-part {
+  padding: 5px;
+}
