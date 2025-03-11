@@ -1,12 +1,7 @@
 class ToolsController < ApplicationController
-  before_action :set_team
+  skip_after_action :verify_authorized
+  skip_after_action :verify_policy_scoped
   def index
     @tools = @team.tools
-  end
-
-  private
-
-  def set_team
-    @team = Team.find(params[:team_id])
   end
 end
