@@ -1,0 +1,17 @@
+.active-sticker {
+  display: inline-block;
+  border-radius: 30px;
+  color: white;
+  padding-inline: 8px;
+  width: fit-content;
+  background-color: #282829;
+};
+
+.passive-sticker {
+  display: inline-block;
+  border-radius: 30px;
+  color:#282829;
+  padding-inline: 8px;
+  width: fit-content;
+  background-color: $google-gray;
+};
