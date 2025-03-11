@@ -9,7 +9,7 @@
   overflow-x: hidden;
   padding-top: 20px;
 
-  a {
+  span {
     padding: 6px 8px 6px 16px;
     text-decoration: none;
     font-size: 16px;
@@ -50,6 +50,7 @@
 
   &.active + .dropdown-container {
     display: block;
+    text-decoration: none;
   }
 }
 
@@ -58,15 +59,19 @@
   padding: 0px 10px;
 }
 
+.dropdown-container a {
+  text-decoration: none;
+}
+
 .dropdown-container {
   display: none;
   background-color: #262626;
   padding-left: 8px;
-}
+  text-decoration: none;
 
-.active {
-  background-color: green;
-  color: white;
+  &.active {
+    display: block;
+  }
 }
 
 .fa-angle-down {
