@@ -1,7 +1,19 @@
-<h1> <%= @team.name.upcase %> TEAM </h1>
+<div class="m-5">
+  <div class="d-flex justify-content-between">
+    <div class="team-name-card">
+      <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
+      <p class="mb-3"> Managed by Frankie Sullivan</p>
+      <h3><b>300$ / month</b></h3>
+      <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+    </div>
+     <%= link_to "Back to all teams", teams_path, class: "text-dark fs-5 align-self-end" %>
+  </div>
 
-<p> Welcome <%= current_user.first_name %> <%= current_user.last_name %></p>
+  <div class="team-navbar">
+    <div class="team-navbar-item">Members</div>
+    <div class="team-navbar-item">Tools</div>
+    <div class="team-navbar-item">Licenses</div>
+  </div>
 
-<p> TO DO : Render une partial avec les tools de la team </p>
-
-<%= link_to "Back", :back, class: "btn btn-dark" %>
+  <%= render "shared/members" %>
+</div>
