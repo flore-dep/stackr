@@ -1,4 +1,4 @@
 class Plan < ApplicationRecord
   belongs_to :organization
-  belongs_to :tools
+  belongs_to :tool
 end
