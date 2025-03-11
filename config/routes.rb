@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
   root to: "pages#home"
-  get "up" => "rails/health#show", as: :rails_health_check
+  devise_for :users
 
-  resources :licenses, only: :destroy
+  resource :dashboard, only: :show
+
+  resources :licenses, only: :destroy do
+    member do
+      patch :accept
+      patch :reject
+    end
+  end
 
   resources :plans, only: :show do
     resources :licenses, only: :create
@@ -13,15 +19,11 @@ Rails.application.routes.draw do
     resources :plans, only: :create
   end
 
-  resources :organizations, only: :show
+  resource :organization, only: :show
 
-  resources :teams, only: %i[index show create] do
-    resources :tools, only: :index
-  end
+  resources :teams, only: %i[index show create]
 
   resources :users, only: %i[index show create update destroy]
 
-  patch 'licenses/:id/accept', to: 'licenses#accept', as: :licenses_accept
-  patch 'licenses/:id/reject', to: 'licenses#reject', as: :licenses_reject
-
+  get "up" => "rails/health#show", as: :rails_health_check
 end
