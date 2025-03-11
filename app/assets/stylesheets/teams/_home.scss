@@ -1,0 +1,25 @@
+.card-team-container {
+  width: 100%;
+  padding: 0px 50px;
+}
+
+.software-icon {
+  width: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: rgb(220, 220, 220) 1px solid;
+  margin-bottom: 12px;
+}
+
+.software-counter-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+  border: rgb(220, 220, 220) 1px solid;
+  margin-bottom: 6px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
