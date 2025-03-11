@@ -1,6 +1,8 @@
 class TeamsController < ApplicationController
 
   def index
-    @teams = Teams.all
+    @organization = current_user.organization
+    @teams = Team.all
   end
+
 end
