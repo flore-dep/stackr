@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_11_160656) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_11_192807) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "licenses", force: :cascade do |t|
     t.date "start_date"
     t.date "end_date"
-    t.string "status", array: true
-    t.string "access_type", array: true
+    t.string "status"
+    t.string "access_type"
     t.bigint "plan_id", null: false
     t.bigint "user_id", null: false
-    t.bigint "scope_id", null: false
+    t.bigint "scope_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_licenses_on_plan_id"
