@@ -62,11 +62,10 @@
   display: none;
   background-color: #262626;
   padding-left: 8px;
-}
 
-.active {
-  background-color: green;
-  color: white;
+  &.active {
+    display: block;
+  }
 }
 
 .fa-angle-down {
