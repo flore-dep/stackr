@@ -29,6 +29,24 @@ user = User.create!(
   team: team,
   start_date: "2025-01-01"
 )
+user = User.create!(
+  first_name: "David",
+  last_name: "Managerman",
+  email: "david@test.com",
+  password: "test12345",
+  role: "Manager",
+  team: team,
+  start_date: "2025-01-01"
+)
+user = User.create!(
+  first_name: "Josh",
+  last_name: "Employeeman",
+  email: "josh@test.com",
+  password: "test12345",
+  role: "Employee",
+  team: team,
+  start_date: "2025-01-01"
+)
 puts "Created User"
 
 puts "Creating Tool..."

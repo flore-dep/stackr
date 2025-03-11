@@ -13,5 +13,8 @@
   </div>
 
   <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success mb-3" %>
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark mb-3" %>
+
+  <%= link_to "ORGANIZATION", organization_path(current_user.team.organization), class: "btn btn-primary mb-3" %>
+  <%= link_to "TEAMS", teams_path, class: "btn btn-primary mb-3" %>
 </div>
