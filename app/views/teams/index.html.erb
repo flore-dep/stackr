@@ -1,0 +1,10 @@
+<h1> TEAMS INDEX </h1>
+
+<div class="container">
+  <% @teams.each do |team| %>
+    <%= link_to team.name, team_path(team), class: "btn btn-success mb-3" %>
+  <% end %>
+</div>
+
+
+<%= link_to "Back", root_path, class: "btn btn-dark" %>
