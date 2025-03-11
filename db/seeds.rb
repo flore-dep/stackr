@@ -73,8 +73,11 @@ puts "Created Plans"
 puts "Creating Scopes..."
 
 teams.each do |team|
+  plans = Plan.all.to_a
   5.times do
-    scope = Scope.create!(team: team, plan: Plan.all.sample)
+    plan = plans.sample
+    scope = Scope.create!(team: team, plan: plan)
+    plans.delete(plan)
   end
 end
 
