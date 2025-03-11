@@ -45,7 +45,8 @@ teams.each do |team|
   collaborators << user
 end
 
-3.times do
+User.create!(first_name: "John", last_name: "Stackrman", email: "js@stackr.com", password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
+2.times do
   user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
   collaborators << user
 end
@@ -85,8 +86,8 @@ Scope.all.each do |scope|
   scope.team.users.each do |user|
     license = License.create!( user: user, scope: scope, start_date: "2025-01-01", status: "Approved", access_type: "User", plan: scope.plan)
   end
-
 end
+
 
 puts "Created Licenses"
 
