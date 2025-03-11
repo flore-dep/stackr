@@ -1,11 +1,11 @@
 .sidebar {
   height: 100%;
-  width: 200px;
+  width: 250px;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: #111;
+  background-color: #282829;
   overflow-x: hidden;
   padding-top: 20px;
 
@@ -15,14 +15,15 @@
     font-size: 16px;
     color: #1EDD88;
     display: block;
+    margin-left: 8px;
 
     &:hover {
       height: auto;
-      width: 100%;
-      border-radius: 30px;
+      width: 80%;
+      border-radius: 10px;
       background-color: #1EDD88;
       border: none;
-      color: #111;
+      color: #282829;
     }
   }
 }
@@ -31,31 +32,31 @@
   background: none;
   border: none;
   padding: 6px 8px 6px 16px;
+  margin-left: 8px;
   text-decoration: none;
   font-size: 16px;
   color: #1EDD88;
   display: block;
-  width: 100%;
+  width: 80%;
   text-align: left;
   cursor: pointer;
   position: relative;
 
   &:hover {
     height: auto;
-    width: 100%;
-    border-radius: 30px;
+    width: 80%;
+    border-radius: 10px;
     background-color: #1EDD88;
-    color: #111;
+    color: #282829;
   }
 
   &.active + .dropdown-container {
     display: block;
-    text-decoration: none;
   }
 }
 
 .main {
-  margin-left: 200px;
+  margin-left: 250px;
   padding: 0px 10px;
 }
 
