@@ -5,11 +5,15 @@
     <i class="fa-solid fa-angle-down"></i>
   </button>
   <div class="dropdown-container" data-dropdown-target="menu">
-    <span>Personnal Stack</span>
-    <%= link_to team_path(@team) do %>
+    <%# <%= link_to tools_path(current_user.tools) do %> %>
+      <span>Personnal Stack</span>
+    <%# <% end %> %>
+    <%= link_to team_path(current_user.team) do %>
       <span>Team Stack</span>
     <% end %>
-    <span>Organization Stack</span>
+    <%= link_to organization_path(current_user.organization) do %>
+      <span>Organization Stack</span>
+    <% end %>
   </div>
   <span>App Store</span>
 </div>
