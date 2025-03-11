@@ -1,0 +1,17 @@
+.team-card {
+ background-color: $light-gray;
+ box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+ border-radius: 15px;
+ width: 300px;
+ height: 250px;
+ text-align: center;
+}
+
+$random-color: rgba(random(256), random(256), random(256), 0.3);
+
+.team-title {
+  background-color: $random-color;
+  border-radius: 90px;
+  margin: 30px;
+  padding: 5px;
+}
