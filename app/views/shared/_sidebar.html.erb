@@ -6,7 +6,7 @@
   </button>
   <% if current_user %>
   <div class="dropdown-container" data-dropdown-target="menu">
-    <%= link_to tools_path(current_user.tool) do %>
+    <%= link_to user_path(current_user) do %>
       <span>Personnal Stack</span>
     <% end %>
     <%= link_to team_path(current_user.team) do %>

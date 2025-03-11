@@ -50,6 +50,7 @@
 
   &.active + .dropdown-container {
     display: block;
+    text-decoration: none;
   }
 }
 
@@ -58,10 +59,15 @@
   padding: 0px 10px;
 }
 
+.dropdown-container a {
+  text-decoration: none;
+}
+
 .dropdown-container {
   display: none;
   background-color: #262626;
   padding-left: 8px;
+  text-decoration: none;
 
   &.active {
     display: block;
