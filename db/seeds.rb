@@ -57,7 +57,6 @@ tool = Tool.create!(
   puts "Creating Scope..."
   scope = Scope.create!(
     team: team,
-    tool: tool,
     plan: plan
   )
   puts "Created Scope"
