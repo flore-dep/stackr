@@ -5,9 +5,12 @@
     <i class="fa-solid fa-angle-down"></i>
   </button>
   <div class="dropdown-container" data-dropdown-target="menu">
-    <a href="#">Personnal Stack</a>
-    <a href="#">Team Stack</a>
-    <a href="#">Organization Stack</a>
+    <% link_to  %>
+    <span>Personnal Stack</span>
+    <% link_to team_tools_path(@team) do %>
+      <span>Team Stack</span>
+    <% end %>
+    <span>Organization Stack</span>
   </div>
-  <a href="#">App Store</a>
+  <span>App Store</span>
 </div>
