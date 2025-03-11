@@ -5,8 +5,7 @@ class Team < ApplicationRecord
   has_many :licenses, through: :scopes
   has_many :plans, through: :organization
 
-  validates :name, presence: :true, length: {minimum: 3}
+  validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true
-  validates :name, uniqueness: { scope: :organization }
 
 end

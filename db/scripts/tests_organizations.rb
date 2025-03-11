@@ -16,7 +16,7 @@ p Organization.new(name: Organization.first.name).tap(&:valid?).errors.full_mess
 puts "DESTROYS"
 
 organization = Organization.create(name: "some name")
-team = Team.create(name: "Marketing", organization: organization)
+team = Team.create(name: "TEAM TEST", organization: organization)
 puts "Before : Organizations #{Organization.count} - Teams #{Team.count}"
 organization.destroy
 puts "after : Organizations #{Organization.count} - Teams #{Team.count}"
