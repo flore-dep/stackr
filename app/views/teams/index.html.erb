@@ -3,11 +3,13 @@
   <div class="line"></div>
   <div class="d-flex flex-wrap">
     <% @teams.each do |team| %>
-      <div class="team-card">
-        <p class="team-title"><%= team.name %></p>
-        <% team.plans.each do |plan| %>
-          <p> <%= plan.tool.name %> to remplace by image</p>
-        <% end %>
+      <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
+        <div class="team-card">
+          <p class="team-title"><%= team.name %></p>
+          <% team.plans.each do |plan| %>
+            <p> <%= plan.tool.name %> to remplace by image</p>
+          <% end %>
+      <% end %>
       </div>
   <% end %>
   </div>

@@ -15,10 +15,5 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   border-radius: 90px;
   margin: 30px;
   padding: 5px;
-};
-
-.team-card-link {
-  text-decoration: none;
-  display: block;
-  width: fit-content;
+  font-weight: 700;
 };
