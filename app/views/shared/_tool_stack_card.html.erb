@@ -1,7 +1,10 @@
 <h1>Tools </h1>
+<%@plans = scope.tool.plans
+  @plan_organization = @plans.where(organization_id: current_user.organization.id)
+  @teams = @plan_organization.teams
+  %>
 
 <p>todo logo</p>
-<p><%=%></p>
-
+<p><%=scope.plan.%></p>
 <p><%=scope.plan.tool.name%></p>
 <p><%=license.start_date%> -<%=license.end_date%> </p>

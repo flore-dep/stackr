@@ -7,7 +7,8 @@ class UsersController < ApplicationController
   def show
     @user_company = current_user.organization
     @licenses = current_user.licenses
-    
+   
+
     # @scopes = @licenses.map {|license| license.scope}
     raise
   end
