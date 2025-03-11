@@ -1,0 +1,11 @@
+<div class="container">
+  <h1><%= @organization.name %></h1>
+  <div class="d-flex d-wrap">
+    <% @teams.each do |team| %>
+    <div class="team-card">
+      <p><%= team.name %></p>
+      <p> <%= team.tools %></p>
+    </div>
+    <% end %>
+  </div>
+</div>
