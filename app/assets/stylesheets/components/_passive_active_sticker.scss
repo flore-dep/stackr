@@ -1,0 +1,16 @@
+.sticker {
+  display: inline-block;
+  border-radius: 30px;
+  padding-inline: 8px;
+  width: fit-content;
+  font-size: 12px;
+};
+.active-sticker {
+  color: white;
+  background-color: #282829;
+};
+
+.past-sticker {
+  color:#282829;
+  background-color: $google-gray;
+};

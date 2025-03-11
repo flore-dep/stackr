@@ -1,0 +1,27 @@
+
+<div class="card-background tool-stack-card">
+  <div class="tool-stack-gray-part">
+    <%@plans = scope.tool.plans
+      @plan_organization = @plans.where(organization_id: current_user.organization.id)
+      @teams = @plan_organization.first.teams
+    %>
+    <p>todo logo</p>
+    <% @teams.each do |team| %>
+      <% random_opacity = rand(0.2..1.0).round(2) %>
+      <% random_color = "rgba(115, 88, 223, #{random_opacity})" %>
+      <p class="team-tag" style="background-color: <%= random_color %>"><%= team.name %></p>
+    <% end %>
+  </div>
+
+  <div class='tool-stack-infos-part'>
+    <% if active == true %>
+      <p class='sticker active-sticker'>Active</p>
+    <% else %>
+      <p class='sticker past-sticker'>Past</p>
+    <% end %>
+    <p class='card-title'><%=scope.plan.tool.name%></p>
+    <p><%=license.start_date%> - <%=license.end_date%> </p>
+    <p><%=license.plan.formula[1]%> €/month </p>
+  </div>
+
+</div>
