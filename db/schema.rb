@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_11_095437) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_11_111202) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,8 +68,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_095437) do
   create_table "tools", force: :cascade do |t|
     t.string "name"
     t.string "category"
-    t.jsonb "formulas", default: {}
-    t.string "access_types", array: true
+    t.jsonb "formulas", default: "{\"free\":0,\"business\":15,\"enterprise\":50}"
+    t.string "access_types", default: ["User", "Admin"], array: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

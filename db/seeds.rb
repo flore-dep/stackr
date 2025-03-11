@@ -52,7 +52,7 @@ puts "Created User"
 puts "Creating Tool..."
 tool = Tool.create!(
   name: "Frontapp",
-  category: "Mailer",
+  category: "Communication",
   formulas: {
     free: 0,
     business: 15,

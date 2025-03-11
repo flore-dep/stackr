@@ -1,10 +1,11 @@
-<h1> TEAMS INDEX </h1>
-
 <div class="container">
-  <% @teams.each do |team| %>
-    <%= link_to team.name, team_path(team), class: "btn btn-success mb-3" %>
-  <% end %>
+  <h1><%= @organization.name %></h1>
+  <div class="d-flex d-wrap">
+    <% @teams.each do |team| %>
+    <div class="team-card">
+      <p><%= link_to team.name, team_path(team) %></p>
+      <p><%= team.tools %></p>
+    </div>
+    <% end %>
+  </div>
 </div>
-
-
-<%= link_to "Back", root_path, class: "btn btn-dark" %>
