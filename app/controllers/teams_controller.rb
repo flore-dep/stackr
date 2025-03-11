@@ -1,17 +1,10 @@
 class TeamsController < ApplicationController
-
   def index
-    @organization = current_user.organization
-    @teams = Team.all
+    @teams = policy_scope(Team)
   end
 
   def show
     @team = Team.find(params[:id])
-  end
-
-  private
-
-  def team_params
-    params.require(:team).permit(:name)
+    authorize @team
   end
 end
