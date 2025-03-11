@@ -1,10 +1,9 @@
 <div class="container">
-  <h1><%= @organization.name %></h1>
+  <h1><%= current_user.organization.name %></h1>
   <div class="d-flex d-wrap">
     <% @teams.each do |team| %>
     <div class="team-card">
-      <p><%= link_to team.name, team_path(team) %></p>
-      <p><%= team.tools %></p>
+      <p><%= link_to team.name, team_path(team), class: "btn btn-success" %></p>
     </div>
     <% end %>
   </div>
