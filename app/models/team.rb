@@ -1,7 +1,7 @@
 class Team < ApplicationRecord
+  belongs_to :organization
   has_many :users
   has_many :scopes
-  belongs_to :organization
   has_many :licenses, through: :scopes
   has_many :plans, through: :organization
 

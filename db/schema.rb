@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_11_111202) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_11_121703) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -48,13 +48,11 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_111202) do
 
   create_table "scopes", force: :cascade do |t|
     t.bigint "team_id", null: false
-    t.bigint "tool_id", null: false
     t.bigint "plan_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["plan_id"], name: "index_scopes_on_plan_id"
     t.index ["team_id"], name: "index_scopes_on_team_id"
-    t.index ["tool_id"], name: "index_scopes_on_tool_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -100,7 +98,6 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_11_111202) do
   add_foreign_key "plans", "tools"
   add_foreign_key "scopes", "plans"
   add_foreign_key "scopes", "teams"
-  add_foreign_key "scopes", "tools"
   add_foreign_key "teams", "organizations"
   add_foreign_key "users", "teams"
 end
