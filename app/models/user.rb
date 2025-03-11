@@ -5,6 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   belongs_to :team
+  has_many :licenses, dependent: :destroy
   has_one :organization, through: :team
 
   validates :first_name, presence: true, length: { minimum: 1}
