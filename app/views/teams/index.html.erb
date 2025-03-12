@@ -14,7 +14,7 @@
           </div>
           <div class="card-team-container">
             <div class="row">
-              <% team.tools.uniq.first(7).each do |tool| %>
+              <% team.tools.first(7).each do |tool| %>
                 <div class="col-3">
                   <% if tool.logo.attached? %>
                     <%= cl_image_tag tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "software-icon" %>
@@ -23,9 +23,13 @@
                   <% end %>
                 </div>
               <% end %>
-              <% if team.tools.uniq.count > 7 %>
+              <% if team.tools.count == 0 %>
+                <div class="col-12 justify-content-center">
+                  <p class="">No tools in this team</p>
+                </div>
+              <% elsif team.tools.count > 7 %>
                 <div class="col-3">
-                  <p class="software-counter-icon">+<%= (team.tools.uniq.count - 7) %></p>
+                  <p class="software-counter-icon">+<%= (team.tools.count - 7) %></p>
                 </div>
               <% end %>
             </div>
