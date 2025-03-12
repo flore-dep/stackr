@@ -26,7 +26,6 @@
       width: 80%;
       border-radius: 10px;
       background-color: #1EDD88;
-      border: none;
       color: #282829;
     }
   }
@@ -118,15 +117,10 @@
       color: #282829;
     }
 
-    &.active + .dropdown-container {
+    &.active {
       display: block;
       }
   }
-}
-
-.main {
-  margin-left: 250px;
-  padding: 0px 10px;
 }
 
 .dropdown-container {
@@ -134,9 +128,13 @@
   background-color: #262626;
   padding-left: 8px;
   text-decoration: none;
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
 
   &.active {
     display: block;
+    max-height: 300px;
   }
 
   & a {
@@ -148,4 +146,14 @@
   float: right;
   padding-right: 8px;
   padding-top: 4px;
+  transition: transform 0.3s ease;
+
+  &.active {
+    transform: rotate(-0.25turn);
+  }
+}
+
+.main {
+  margin-left: 250px;
+  padding: 0px 10px;
 }

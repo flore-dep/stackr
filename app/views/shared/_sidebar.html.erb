@@ -7,10 +7,10 @@
     <div class="sidebar-menu">
       <button class="dropdown-btn" data-action="click->dropdown#toggle">
         Stack Space
-        <i class="fa-solid fa-angle-left"></i>
+        <i class="fa-solid fa-angle-left" data-dropdown-target="arrow"></i>
       </button>
 
-      <div class="dropdown-container" data-dropdown-target="menu">
+      <div class="dropdown-container"  data-dropdown-target="menu">
         <%= link_to user_path(current_user) do %>
           <span class="dropdown-item">Personnal Stack</span>
         <% end %>
