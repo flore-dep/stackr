@@ -24,6 +24,13 @@ class User < ApplicationRecord
     tools.uniq
   end
 
+  def plans
+    plans = self.licenses.map do |license|
+      license.plan
+    end
+    plans.uniq
+  end
+
   private
 
   def not_before
