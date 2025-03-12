@@ -8,4 +8,10 @@ class Team < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true
 
+  def tools
+    tools = self.licenses.map do |license|
+      license.tool
+    end
+  end
+
 end
