@@ -2,6 +2,7 @@ require 'faker'
 require "csv"
 require 'json'
 require "open-uri"
+require 'tty-progressbar'
 
 puts "Cleaning Database..."
 License.destroy_all
@@ -35,22 +36,25 @@ puts "Created Team"
 
 puts "Creating Users..."
 
-collaborators = []
+team_size = 10
+founder_size = 2
+total_users = teams.length * team_size + founder_size +1
+bar = TTY::ProgressBar.new("Users :bar :percent", total: total_users, width: 50, complete: "█", incomplete: "░")
 
 teams.each do |team|
-  10.times do
+  team_size.times do
     user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Employee", team: team, start_date: "2025-01-01")
-    collaborators << user
+    bar.advance
   end
-
   user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Manager", team: team, start_date: "2025-01-01")
-  collaborators << user
+  bar.advance
 end
 
 User.create!(first_name: "John", last_name: "Stackrman", email: "js@stackr.com", password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
-2.times do
+bar.advance
+founder_size.times do
   user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
-  collaborators << user
+  bar.advance
 end
 
 puts "Created Users"
@@ -58,8 +62,10 @@ puts "Created Users"
 puts "Creating Tools..."
 categories = ["Productivity", "Project Management", "Communication", "CRM"]
 filepath = File.expand_path("seeds.csv", __dir__)
+total_tools = File.foreach(filepath).count
+bar = TTY::ProgressBar.new("Tools :bar :percent - :tool", total: total_tools, width: 50, complete: "█", incomplete: "░")
+
 CSV.foreach(filepath) do |row|
-  puts "#{row[0]}"
   tool = Tool.create!(name: row[0], category: categories.sample, description: row[1], long_description: row[2], website: row[3])
   begin
     file = URI.open(row[4])
@@ -68,6 +74,7 @@ CSV.foreach(filepath) do |row|
     puts "⚠️ Erreur lors du téléchargement du logo"
     next
   end
+  bar.advance(tool: row[0])
 end
 
 puts "Created Tools"
