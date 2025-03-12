@@ -28,10 +28,12 @@
 
     <div class="bottom-element">
       <%= image_tag "default-logo.jpg", class: "img-footer" %>
+      <%= link_to root_path do %>
       <p>
         <%= current_user.first_name %>
         <%= current_user.last_name %>
       </p>
+      <% end %>
       </div>
   </div>
 <% end %>

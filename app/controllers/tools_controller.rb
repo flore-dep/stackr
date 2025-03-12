@@ -3,9 +3,6 @@ class ToolsController < ApplicationController
   skip_after_action :verify_policy_scoped
   def index
     @tools = Tool.all
-  end
-
-  def show
-    
+    # raise
   end
 end

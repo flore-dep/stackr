@@ -27,6 +27,15 @@
             <div class="border-bottom mb-2">
               <div class="d-flex justify-content-between align-items-center mb-2">
                 <h5 class="card-title mb-0 fw-bold"><%= tool.name %></h5>
+                <div class="ms-auto">
+                  <% if current_user.licenses.exists? %>
+                    <p>Bébou</p>
+                  <% elsif current_user.plans.exists? %>
+                    <p>Pipou</p>
+                  <% else %>
+                    <p>uWu</p>
+                  <% end %>
+                </div>
               </div>
             </div>
 
