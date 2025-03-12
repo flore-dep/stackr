@@ -1,32 +1,38 @@
 <div class="sidebar" data-controller="dropdown">
   <div class="top-element">
-    <h3><%= current_user.organization.name %></h3>
-  </div>
-  <button class="dropdown-btn" data-action="click->dropdown#toggle">
-    Stack Space
-    <i class="fa-solid fa-angle-down"></i>
-  </button>
-  <% if current_user %>
-  <div class="dropdown-container" data-dropdown-target="menu">
-    <%= link_to user_path(current_user) do %>
-      <span>Personnal Stack</span>
-    <% end %>
-    <%= link_to team_path(current_user.team) do %>
-      <span>Team Stack</span>
-    <% end %>
-    <%= link_to organization_path(current_user.organization) do %>
-      <span>Organization Stack</span>
+    <%= image_tag "default-logo.jpg", class: "img-header" %>
+    <% if current_user %>
+      <h3><%= current_user.organization.name %></h3>
     <% end %>
   </div>
-  <% end %>
-  <span>App Store</span>
-  <div class="bottom-element">
-    <div class="image">
-
+  <div class="sidebar-menu">
+    <button class="dropdown-btn" data-action="click->dropdown#toggle">
+      Stack Space
+      <i class="fa-solid fa-angle-down"></i>
+    </button>
+    <% if current_user %>
+    <div class="dropdown-container" data-dropdown-target="menu">
+      <%= link_to user_path(current_user) do %>
+        <span>Personnal Stack</span>
+      <% end %>
+      <%= link_to team_path(current_user.team) do %>
+        <span>Team Stack</span>
+      <% end %>
+      <%= link_to organization_path(current_user.organization) do %>
+        <span>Organization Stack</span>
+      <% end %>
     </div>
+    <% end %>
+    <span>Marketplace</span>
+  </div>
+  <div class="bottom-element">
+    <%= image_tag "default-logo.jpg", class: "img-footer" %>
+    <% if current_user %>
     <p>
       <%= current_user.first_name %>
       <%= current_user.last_name %>
     </p>
+    </div>
+    <% end %>
   </div>
 </div>

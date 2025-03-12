@@ -1,5 +1,6 @@
 .sidebar {
-  display:list-item;
+  display:flex;
+  flex-direction: column;
   height: 100%;
   width: 250px;
   position: fixed;
@@ -15,7 +16,8 @@
     text-decoration: none;
     font-size: 16px;
     color: #1EDD88;
-    display: block;
+    display: flex;
+    flex-direction: column;
     margin-left: 8px;
 
     &:hover {
@@ -29,25 +31,44 @@
   }
 
   .top-element {
+    display:flex;
     align-items: center;
     margin-bottom: 20px;
     border-bottom: solid;
+    border-color: #DDDFEB;
+    border-width: 0.1vw;
+    padding: 8px;
+
+    .img-header {
+      max-width: 30%;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+      margin-right: 8px;
+    }
 
     h3 {
       font-weight: bolder;
-      padding-bottom: 20px;
       color: #1EDD88;
     }
   }
 
   .bottom-element {
     display: flex;
-    margin-top: 20px;
-    bottom: 0;
-    align-self: flex-end;
-    position: relative;
     align-items: center;
+    margin-top: auto;
     border-top: solid;
+    border-color: #DDDFEB;
+    border-width: 0.1vw;
+    padding: 8px;
+
+    .img-footer {
+      max-width: 20%;
+      height: auto;
+      border-radius: 50%;
+      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+      margin-right: 10px;
+    }
 
     p {
       color: #1EDD88;
