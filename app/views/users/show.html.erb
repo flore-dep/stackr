@@ -1,12 +1,27 @@
-<h1> Tools SHOW </h1>
+<div class="container">
+  <div class="m-5">
+    <div class="d-flex justify-content-between">
+      <div class="team-name-card">
+        <h2 class="mb-3 fw-bold"> <b><%= @user.first_name.capitalize %></b> <%= @user.last_name.upcase %></h2>
+        <p class="mb-3"> Add jobtitle to UsersTable</p>
+        <%= link_to edit_user_registration_path, class: "edit-fixed-button text-decoration-none text-dark"  do %>
+          <i class="fa-solid fa-pen"></i> <span> Edit </span>
+        <% end %>
+        <h6><b> <%= @user.role %> of <%= @user.team.name %> team </b></h6>
+        <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+      </div>
+        <%= link_to "View all collaborators", users_path, class: "text-dark fs-5 align-self-end" %>
+    </div>
+  </div>
 
-<div class="d-flex flex-wrap">
-  <% @licenses.each do |license| %>
-    <% if license.end_date == nil
-      @active = false
-    else
-      @active = true if license.end_date < Date.today
-    end%>
-    <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
-  <% end %>
+  <div class="d-flex flex-wrap ms-5">
+    <% @licenses.each do |license| %>
+      <% if license.end_date == nil
+        @active = false
+      else
+        @active = true if license.end_date < Date.today
+      end%>
+      <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
+    <% end %>
+  </div>
 </div>

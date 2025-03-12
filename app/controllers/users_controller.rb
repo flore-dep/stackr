@@ -5,10 +5,8 @@ class UsersController < ApplicationController
   skip_after_action :verify_policy_scoped
 
   def show
-    @user_company = current_user.organization
+    @user = current_user
     @licenses = current_user.licenses
-
-    # @scopes = @licenses.map {|license| license.scope}
   end
 
 end
