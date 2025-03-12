@@ -1,0 +1,21 @@
+<div class="card-background license-inline-card m-2">
+    <div class="m-2 d-flex flex-s">
+      <%= cl_image_tag scope.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm mb-3" %>
+    </div>
+
+    <div class="license-inline-infos">
+      <h5 class="card-title"><%=scope.plan.tool.name%></h5>
+      <p><%=scope.plan.tool.category%></p>
+    </div>
+    <div class="license-inline-infos">
+      <p style="font-size: 10px">Formula</p>
+      <p><%=license.plan.formula[0].capitalize%></p>
+      <p><%=license.plan.formula[1]%> € </p>
+    </div>
+    <div class="center-element">
+      <p class="sticker approved-sticker"><%=license.status%></p>
+    </div>
+    <div class="center-element">
+      <p><%= license.created_at.strftime("%B %d, %y")%></p>
+    </div>
+</div>

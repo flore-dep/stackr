@@ -17,11 +17,24 @@
     </div>
 
     <div data-navbar-target="toolsPart">
-      <h2>TOOLS</h2>
+      <div class="d-flex flex-wrap ms-5">
+        <% @licenses.each do |license| %>
+          <% if license.end_date == nil
+            @active = false
+          else
+            @active = true if license.end_date < Date.today
+          end%>
+          <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
+        <% end %>
+      </div>
     </div>
 
     <div data-navbar-target="licensesPart">
-      <h2>LICENSES</h2>
+      <div class="d-flex flex-wrap ms-5">
+        <% @licenses.each do |license| %>
+          <%= render 'shared/license_card', license: license, scope: license.scope %>
+        <% end %>
+      </div>
     </div>
   </div>
 
