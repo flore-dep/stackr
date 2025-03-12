@@ -1,6 +1,6 @@
-<div class="search-bar">
-  <%= form_with(url: tools_path, method: :get, local: true, class: "d-flex m-3", role: "search") do |form| %>
-    <%= form.text_field :query, class: "form-control me-2", placeholder: "Search a software...", aria_label: "Search" %>
+<div class="orga-search-bar">
+  <%= form_with(url: organization_path, method: :get, local: true, class: "d-flex", role: "search") do |form| %>
+    <%= form.text_field :query, class: "form-control me-2 orga-search-field", style: "width: 500px;", placeholder: "Search a software...", aria_label: "Search" %>
     <%= form.submit "Search", class: "btn btn-outline-success" %>
   <% end %>
 </div>
@@ -13,18 +13,19 @@
 
   <div class="orga-card-container">
     <% current_user.organization.tools.pluck(:category).uniq.each do |category| %>
-      <div class="mt-4 ms-4">
-        <h5><b class="border-bottom"><%= category.upcase %></b></h5>
-      </div>
-      <div class="my-5">
-        <div class="category-slider">
-          <% current_user.organization.tools.each do |tool| %>
-            <% if tool.category.include?(category) %>
+      <% tools_in_category = @tools.select { |tool| tool.category.include?(category) } %>
+      <% unless tools_in_category.empty? %>
+        <div class="mt-4 ms-4">
+          <h5><b class="border-bottom"><%= category.upcase %></b></h5>
+        </div>
+        <div class="my-5">
+          <div class="category-slider">
+            <% tools_in_category.each do |tool| %>
               <%= render "shared/test_software_card", tool: tool %>
             <% end %>
-          <% end %>
+          </div>
         </div>
-      </div>
+      <% end %>
     <% end %>
   </div>
 </div>
