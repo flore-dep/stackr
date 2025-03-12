@@ -103,7 +103,7 @@ puts "Creating Licenses..."
 
 Scope.all.each do |scope|
   scope.team.users.each do |user|
-    license = License.create!( user: user, scope: scope, start_date: "2025-01-01", status: "Approved", access_type: "User", plan: scope.plan)
+    license = License.create!( user: user, scope: scope, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: scope.plan)
   end
 end
 

@@ -9,6 +9,8 @@ class Tool < ApplicationRecord
   validates :formulas, presence: true
   validates :access_types, presence: true
 
+
+
   pg_search_scope :global_search,
     against: [ :name, :category ],
     associated_against: {
@@ -17,5 +19,4 @@ class Tool < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
 end
