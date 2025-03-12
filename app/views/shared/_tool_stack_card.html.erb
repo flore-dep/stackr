@@ -5,7 +5,10 @@
       @plan_organization = @plans.where(organization_id: current_user.organization.id)
       @teams = @plan_organization.first.teams
     %>
-    <p>todo logo</p>
+    <div class="mt-1">
+      <%= cl_image_tag scope.tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm mb-3" %>
+    </div>
+
     <% @teams.each do |team| %>
       <% random_opacity = rand(0.2..1.0).round(2) %>
       <% random_color = "rgba(115, 88, 223, #{random_opacity})" %>
