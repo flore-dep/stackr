@@ -1,9 +1,7 @@
-<div class="top-element">
-  
-</div>
-
 <div class="sidebar" data-controller="dropdown">
-  <h3 class="text-white"><strong>Logo+Stackr</strong></h3>
+  <div class="top-element">
+    <h3><%= current_user.organization.name %></h3>
+  </div>
   <button class="dropdown-btn" data-action="click->dropdown#toggle">
     Stack Space
     <i class="fa-solid fa-angle-down"></i>
@@ -22,14 +20,13 @@
   </div>
   <% end %>
   <span>App Store</span>
-</div>
+  <div class="bottom-element">
+    <div class="image">
 
-<div class="bottom-element">
-  <div class="image">
-
+    </div>
+    <p>
+      <%= current_user.first_name %>
+      <%= current_user.last_name %>
+    </p>
   </div>
-  <p>
-    <%= current_user.first_name %>
-    <%= current_user.last_name %>
-  </p>
 </div>

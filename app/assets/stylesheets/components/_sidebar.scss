@@ -1,4 +1,5 @@
 .sidebar {
+  display:list-item;
   height: 100%;
   width: 250px;
   position: fixed;
@@ -26,47 +27,60 @@
       color: #282829;
     }
   }
-}
 
-.dropdown-btn {
-  background: none;
-  border: none;
-  padding: 6px 8px 6px 16px;
-  margin-left: 8px;
-  text-decoration: none;
-  font-size: 16px;
-  color: #1EDD88;
-  display: block;
-  width: 80%;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
+  .top-element {
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: solid;
 
-  &:hover {
-    height: auto;
-    width: 80%;
-    border-radius: 10px;
-    background-color: #1EDD88;
-    color: #282829;
-  }
-
-  &.active + .dropdown-container {
-    display: block;
-  }
-
-  &.bottom-element {
-    position: absolute;
-    padding: 16px 8px 16px 8px;
-    display: block;
-    bottom: 0;
-    z-index: 6;
-    border-top: solid;
-
-    p {
+    h3 {
+      font-weight: bolder;
+      padding-bottom: 20px;
       color: #1EDD88;
     }
   }
 
+  .bottom-element {
+    display: flex;
+    margin-top: 20px;
+    bottom: 0;
+    align-self: flex-end;
+    position: relative;
+    align-items: center;
+    border-top: solid;
+
+    p {
+      color: #1EDD88;
+      padding-top: 20px;
+    }
+  }
+
+  .dropdown-btn {
+    background: none;
+    border: none;
+    padding: 6px 8px 6px 16px;
+    margin-left: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    color: #1EDD88;
+    display: block;
+    width: 80%;
+    text-align: left;
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      height: auto;
+      width: 80%;
+      border-radius: 10px;
+      background-color: #1EDD88;
+      color: #282829;
+    }
+
+    &.active + .dropdown-container {
+      display: block;
+    }
+  }
 }
 
 .main {
