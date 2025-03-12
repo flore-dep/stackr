@@ -12,6 +12,10 @@ class Plan < ApplicationRecord
 
   validate :formula_in_tool_formulas
 
+
+  scope :current_organization_plan, ->(tool, user) {Plan.find_by(tool_id: "#{tool.id}", organization_id: "#{user.organization.id}")}
+  # scope :current_organization_plan, ->(tool, user) {where("tool_id = ? AND organization_id = ?", tool, user.organization.id)}
+
   private
 
   def formula_in_tool_formulas
