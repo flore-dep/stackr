@@ -41,8 +41,7 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   background-color: $google-gray;
   border-radius: 15px 0px 0px 15px;
   height: 100%;
-  padding: 10px;
-  padding-bottom: 0px;
+  padding: 0px 10px;
 };
 
 .tool-stack-infos-part {

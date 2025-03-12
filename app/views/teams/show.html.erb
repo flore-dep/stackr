@@ -9,11 +9,6 @@
      <%= link_to "Back to all teams", teams_path, class: "text-dark fs-5 align-self-end" %>
   </div>
 
-  <div class="team-navbar">
-    <div class="team-navbar-item">Members</div>
-    <div class="team-navbar-item">Tools</div>
-    <div class="team-navbar-item">Licenses</div>
-  </div>
-
+  <%= render "shared/account_navbar" %>
   <%= render "shared/members" %>
 </div>
