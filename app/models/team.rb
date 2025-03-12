@@ -12,6 +12,7 @@ class Team < ApplicationRecord
     tools = self.licenses.map do |license|
       license.tool
     end
+    tools.uniq
   end
 
 end
