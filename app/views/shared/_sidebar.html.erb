@@ -21,15 +21,19 @@
           <span class="dropdown-item">Organization Stack</span>
         <% end %>
       </div>
-      <span class="menu-item">Marketplace</span>
+      <%= link_to tools_path(@tools) do %>
+        <span class="menu-item">Marketplace</span>
+      <% end %>
     </div>
 
     <div class="bottom-element">
       <%= image_tag "default-logo.jpg", class: "img-footer" %>
+      <%= link_to root_path do %>
       <p>
         <%= current_user.first_name %>
         <%= current_user.last_name %>
       </p>
+      <% end %>
       </div>
   </div>
 <% end %>
