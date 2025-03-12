@@ -6,6 +6,7 @@
 
 .card-title {
   font-weight: 700;
+  font-family: $headers-font; 
 };
 
 .team-card {
@@ -53,4 +54,15 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
 .top-card-banner {
   background-color: rgb(236, 236, 236);
   margin-bottom: 14px;
+}
+
+.license-inline-card {
+  display: flex;
+  flex: wrap;
+  width: 1020px;
+  height: 100px;
+};
+
+.license-inline-infos {
+  flex: wrap;
 }
