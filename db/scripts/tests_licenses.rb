@@ -10,22 +10,28 @@ user_tool = user_plan.tool
 puts "TESTS LICENSES"
 
 puts "🟢 VALID"
-user_license.update!(end_date: "2025-02-01")
-p License.new( user: User.first, start_date: "2025-02-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2024-01-01", end_date: "2025-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
 
 puts "❌ INVALID"
-p License.new( user: User.first, start_date: "2025-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( start_date: "2025-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, start_date: "2025-01-01", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, start_date: "2025-01-01", status: "Approved", plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, start_date: "2025-01-01", status: "Approved", access_type: user_tool.access_types.sample).tap(&:valid?).errors.full_messages
 
-p License.new( user: User.first, start_date: "2025-02-01", status: "other", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, start_date: "2025-02-01", status: "Approved", access_type: "Other", plan: user_plan).tap(&:valid?).errors.full_messages
+# presence
+p License.new(start_date: "2026-01-01", end_date: "2027-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, end_date: "2027-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", status: "Approved", plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", status: "Approved", access_type: user_tool.access_types.sample).tap(&:valid?).errors.full_messages
 
+# inclusions
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", status: "Other", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-01", end_date: "2027-01-01", status: "Approved", access_type: "Other", plan: user_plan).tap(&:valid?).errors.full_messages
 
-p License.new( user: User.first, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-p License.new( user: User.first, start_date: "2025-02-01", end_date: "2025-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
-user_license.update!(end_date: nil)
-p License.new( user: User.first, start_date: "2025-02-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+# dates
+p License.new( user: user, start_date: "2026-01-01", end_date: "2026-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2026-01-02", end_date: "2026-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+
+# dates overlap
+p License.new( user: user, start_date: "2024-01-01", end_date: "2027-01-01", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2024-01-01", end_date: "2025-01-02", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
+p License.new( user: user, start_date: "2025-12-31", end_date: "2026-12-31", status: "Approved", access_type: user_tool.access_types.sample, plan: user_plan).tap(&:valid?).errors.full_messages
