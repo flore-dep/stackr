@@ -1,8 +1,8 @@
 
 <div class="card-background tool-stack-card">
   <div class="tool-stack-gray-part">
-    <%@plans = scope.tool.plans
-      @plan_organization = @plans.where(organization_id: current_user.organization.id)
+    <% @plan_organization = Tool.current_organization_plan(scope.tool.plans)%>
+    <%
       @teams = @plan_organization.first.teams
     %>
     <div class="mt-1">

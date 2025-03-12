@@ -7,5 +7,4 @@ class Team < ApplicationRecord
 
   validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true
-
 end
