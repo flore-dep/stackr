@@ -7,16 +7,24 @@
     <% @teams.each do |team| %>
       <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
         <div class="card-background team-card">
-          <p class="team-title bg-success"><%= team.name.upcase %></p>
+          <div class="top-card-banner">
+            <p class="team-title" style="background-color: rgb(<%= 200 + rand(56) %>, <%= 200 + rand(56) %>, <%= 200 + rand(56) %>);">
+              <%= team.name.upcase %>
+            </p>
+          </div>
           <div class="card-team-container">
             <div class="row">
               <% team.plans.first(7).each do |plan| %>
                 <div class="col-3">
-                  <%= image_tag "default-logo.jpg", class: "software-icon" %>
+                  <% if plan.tool.logo.attached? %>
+                    <%= cl_image_tag plan.tool.logo.key, class: "software-icon" %>
+                  <% else %>
+                    <%= image_tag "default-logo.jpg", class: "software-icon" %>
+                  <% end %>
                 </div>
               <% end %>
               <div class="col-3">
-                <p class="software-counter-icon">+<%= (team.plans.count - 7) %></p>
+                <p class="software-counter-icon">+<%= (team.tools.count - 7) %></p>
               </div>
             </div>
           </div>

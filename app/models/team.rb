@@ -4,6 +4,7 @@ class Team < ApplicationRecord
   has_many :scopes
   has_many :licenses, through: :scopes
   has_many :plans, through: :organization
+  has_many :tools, through: :plans
 
   validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true

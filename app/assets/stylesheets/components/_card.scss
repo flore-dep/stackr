@@ -1,6 +1,6 @@
 .card-background {
   background-color: $light-gray;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
 };
 
@@ -17,6 +17,7 @@
   display: flex;
   flex-direction: column;
   align-content: center;
+  overflow: hidden;
 };
 
 $random-color: rgba(random(256), random(256), random(256), 0.3);
@@ -26,6 +27,7 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   margin: 30px;
   padding: 16px 5px;
   font-weight: 700;
+  border: 1px solid rgba(0, 0, 0, 0.1)
 };
 
 .tool-stack-card {
@@ -48,3 +50,8 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
 .tool-stack-infos-part {
   padding: 5px;
 };
+
+.top-card-banner {
+  background-color: rgb(236, 236, 236);
+  margin-bottom: 14px;
+}
