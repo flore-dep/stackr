@@ -9,5 +9,11 @@ class OrganizationsController < ApplicationController
   def show
     @organization = current_user.organization
     authorize @organization
+
+    @tools = @organization.tools
+
+    if params[:query].present?
+      @tools = Tool.global_search("%#{params[:query]}%")
+    end
   end
 end
