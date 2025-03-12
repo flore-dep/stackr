@@ -28,7 +28,7 @@
                 <div class="ms-auto">
                   <% if current_user.licenses.exists? %>
                     <p>Bébou</p>
-                  <% elsif current_user.plans.exists? %>
+                  <% elsif current_user.organization.plans.exists? %>
                     <p>Pipou</p>
                   <% else %>
                     <p>uWu</p>
