@@ -6,7 +6,7 @@
 
 .card-title {
   font-weight: 700;
-  font-family: $headers-font; 
+  font-family: $headers-font;
 };
 
 .team-card {
@@ -54,15 +54,24 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
 .top-card-banner {
   background-color: rgb(236, 236, 236);
   margin-bottom: 14px;
-}
+};
 
 .license-inline-card {
-  display: flex;
-  flex: wrap;
+  display: grid;
+  grid-template-columns: 1fr 2fr 2fr 2fr 1fr;
+  gap: 10px;
   width: 1020px;
   height: 100px;
 };
 
 .license-inline-infos {
-  flex: wrap;
-}
+  padding-top: 10px;
+  & p {
+    margin-bottom: 0px;
+  };
+};
+
+.center-element {
+  display: flex;
+  align-items: center;
+};
