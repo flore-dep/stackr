@@ -14,18 +14,20 @@
           </div>
           <div class="card-team-container">
             <div class="row">
-              <% team.plans.first(7).each do |plan| %>
+              <% team.tools.uniq.first(7).each do |tool| %>
                 <div class="col-3">
-                  <% if plan.tool.logo.attached? %>
-                    <%= cl_image_tag plan.tool.logo.key, class: "software-icon" %>
+                  <% if tool.logo.attached? %>
+                    <%= cl_image_tag tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "software-icon" %>
                   <% else %>
                     <%= image_tag "default-logo.jpg", class: "software-icon" %>
                   <% end %>
                 </div>
               <% end %>
-              <div class="col-3">
-                <p class="software-counter-icon">+<%= (team.tools.count - 7) %></p>
-              </div>
+              <% if team.tools.uniq.count > 7 %>
+                <div class="col-3">
+                  <p class="software-counter-icon">+<%= (team.tools.uniq.count - 7) %></p>
+                </div>
+              <% end %>
             </div>
           </div>
         </div>
