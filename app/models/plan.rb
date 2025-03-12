@@ -12,6 +12,20 @@ class Plan < ApplicationRecord
 
   validate :formula_in_tool_formulas
 
+
+  scope :current_organization_plan, ->(tool, user) {where("tool_id = ? AND organization_id = ?", tool, user.organization.id)}
+  # scope :active_license_per_user, -> (user_id) {where("end_at >= ? AND user_id = ?", Time.current, user_id)}
+
+
+  #   <%@plans = License.scope.tool.plans
+  #   @plan_organization = @plans.where(organization_id: current_user.organization.id)
+  #   @teams = @plan_organization.first.teams
+  # %>
+  #   scope :active_license_per_user, -> (user_id) {where("end_at >= ? AND user_id = ?", Time.current, user_id)}
+
+  #   @licenses_active = License.active_license_per_user(current_user.id).includes(:software)
+
+
   private
 
   def formula_in_tool_formulas

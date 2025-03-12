@@ -1,9 +1,9 @@
 
 <div class="card-background tool-stack-card">
   <div class="tool-stack-gray-part">
-    <% @plan_organization = Tool.current_organization_plan(scope.tool.plans)%>
-    <%
-      @teams = @plan_organization.first.teams
+    <%@plan_organization = Plan.current_organization_plan(scope.tool, current_user)%>
+    <%@teams = @plan_organization.first.teams
+    raise
     %>
     <div class="mt-1">
       <%= cl_image_tag scope.tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm mb-3" %>
