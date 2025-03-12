@@ -17,6 +17,13 @@ class User < ApplicationRecord
   validates :start_date, presence: true
   validate :not_before
 
+  def tools
+    tools = self.licenses.map do |license|
+      license.tool
+    end
+    tools.uniq
+  end
+
   private
 
   def not_before
