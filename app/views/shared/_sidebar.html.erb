@@ -12,16 +12,16 @@
 
       <div class="dropdown-container" data-dropdown-target="menu">
         <%= link_to user_path(current_user) do %>
-          <span>Personnal Stack</span>
+          <span class="dropdown-item">Personnal Stack</span>
         <% end %>
         <%= link_to team_path(current_user.team) do %>
-          <span>Team Stack</span>
+          <span class="dropdown-item">Team Stack</span>
         <% end %>
         <%= link_to organization_path(current_user.organization) do %>
-          <span>Organization Stack</span>
+          <span class="dropdown-item">Organization Stack</span>
         <% end %>
       </div>
-      <span>Marketplace</span>
+      <span class="menu-item">Marketplace</span>
     </div>
 
     <div class="bottom-element">
