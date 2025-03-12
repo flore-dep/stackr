@@ -1,3 +1,7 @@
+a {
+  text-decoration: none;
+  }
+
 .sidebar {
   display:flex;
   flex-direction: column;
@@ -19,7 +23,6 @@
     flex-direction: column;
     margin-left: 8px;
     margin-top: 10px;
-
 
     &:hover {
       height: auto;
@@ -135,10 +138,6 @@
   &.active {
     display: block;
     max-height: 300px;
-  }
-
-  & a {
-    text-decoration: none;
   }
 }
 

@@ -1,0 +1,6 @@
+<div class="orga-search-bar">
+  <%= form_with(url: organization_path, method: :get, local: true, class: "d-flex", role: "search") do |form| %>
+    <%= form.text_field :query, class: "form-control me-2 orga-search-field", style: "width: 500px;", placeholder: "Search a software...", aria_label: "Search" %>
+    <%= form.submit "Search", class: "btn btn-outline-success" %>
+  <% end %>
+</div>
