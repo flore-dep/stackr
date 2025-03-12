@@ -78,3 +78,4 @@ end
 gem 'faker'
 gem "dotenv-rails"
 gem "cloudinary"
+gem 'tty-progressbar'
