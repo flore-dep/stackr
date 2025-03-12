@@ -60,7 +60,7 @@ categories = ["Productivity", "Project Management", "Communication", "CRM"]
 filepath = File.expand_path("seeds.csv", __dir__)
 CSV.foreach(filepath) do |row|
   puts "#{row[0]}"
-  tool = Tool.create!(name: row[0], category: categories.sample)
+  tool = Tool.create!(name: row[0], category: categories.sample, description: row[1], long_description: row[2], website: row[3])
   begin
     file = URI.open(row[4])
     tool.logo.attach(io: file, filename: "default_logo.jpg", content_type: "image/jpeg")
