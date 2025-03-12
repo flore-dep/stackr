@@ -1,16 +1,27 @@
-<div class="container">
-  <h1 class="m-4" ><%= @organization.name %></h1>
-  <div class="line"></div>
+<div class="container-team-index">
+  <div class="line">
+    <h1 class="m-5 mb-2 ms-0"><%= current_user.organization.name %></h1>
+  </div>
+
   <div class="d-flex flex-wrap">
     <% @teams.each do |team| %>
       <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
-        <div class="team-card">
-          <p class="team-title"><%= team.name %></p>
-          <% team.plans.each do |plan| %>
-            <p> <%= plan.tool.name %> to remplace by image</p>
-          <% end %>
+        <div class="card-background team-card">
+          <p class="team-title bg-success"><%= team.name.upcase %></p>
+          <div class="card-team-container">
+            <div class="row">
+              <% team.plans.first(7).each do |plan| %>
+                <div class="col-3">
+                  <%= image_tag "default-logo.jpg", class: "software-icon" %>
+                </div>
+              <% end %>
+              <div class="col-3">
+                <p class="software-counter-icon">+<%= (team.plans.count - 7) %></p>
+              </div>
+            </div>
+          </div>
+        </div>
       <% end %>
-      </div>
-  <% end %>
+    <% end %>
   </div>
 </div>

@@ -1,11 +1,13 @@
 require 'faker'
 require "csv"
 require 'json'
+require "open-uri"
 
 puts "Cleaning Database..."
 License.destroy_all
 Scope.destroy_all
 Plan.destroy_all
+Tool.all.each { |tool| tool.logo.purge_later }
 Tool.destroy_all
 User.destroy_all
 Team.destroy_all
@@ -58,7 +60,14 @@ categories = ["Productivity", "Project Management", "Communication", "CRM"]
 filepath = File.expand_path("seeds.csv", __dir__)
 CSV.foreach(filepath) do |row|
   puts "#{row[0]}"
-  tool = Tool.create!(name: row[0], category: categories.sample)
+  tool = Tool.create!(name: row[0], category: categories.sample, description: row[1], long_description: row[2], website: row[3])
+  begin
+    file = URI.open(row[4])
+    tool.logo.attach(io: file, filename: "default_logo.jpg", content_type: "image/jpeg")
+  rescue OpenURI::HTTPError, Errno::ENOENT => e
+    puts "⚠️ Erreur lors du téléchargement du logo"
+    next
+  end
 end
 
 puts "Created Tools"
@@ -73,8 +82,11 @@ puts "Created Plans"
 puts "Creating Scopes..."
 
 teams.each do |team|
+  plans = Plan.all.to_a
   5.times do
-    scope = Scope.create!(team: team, plan: Plan.all.sample)
+    plan = plans.sample
+    scope = Scope.create!(team: team, plan: plan)
+    plans.delete(plan)
   end
 end
 

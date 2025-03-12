@@ -1,0 +1,12 @@
+<h1> Tools SHOW </h1>
+
+<div class="d-flex flex-wrap">
+  <% @licenses.each do |license| %>
+    <% if license.end_date == nil
+      @active = false
+    else
+      @active = true if license.end_date < Date.today
+    end%>
+    <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
+  <% end %>
+</div>

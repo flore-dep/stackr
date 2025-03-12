@@ -6,6 +6,8 @@ class User < ApplicationRecord
 
   belongs_to :team
   has_many :licenses, dependent: :destroy
+  has_many :plans, through: :licenses
+  
   has_one :organization, through: :team
 
   validates :first_name, presence: true, length: { minimum: 1}
