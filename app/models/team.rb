@@ -15,4 +15,11 @@ class Team < ApplicationRecord
     tools.uniq
   end
 
+  def plans
+    plans = self.licenses.map do |license|
+      license.plan
+    end
+    plans.uniq
+  end
+
 end
