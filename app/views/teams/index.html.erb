@@ -3,8 +3,6 @@
     <h1 class="m-5 mb-2 ms-0"><%= current_user.organization.name %></h1>
   </div>
 
-<%# test %>
-
   <div class="d-flex flex-wrap">
     <% @teams.each do |team| %>
       <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
