@@ -1,28 +1,23 @@
+<%= link_to tool_path(license.tool) do %>
+  <div class="card-background tool-stack-card">
+      <div class="tool-stack-gray-part">
+        <%plan_organization = Plan.current_organization_plan(license.tool, current_user)%>
 
-<div class="card-background tool-stack-card">
-  <div class="tool-stack-gray-part">
-    <%plan_organization = Plan.current_organization_plan(scope.tool, current_user)%>
+        <div class="mt-1">
+          <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm mb-3" %>
+        </div>
 
-    <div class="mt-1">
-      <%= cl_image_tag scope.tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm mb-3" %>
-    </div>
+        <% plan_organization.teams.each do |team| %>
+          <% random_opacity = rand(0.2..1.0).round(2) %>
+          <% random_color = "rgba(115, 88, 223, #{random_opacity})" %>
+          <p class="team-tag" style="background-color: <%= random_color %>"><%= team.name %></p>
+        <% end %>
+      </div>
 
-    <% plan_organization.teams.each do |team| %>
-      <% random_opacity = rand(0.2..1.0).round(2) %>
-      <% random_color = "rgba(115, 88, 223, #{random_opacity})" %>
-      <p class="team-tag" style="background-color: <%= random_color %>"><%= team.name %></p>
-    <% end %>
+      <div class='tool-stack-infos-part'>
+        <p class='card-title'><%=license.plan.tool.name%></p>
+        <p><%=license.start_date%> - <%=license.end_date%> </p>
+        <p><%=license.plan.formula[1]%> €/month </p>
+      </div>
   </div>
-
-  <div class='tool-stack-infos-part'>
-    <% if active == true %>
-      <p class='sticker active-sticker'>Active</p>
-    <% else %>
-      <p class='sticker past-sticker'>Past</p>
-    <% end %>
-    <p class='card-title'><%=scope.plan.tool.name%></p>
-    <p><%=license.start_date%> - <%=license.end_date%> </p>
-    <p><%=license.plan.formula[1]%> €/month </p>
-  </div>
-
-</div>
+<% end %>

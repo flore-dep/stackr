@@ -1,0 +1,9 @@
+
+<div class="container">
+  <div class="line">
+    <h1 class="m-5 mb-2 ms-0"> Collaborators of <%= current_user.organization.name %></h1>
+  </div>
+  <div class="mt-4">
+      <%= render partial: 'shared/members', collection: @users, as: :member, locals: {display_selector: false} %>
+  </div>
+</div>
