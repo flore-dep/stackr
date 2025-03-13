@@ -5,9 +5,9 @@ class UsersController < ApplicationController
   skip_after_action :verify_policy_scoped
 
   def index
-    @teams = policy_scope(User)
+    @users = current_user.organization.users
   end
-  
+
   def show
     @user = current_user
     @licenses = current_user.licenses
