@@ -13,8 +13,8 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = current_user
-    @licenses = current_user.licenses
+    @user = User.find(params[:id])
+    @licenses = @user.licenses
   end
 
   def new
