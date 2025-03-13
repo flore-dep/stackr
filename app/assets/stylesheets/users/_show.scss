@@ -1,8 +1,16 @@
 .edit-fixed-button {
-position: absolute;
-top: 30px;
-right: 40px;
-border-radius: 15px;
-background-color: rgba($green, 0.3);
-padding: 5px 10px 10px 5px;
+  position: absolute;
+  bottom: 30px;
+  right: 40px;
+  border-radius: 15px;
+  background-color: rgba($green, 0.3);
+  padding: 8px 12px;
 };
+
+.fixed-user-img-card {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+  border-radius: 50%;
+  width: 85px;
+}
