@@ -5,7 +5,7 @@ require "open-uri"
 require 'tty-progressbar'
 
 # Cloudinary storage (passer en false pour faire des tests)
-cloudinary_storage = false
+cloudinary_storage = true
 
 # Clean DB
 puts "Cleaning Database..."
