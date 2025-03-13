@@ -11,7 +11,6 @@
 
   <div data-controller="navbar">
     <%= render "shared/account_navbar", active_tab: 'members' %>
-
     <div data-navbar-target="membersPart">
       <%= render "shared/members" %>
     </div>
@@ -39,3 +38,33 @@
   </div>
 
 </div>
+
+<!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡Add a bébou to your team</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container mt-5">
+                  <%= simple_form_for [@team, User.new] do |f| %>
+                    <div class="form-inputs">
+                      <%= f.input :first_name %>
+                      <%= f.input :last_name %>
+                      <%= f.input :email %>
+                      <%= f.input :role %>
+                      <%= f.input :password %>
+                      <%= f.input :start_date %>
+                      <%= f.input :end_date %>
+                    </div>
+                    <div class="form-actions text-center">
+                      <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
