@@ -27,11 +27,11 @@
                 <h5 class="card-title mb-0 fw-bold"><%= tool.name %></h5>
                 <div class="ms-auto">
                   <% if current_user.licenses.joins(:plan).exists?(plans: { tool_id: tool.id }) %>
-                    <p>Bébou</p>
+                    <p><%= image_tag("stackr_green.svg")%></p>
                   <% elsif current_user.organization.plans.exists?(tool_id: tool.id) %>
-                    <p>Pipou</p>
+                    <p><%= image_tag("stackr_yellow.svg")%></p>
                   <% else %>
-                    <p>uWu</p>
+                    <p></p>
                   <% end %>
                 </div>
               </div>
