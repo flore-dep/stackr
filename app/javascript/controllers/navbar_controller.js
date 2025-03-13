@@ -4,6 +4,10 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   static targets = ["members", "tools", "licenses", "membersPart", "toolsPart", "licensesPart"]
 
+  connect() {
+    console.log(this.hasMembersPartTarget)
+  }
+
   fire(event) {
     this.hideAllPartials()
     this.removeActiveClasses()
@@ -12,19 +16,24 @@ export default class extends Controller {
   }
 
   hideAllPartials() {
-    this.membersPartTarget.classList.add("d-none")
+    if (this.hasMembersPartTarget) {
+      this.membersPartTarget.classList.add("d-none")
+    }
     this.toolsPartTarget.classList.add("d-none")
     this.licensesPartTarget.classList.add("d-none")
   }
 
   removeActiveClasses() {
-    this.membersTarget.classList.remove("nvbactive")
+    if (this.hasMembersPartTarget) {
+      this.membersTarget.classList.remove("nvbactive")
+    }
+
     this.toolsTarget.classList.remove("nvbactive")
     this.licensesTarget.classList.remove("nvbactive")
   }
 
   showPartial(button) {
-    if (button === this.membersTarget) {
+    if (this.hasMembersPartTarget && button === this.membersTarget) {
       this.membersPartTarget.classList.remove("d-none")
     } else if (button === this.toolsTarget) {
       this.toolsPartTarget.classList.remove("d-none")

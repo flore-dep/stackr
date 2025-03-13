@@ -1,7 +1,7 @@
 <div class="team-navbar">
-  <% if request.path == team_path(current_user.team) %>
-    <div class="team-navbar-item" data-navbar-target="members" data-action="click->navbar#fire">Members</div>
+  <% if active_tab == "members" %>
+    <div class="team-navbar-item nvbactive" data-navbar-target="members" data-action="click->navbar#fire">Members</div>
   <% end %>
-  <div class="team-navbar-item" data-navbar-target="tools" data-action="click->navbar#fire">Tools</div>
+  <div class="team-navbar-item <%= "nvbactive" if active_tab == "tools"%>" data-navbar-target="tools" data-action="click->navbar#fire">Tools</div>
   <div class="team-navbar-item" data-navbar-target="licenses" data-action="click->navbar#fire">Licenses</div>
 </div>
