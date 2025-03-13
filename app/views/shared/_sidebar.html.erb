@@ -16,7 +16,7 @@
           <%= link_to team_path(current_user.team) do %>
             <span class="dropdown-item"><i class="fa-solid fa-people-group me-2"></i>Team Stack</span>
           <% end %>
-          <%= link_to organization_path(current_user.organization) do %>
+          <%= link_to organization_path do %>
             <span class="dropdown-item"><i class="fa-solid fa-building me-2"></i></i>Organization Stack</span>
           <% end %>
           <%= link_to tools_path(@tools) do %>
