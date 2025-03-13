@@ -6,6 +6,10 @@ class UsersController < ApplicationController
 
   def index
     @users = current_user.organization.users
+    @teams = current_user.organization.teams
+    if params[:q].present?
+      @users = Team.find(params[:q]).users
+    end
   end
 
   def show
