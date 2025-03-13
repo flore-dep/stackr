@@ -19,7 +19,7 @@
         </div>
         <%= link_to "#", class: "icon-member" do %>
         <% if display_selector == true %>
-          <div class="member-selector">
+          <div class="member-selector" data-bs-toggle="modal" data-bs-target="#removeModal">
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </div>
         <% end %>
