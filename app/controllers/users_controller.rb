@@ -17,10 +17,6 @@ class UsersController < ApplicationController
     @licenses = @user.licenses
   end
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.new(user_params)
     @team = Team.find(params[:team_id])
@@ -28,6 +24,12 @@ class UsersController < ApplicationController
     if @user.save!
       redirect_to team_path(@team)
     end
+  end
+
+  def destroy
+    raise
+    @user.update!
+    redirect_to team_path(@team)
   end
 
   private
