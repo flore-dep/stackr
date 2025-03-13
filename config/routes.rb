@@ -21,9 +21,11 @@ Rails.application.routes.draw do
 
   resource :organization, only: :show
 
-  resources :teams, only: %i[index show create]
+  resources :teams, only: %i[index show create] do
+    resources :users, only: %i[create]
+  end
 
-  resources :users, only: %i[index show create update destroy]
+  resources :users, only: %i[index show update destroy]
 
   get "up" => "rails/health#show", as: :rails_health_check
 end
