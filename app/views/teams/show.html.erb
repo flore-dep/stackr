@@ -10,13 +10,13 @@
   </div>
 
   <div data-controller="navbar">
-    <%= render "shared/account_navbar" %>
+    <%= render "shared/account_navbar", active_tab: 'members' %>
 
     <div data-navbar-target="membersPart">
       <%= render "shared/members" %>
     </div>
 
-    <div data-navbar-target="toolsPart">
+    <div data-navbar-target="toolsPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
         <% @licenses.each do |license| %>
           <% if license.end_date == nil
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div data-navbar-target="licensesPart">
+    <div data-navbar-target="licensesPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
         <% @licenses.each do |license| %>
           <%= render 'shared/license_card', license: license, scope: license.scope %>
