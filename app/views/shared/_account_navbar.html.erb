@@ -4,5 +4,7 @@
   <% end %>
   <div class="team-navbar-item <%= "nvbactive" if active_tab == "tools"%>" data-navbar-target="tools" data-action="click->navbar#fire">Tools</div>
   <div class="team-navbar-item" data-navbar-target="licenses" data-action="click->navbar#fire">Licenses</div>
-  <div class="add ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal">+</div>
+  <% unless current_user.role == "Employee" %>
+  <div class="add ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus icon-add-user"></i></div>
+  <% end %>
 </div>
