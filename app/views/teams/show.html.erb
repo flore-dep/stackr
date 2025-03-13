@@ -20,13 +20,8 @@
 
     <div data-navbar-target="toolsPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
-        <% @licenses.each do |license| %>
-          <% if license.end_date == nil
-            @active = false
-          else
-            @active = true if license.end_date < Date.today
-          end%>
-          <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
+        <% @tools.each do |tool| %>
+          <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
         <% end %>
       </div>
     </div>
@@ -34,7 +29,7 @@
     <div data-navbar-target="licensesPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
         <% @licenses.each do |license| %>
-          <%= render 'shared/license_card', license: license, scope: license.scope %>
+          <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
     </div>
