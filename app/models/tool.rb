@@ -1,5 +1,6 @@
 class Tool < ApplicationRecord
   has_many :plans, dependent: :destroy
+  has_many :reviews
   has_one_attached :logo
 
   include PgSearch::Model

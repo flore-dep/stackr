@@ -5,13 +5,14 @@ require "open-uri"
 require 'tty-progressbar'
 
 # Cloudinary storage (passer en false pour faire des tests)
-cloudinary_storage = true
+cloudinary_storage = false
 
 # Clean DB
 puts "Cleaning Database..."
 License.destroy_all
 Scope.destroy_all
 Plan.destroy_all
+Review.destroy_all
 Tool.all.each { |tool| tool.logo.purge_later }
 Tool.destroy_all
 User.destroy_all
@@ -88,6 +89,14 @@ CSV.foreach(filepath) do |row|
 end
 
 puts "Created Tools"
+
+puts "Creating Reviews..."
+Tool.all.each do |tool|
+  10.times do
+    review = Review.create(username: "#{Faker::Name.first_name}#{Faker::Name.last_name}",content: Faker::Quotes::Shakespeare.hamlet_quote,rating: (0..5).to_a.sample, tool: tool)
+  end
+end
+puts "Created Reviews"
 
 puts "Creating Plans..."
 Tool.all.each do |tool|
