@@ -1,20 +1,15 @@
-<div class="container mt-5">
-  <h1 class="mb-5">HOME</h1>
-
-  <div class="d-flex flex-column">
-      <p><i class="fa-solid fa-envelope me-2"></i><%= current_user.email %></p>
-      <p>Full Name:
-      <%= current_user.first_name %>
-      <%= current_user.last_name %>
-      </p>
-      <p><i class="fa-solid fa-user-tie me-2"></i><%= current_user.role %></p>
-      <p><i class="fa-solid fa-briefcase me-2"></i><%= current_user.team.organization.name %></p>
-      <p><i class="fa-solid fa-people-group me-2"></i><%= current_user.team.name %></p>
+<div class="px-4 py-5 my-5 text-center">
+  <%= image_tag "stackr-dark.svg", class: "d-block mx-auto mb-4", width:"72" %>
+  <h1 class="display-5 fw-bold text-body-emphasis mb-5"><%= current_user.organization.name.upcase %></h1>
+  <div class="col-lg-6 mx-auto">
+    <p class="lead mb-5">
+      Quickly design and customize responsive mobile-first sites with Bootstrap, the world’s most popular front-end open
+      source toolkit, featuring Sass variables and mixins, responsive grid system, extensive prebuilt components,
+      and powerful JavaScript plugins.
+    </p>
+    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+      <button type="button" class="btn btn-success btn-lg px-4 gap-3">Primary button</button>
+      <button type="button" class="btn btn-outline-success btn-lg px-4">Secondary</button>
+    </div>
   </div>
-
-  <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success mb-3" %>
-  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark mb-3" %>
-
-  <%= link_to "ORGANIZATION", organization_path(current_user.team.organization), class: "btn btn-primary mb-3" %>
-  <%= link_to "TEAMS", teams_path, class: "btn btn-primary mb-3" %>
 </div>

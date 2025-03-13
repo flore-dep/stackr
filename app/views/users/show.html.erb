@@ -2,13 +2,18 @@
   <div class="m-5">
     <div class="d-flex justify-content-between">
       <div class="team-name-card">
-        <h2 class="mb-3 fw-bold"> <b><%= @user.first_name.capitalize %></b> <%= @user.last_name.upcase %></h2>
-        <p class="mb-3"> Add jobtitle to UsersTable</p>
-        <%= link_to edit_user_registration_path, class: "edit-fixed-button text-decoration-none text-dark"  do %>
-          <i class="fa-solid fa-pen"></i> <span> Edit </span>
-        <% end %>
-        <h6><b> <%= @user.role %> of <%= @user.team.name %> team </b></h6>
-        <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+        <h2 class="mb-3 fw-bold"> <b><%= current_user.first_name.capitalize %></b> <%= current_user.last_name.upcase %></h2>
+        <%= image_tag "default-pp.jpg", class: "fixed-user-img-card" %>
+        <p class="mb-2"><i class="fa-solid fa-user-tie me-2"></i><%= current_user.role %></p>
+        <p class="mb-2"><i class="fa-solid fa-briefcase me-2"></i><%= current_user.team.organization.name %></p>
+        <p class="mb-2"><i class="fa-solid fa-people-group me-2"></i><%= current_user.team.name %></p>
+        <p><i class="fa-solid fa-envelope me-2"></i><%= current_user.email %></p>
+        <div class="d-flex justify-content-end">
+          <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success me-2" %>
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+        </div>
+        <div class="d-flex flex-column">
+        </div>
       </div>
         <%= link_to "View all collaborators", users_path, class: "text-dark fs-5 align-self-end" %>
     </div>
@@ -33,7 +38,4 @@
       </div>
     </div>
   </div>
-
-  </div>
-
 </div>
