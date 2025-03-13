@@ -6,4 +6,5 @@ class Organization < ApplicationRecord
   has_many :tools, through: :plans
 
   validates :name, presence: true, uniqueness: true, length: { minimum: 3 }
+
 end

@@ -10,10 +10,12 @@
   </div>
 
   <div data-controller="navbar">
-    <%= render "shared/account_navbar", active_tab: 'members' %>
+    <%= render "shared/account_navbar", active_tab: 'members', display_selector: true%>
 
     <div data-navbar-target="membersPart">
-      <%= render "shared/members" %>
+      <% @team.users.each do |member| %>
+       <%= render "shared/members", member: member, display_selector: true %>
+      <% end %>
     </div>
 
     <div data-navbar-target="toolsPart" class='d-none'>
