@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_03_12_102553) do
+ActiveRecord::Schema[7.1].define(version: 2025_03_13_104559) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,16 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_12_102553) do
     t.index ["tool_id"], name: "index_plans_on_tool_id"
   end
 
+  create_table "reviews", force: :cascade do |t|
+    t.string "username"
+    t.text "content"
+    t.integer "rating"
+    t.bigint "tool_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tool_id"], name: "index_reviews_on_tool_id"
+  end
+
   create_table "scopes", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.bigint "plan_id", null: false
@@ -129,6 +139,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_12_102553) do
   add_foreign_key "licenses", "users"
   add_foreign_key "plans", "organizations"
   add_foreign_key "plans", "tools"
+  add_foreign_key "reviews", "tools"
   add_foreign_key "scopes", "plans"
   add_foreign_key "scopes", "teams"
   add_foreign_key "teams", "organizations"
