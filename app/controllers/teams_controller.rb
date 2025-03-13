@@ -5,6 +5,7 @@ class TeamsController < ApplicationController
   end
 
   def show
+    @user = User.new
     @team = Team.find(params[:id])
     authorize @team
     @licenses = current_user.team.licenses
