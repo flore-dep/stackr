@@ -10,3 +10,21 @@
 .navbar-lewagon .navbar-brand img {
   width: 40px;
 }
+
+.icon-add-user {
+  display: flex;
+  background-color: #9feeae;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  color: rgb(240, 240, 240);
+  transition: 0.3s;
+  font-size: 20px;
+
+  &:hover {
+    color: rgb(255, 255, 255);
+    background-color: green;
+  }
+}
