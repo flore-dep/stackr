@@ -1,4 +1,5 @@
 class License < ApplicationRecord
+  STATUS = ["Approved", "Pending", "Declined"]
   belongs_to :plan
   belongs_to :user
   belongs_to :scope, optional: true
@@ -11,7 +12,7 @@ class License < ApplicationRecord
   validates :plan, presence: true
   validates :start_date, presence: true
   validates :end_date, presence: true
-  validates :status, presence: true, inclusion: { in: %w[Approved Pending Declined]}
+  validates :status, presence: true, inclusion: { in: STATUS}
   validates :access_type, presence: true
 
   validate :access_type_in_tool_access_types

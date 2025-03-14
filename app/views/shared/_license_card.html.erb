@@ -14,7 +14,8 @@
     </div>
     <div class="center-element justify-content-end">
       <p class="m-0"><%= license.user.last_name %></p>
-      <p class="sticker approved-sticker m-0 ms-3"><%=license.status%></p>
+      <% sticker_status = "#{license.status.downcase}-sticker" %>
+      <p class="sticker <%= sticker_status %> m-0 ms-3"><%=license.status%></p>
     </div>
     <div class="center-element">
       <p class="m-0"><%= license.created_at.strftime("%B %d, %y")%></p>
