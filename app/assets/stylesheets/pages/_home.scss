@@ -2,3 +2,21 @@
 .rounded-image {
   border-radius: 25px;
 }
+
+.prank {
+  position: relative;
+  width: 100%; /* Définissez une largeur */
+  height: 100%; /* Définissez une hauteur */
+}
+
+.prank-hover {
+  position: absolute;
+  top: 30%;
+  right: 19%;
+  opacity: 0;
+  transition: 5s;
+
+  &:hover {
+    opacity: 1;
+  }
+}
