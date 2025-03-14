@@ -54,7 +54,7 @@
               <%= f.input :first_name %>
               <%= f.input :last_name %>
               <%= f.input :email %>
-              <%= f.input :role %>
+              <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
               <%= f.input :password %>
               <%= f.input :start_date %>
               <%= f.input :end_date %>
