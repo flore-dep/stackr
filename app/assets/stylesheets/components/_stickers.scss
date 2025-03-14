@@ -16,6 +16,16 @@
 };
 
 .approved-sticker {
-  color:$green;
-  background-color: rgba($green, 0.3);
+  color: rgb(255, 255, 255);
+  background-color: #4ac348;
+};
+
+.pending-sticker {
+  color:#282829;
+  background-color: #d5c837;
+};
+
+.declined-sticker {
+  color: rgb(255, 253, 253);
+  background-color: #d34444;
 };
