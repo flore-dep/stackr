@@ -46,3 +46,5 @@ class UsersController < ApplicationController
     params.require(:user).permit(:email, :first_name, :last_name, :role, :start_date, :end_date, :password)
   end
 end
+
+# hehehe trying to push 
