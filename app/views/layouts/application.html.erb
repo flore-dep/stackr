@@ -11,8 +11,12 @@
   </head>
 
   <body>
-    <%= render "shared/sidebar" %>
-    <div class="main">
+    <% if user_signed_in? %>
+      <%= render "shared/sidebar" %>
+      <div class="main">
+        <%= yield %>
+      </div>
+    <% else %>
       <%= yield %>
     <% end %>
   </body>
