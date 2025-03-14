@@ -6,12 +6,47 @@
 </div>
 
 <div class="container mt-4">
+
   <div class="d-flex justify-content-between p-3 mx-5">
-    <h3 class="m-0">Softwares availables</h3>
-    <%= link_to "Back", root_path, class: "btn btn-dark" %>
+    <h3 class="m-0">Find your crush</h3>
   </div>
 
-<div class="orga-card-container">
+  <% if params.present? %>
+  <div class="orga-card-container">
+        <div class="mt-4 ms-4">
+          <h5><b class="border-bottom">Top 3 apps of the month</b></h5>
+        </div>
+        <div class="my-5">
+          <div class="category-slider">
+            <% best_tools = @tools
+              .select("tools.*, AVG(reviews.rating) AS average_rating")
+              .joins(:reviews)
+              .group("tools.id")
+              .having("AVG(reviews.rating) > 0")
+              .order("average_rating DESC")
+              .limit(3) %>
+            <% best_tools.each do |tool| %>
+              <%= render "shared/test_software_card", tool: tool, context: "marketplace" %>
+            <% end %>
+          </div>
+        </div>
+  </div>
+
+  <div class="orga-card-container">
+        <div class="mt-4 ms-4">
+          <h5><b class="border-bottom">Sponsored apps</b></h5>
+        </div>
+        <div class="my-5">
+          <div class="category-slider">
+            <% @tools.first(5).each do |tool| %>
+              <%= render "shared/test_software_card", tool: tool %>
+            <% end %>
+          </div>
+        </div>
+  </div>
+
+  <% else %>
+  <div class="orga-card-container">
     <% @tools.pluck(:category).uniq.each do |category| %>
       <% tools_in_category = @tools.select { |tool| tool.category.include?(category) } %>
       <% unless tools_in_category.empty? %>
@@ -28,4 +63,6 @@
       <% end %>
     <% end %>
   </div>
+  <% end %>
+
 </div>

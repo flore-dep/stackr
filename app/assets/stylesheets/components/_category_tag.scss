@@ -1,0 +1,25 @@
+.category-tag {
+  display: inline-block;
+  border-radius: 30px;
+  text-align: center;
+  border: none;
+  width: fit-content;
+  font-size: 10px;
+};
+
+// Sous-classes pour chaque catégorie avec des tons pastels
+.productivity {
+  background-color: rgb(200, 245, 255); // Bleu clair pastel
+}
+
+.project_management {
+  background-color: rgb(220, 250, 240); // Vert pastel doux
+}
+
+.communication {
+  background-color: rgb(255, 230, 230); // Rose pastel doux
+}
+
+.crm {
+  background-color: rgb(255, 245, 220); // Jaune pastel léger
+}
