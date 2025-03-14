@@ -34,15 +34,17 @@
       </div>
     </div>
   </div>
-
 </div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+<!-- MODALES -->
+
+<!-- Modale Members -->
+<div class="modal fade" id="membersModal" tabindex="-1" aria-labelledby="membersModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡Add a bébou to your team</h1>
+        <h1 class="modal-title fs-5" id="membersModalLabel">⚡ Add a bébou to your team</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
@@ -59,6 +61,58 @@
             </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Modale Tools -->
+<div class="modal fade" id="toolsModal" tabindex="-1" aria-labelledby="toolsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="toolsModalLabel">⚙️ Add a tool to your team</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for [@team, User.new] do |f| %>
+            <div class="form-inputs">
+              <%= f.input :first_name %>
+              <%= f.input :role %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Add tool", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Licenses -->
+<div class="modal fade" id="licensesModal" tabindex="-1" aria-labelledby="licensesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="licensesModalLabel">📄 Add a subscription to your team</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for [@team, User.new] do |f| %>
+            <div class="form-inputs">
+              <%= f.input :first_name %>
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Add subscription", class: "btn btn-success mt-4 mb-2" %>
             </div>
           <% end %>
         </div>
