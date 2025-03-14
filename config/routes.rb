@@ -15,15 +15,18 @@ Rails.application.routes.draw do
     resources :licenses, only: :create
   end
 
-  resources :tools, only: %i[index show] do
-    resources :plans, only: :create
-  end
 
   resource :organization, only: :show
 
-  resources :teams, only: %i[index show create]
+  resources :users, only: %i[index show update destroy]
 
-  resources :users, only: %i[index show create update destroy]
+  resources :teams, only: %i[index show create] do
+    resources :users, only: %i[create]
+  end
+
+  resources :tools, only: %i[index show] do
+    resources :plans, only: :create
+  end
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

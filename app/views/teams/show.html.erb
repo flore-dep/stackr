@@ -10,21 +10,18 @@
   </div>
 
   <div data-controller="navbar">
-    <%= render "shared/account_navbar", active_tab: 'members' %>
+    <%= render "shared/account_navbar", active_tab: 'members', display_selector: true%>
 
     <div data-navbar-target="membersPart">
-      <%= render "shared/members" %>
+      <% @team.users.each do |member| %>
+       <%= render "shared/members", member: member, display_selector: true %>
+      <% end %>
     </div>
 
     <div data-navbar-target="toolsPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
-        <% @licenses.each do |license| %>
-          <% if license.end_date == nil
-            @active = false
-          else
-            @active = true if license.end_date < Date.today
-          end%>
-          <%= render 'shared/tool_stack_card', license: license, scope: license.scope, active: @active %>
+        <% @tools.each do |tool| %>
+          <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
         <% end %>
       </div>
     </div>
@@ -32,10 +29,40 @@
     <div data-navbar-target="licensesPart" class='d-none'>
       <div class="d-flex flex-wrap ms-5">
         <% @licenses.each do |license| %>
-          <%= render 'shared/license_card', license: license, scope: license.scope %>
+          <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
     </div>
   </div>
 
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡Add a bébou to your team</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for [@team, User.new] do |f| %>
+            <div class="form-inputs">
+              <%= f.input :first_name %>
+              <%= f.input :last_name %>
+              <%= f.input :email %>
+              <%= f.input :role %>
+              <%= f.input :password %>
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
