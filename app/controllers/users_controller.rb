@@ -27,8 +27,9 @@ class UsersController < ApplicationController
   end
 
   def destroy
-    raise
-    @user.update!
+    @user = User.find(params[:id])
+    @team = @user.team
+    @user.update!(end_date: user_params[:end_date])
     redirect_to team_path(@team)
   end
 

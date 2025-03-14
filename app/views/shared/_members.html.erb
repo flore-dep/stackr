@@ -17,9 +17,9 @@
           <%= member.end_date %>
           <em class="text-secondary"><%= member.start_date %></em>
         </div>
-        <%= link_to "#", class: "icon-member" do %>
+        <%= link_to "#", class: "icon-member", data: { bs_toggle: "modal", bs_target: "##{dom_id(member, :removeModal)}" } do %>
         <% if display_selector == true %>
-          <div class="member-selector" data-bs-toggle="modal" data-bs-target="#removeModal">
+          <div class="member-selector">
             <i class="fa-solid fa-ellipsis-vertical"></i>
           </div>
         <% end %>
