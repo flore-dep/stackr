@@ -7,7 +7,7 @@
   <div class="d-flex justify-content-end mt-5 me-3">
     <div class="dropdown">
       <%= simple_form_for :filter, url: users_path, data: { users_filter_target: 'form' } do |f| %>
-        <%= f.input :team, label: false, class:'select',collection: current_user.organization.teams { |team| team.name}, input_html: { data: { users_filter_target: 'team', action: "change->users-filter#filter"}} %>
+        <%= f.input :team, label: false, class:'select', collection: current_user.organization.teams { |team| team.name}, input_html: { data: { users_filter_target: 'team', action: "change->users-filter#filter"}} %>
         <%= f.button :submit, style:"display: none" %>
       <% end %>
     </div>
