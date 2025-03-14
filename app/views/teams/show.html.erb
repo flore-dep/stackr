@@ -13,7 +13,7 @@
     <%= render "shared/account_navbar", active_tab: 'members', display_selector: true%>
 
     <div data-navbar-target="membersPart">
-      <% @team.users.each do |member| %>
+      <% @team.users.active.each do |member| %>
        <%= render "shared/members", member: member, display_selector: true %>
       <% end %>
     </div>
@@ -38,31 +38,56 @@
 </div>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡Add a bébou to your team</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <div class="container mt-5">
-          <%= simple_form_for [@team, User.new] do |f| %>
-            <div class="form-inputs">
-              <%= f.input :first_name %>
-              <%= f.input :last_name %>
-              <%= f.input :email %>
-              <%= f.input :role %>
-              <%= f.input :password %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
+        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡Add a member to your team</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container mt-5">
+                  <%= simple_form_for [@team, @user] do |f| %>
+                    <div class="form-inputs">
+                      <%= f.input :first_name %>
+                      <%= f.input :last_name %>
+                      <%= f.input :email %>
+                      <%= f.input :role, as: :select, collection: %w[Founder Manager Employee] %>
+                      <%= f.input :password %>
+                      <%= f.input :start_date %>
+                      <%= f.input :end_date %>
+                    </div>
+                    <div class="form-actions text-center">
+                      <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
             </div>
-            <div class="form-actions text-center">
-              <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
-            </div>
-          <% end %>
+          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</div>
+
+<% @team.users.each do |member| %>
+        <div class="modal fade" id="<%= dom_id(member, :removeModal) %>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel"> ⚡It's been a looooong daaaayy <%= member.first_name %></h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <div class="container mt-5">
+                  <%= simple_form_for member, method: :delete do |f| %>
+                    <div class="form-inputs">
+                      <%= f.input :end_date, html5: true %>
+                    </div>
+                    <div class="form-actions text-center">
+                      <%= f.button :submit, "Set departure", data: { turbo_confirm: "Are you sure?" }, class: "btn btn-success mt-4 mb-2" %>
+                    </div>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+<% end %>
