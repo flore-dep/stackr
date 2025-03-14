@@ -2,7 +2,7 @@
     <div class="team-member-card">
       <div class="d-flex justify-content-between">
         <div class="d-flex">
-          <%= link_to user_path(member.id) do %>
+          <%= link_to user_path(member) do %>
             <%= image_tag "default-pp.jpg", class: "avatar-large" %>
             <div class="ms-4 align-content-center">
               <div class="fw-bold">
@@ -17,7 +17,7 @@
           <%= member.end_date %>
           <em class="text-secondary"><%= member.start_date %></em>
         </div>
-        <%= link_to "#", class: "icon-member" do %>
+        <%= link_to "#", class: "icon-member", data: { bs_toggle: "modal", bs_target: "##{dom_id(member, :removeModal)}" } do %>
         <% if display_selector == true %>
           <div class="member-selector">
             <i class="fa-solid fa-ellipsis-vertical"></i>

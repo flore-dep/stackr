@@ -5,12 +5,12 @@ class TeamPolicy < ApplicationPolicy
   end
 
   def show?
-    true
+    user.organization == record.organization
   end
 
   class Scope < ApplicationPolicy::Scope
     def resolve
-      scope.all
+      user.organization.teams.all
     end
   end
 end
