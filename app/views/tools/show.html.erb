@@ -1,0 +1,63 @@
+<div class="header shadow-sm d-flex align-items-start px-3 py-5 m-2" style="background: white; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+  <div class="medium-logo-rounded" style="width: 30%;">
+    <% if @tool.logo.attached? %>
+      <%= cl_image_tag @tool.logo.key, class: "img-fluid rounded-circle p-1" %>
+    <% else %>
+      <%= image_tag "logos/default-logo.jpg", class: "img-fluid rounded-circle p-1" %>
+    <% end %>
+  </div>
+  <div class="d-flex flex-column flex-grow-1 ms-5">
+    <div class="d-flex align-items-center gap-2">
+      <h5 class="me-4" style="font-size: 32px;"><%= @tool.name %></h5>
+      <a href="<%= @tool.website %>" target="_blank" title="Aller sur le site !" style="font-size: 18px;">
+        <i class="fa-solid fa-link me-2" style="font-size: 1.5em;"></i>
+      </a>
+      <% if @tool.reviews.any? %>
+        <div class="d-flex align-items-center" style="font-size: 18px;">
+          <span class="me-2"><%= @tool.reviews.average(:rating) %></span>
+          <i class="fa-solid fa-star text-warning" style="font-size: 1.5em;"></i>
+        </div>
+      <% else %>
+        <span class="me-1">No ratings</span>
+      <% end %>
+      <button class="btn btn-success ms-auto me-4">Select a seat</button>
+    </div>
+    <p class="mt-3"><%= @tool.description %></p>
+    <div class="card rounded-pill px-3 py-2" style="background-color:rgb(234, 250, 255); width: 200px; text-align: center; border: none;">
+      <p class="m-0 text-center" style="font-size: 16px;"><%= @tool.category %></p>
+    </div>
+    <p class="mt-3"><%= @tool.long_description %></p>
+
+    <!-- Formules Section - Aligner horizontalement avec taille fixe -->
+    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+      <% JSON.parse(@tool.formulas).to_a.each do |formula| %>
+        <div class="card px-4 py-3 shadow-sm m-3" style="width: 200px; height: 120px; border: none; background-color:rgb(245, 245, 245); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+          <p class="m-0 text-center fw-bold" style="font-size: 24px;"><%= formula[0] %></p>
+          <p class="m-0 text-center text-muted" style="font-size: 16px;"><%= formula[1] %>€ / month</p>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<div class="container w-100 my-5 mt-4">
+  <h4 class="text-center m-3">Reviews</h4>
+  <% if @tool.reviews.any? %>
+    <div class="d-flex flex-column align-items-center rounded gap-3">
+      <% @tool.reviews.each do |review| %>
+        <div class="card shadow-sm p-4 d-flex flex-column bg-white" style="width: 80%; text-align: left; min-height: auto; border: none;">
+          <div class="d-flex align-items-center mb-3">
+            <%= image_tag("Kermit.JPG", width: "50", class: "rounded-circle me-3") %>
+            <div>
+              <div class="d-flex align-items-center" style="font-size: 18px;"><span class="fw-bold me-2"><%= review.username %></span><span class="text-muted" style="font-size: 14px;"><%= review.rating %>/5 <i class="fa-solid fa-star text-warning"></i></span></div>
+            </div>
+          </div>
+          <p class="text-break text-muted" style="font-size: 16px;"><%= review.content %></p>
+          <p class="text-muted text-end" style="font-size: 12px; font-style: italic;">Posted on <%= review.created_at %></p>
+        </div>
+      <% end %>
+    </div>
+  <% else %>
+    <p class="text-muted text-center">This product has not been reviewed yet</p>
+  <% end %>
+</div>
