@@ -11,7 +11,8 @@
 
           <div class="tag-section text-center">
             <% if tool.category.present? %>
-              <div class="tag team-tag mb-2 rounded-pill shadow-sm" style="background-color:rgb(115, 88, 223);">
+            <% category_tag = tool.category.downcase.gsub(' ', '_') %>
+              <div class="tag category-tag <%= category_tag %> mb-2 rounded-pill shadow-sm">
                 <p class="px-3 py-2 m-0 medium fw-bold"> <%= tool.category %> </p>
               </div>
             <% else %>
@@ -37,15 +38,18 @@
               </div>
             </div>
 
-            <p class="card-text text-muted mb-3">Placeholder</p>
+            <p class="card-text text-muted mb-3"><%= tool.description %></p>
           </div>
 
+          <% if local_assigns[:context] == "marketplace" %>
+          <% else %>
           <div>
             <p class="card-text mb-0 fw-bold">
               <span class="text-success">Placeholder</span>
               <span class="text-muted small">/month</span>
             </p>
           </div>
+          <% end %>
         </div>
       </div>
     </div>
