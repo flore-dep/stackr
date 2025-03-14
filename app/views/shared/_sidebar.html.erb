@@ -2,8 +2,8 @@
   <div class="sidebar" data-controller="dropdown">
     <div class="top-element">
       <%= link_to root_path, class: "sb-top-content" do %>
-        <%= image_tag "stackr-white.png" %>
-        <h3><%= current_user.organization.name %></h3>
+        <%= image_tag "mistral-logo.jpg", style:"border-radius: 10px" %>
+        <h3 class="mb-0"><%= current_user.organization.name %></h3>
       <% end %>
     </div>
 
