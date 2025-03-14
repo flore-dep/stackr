@@ -24,8 +24,8 @@
 
     <div data-navbar-target="toolsPart">
       <div class="d-flex flex-wrap ms-5">
-        <% @licenses.each do |license| %>
-          <%= render 'shared/tool_stack_card', license: license %>
+        <% @tools.each do |tool| %>
+          <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
         <% end %>
       </div>
     </div>
