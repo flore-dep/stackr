@@ -17,6 +17,8 @@ class User < ApplicationRecord
   validates :start_date, presence: true
   validate :not_before
 
+  scope :active, -> { where('end_date IS NULL OR end_date >= ?', Date.today) }
+
   def tools
     tools = self.licenses.map do |license|
       license.tool
@@ -31,6 +33,10 @@ class User < ApplicationRecord
     plans.uniq
   end
 
+  def active_for_authentication?
+    super && (end_date.nil? || end_date >= Date.today)
+  end
+
   private
 
   def not_before
@@ -38,5 +44,4 @@ class User < ApplicationRecord
       errors.add(:end_date, "end date must be after start date")
     end
   end
-
 end

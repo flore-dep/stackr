@@ -24,10 +24,6 @@ class UsersController < ApplicationController
     @plans_by_tool_id = Plan.where(tool_id: @tools.map(&:id), organization_id: current_user.organization.id).index_by(&:tool_id)
   end
 
-  def new
-    @user = User.new
-  end
-
   def create
     @user = User.new(user_params)
     @team = current_user.organization.teams.find(params[:team_id])
@@ -35,6 +31,13 @@ class UsersController < ApplicationController
     if @user.save!
       redirect_to team_path(@team)
     end
+  end
+
+  def destroy
+    @user = User.find(params[:id])
+    @team = @user.team
+    @user.update!(end_date: user_params[:end_date])
+    redirect_to team_path(@team)
   end
 
   private
