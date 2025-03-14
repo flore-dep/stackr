@@ -1,0 +1,16 @@
+.tool-header {
+  position: fixed;
+  overflow: hidden;
+  height: 420px;
+  padding: 20px; // Ajoute un léger padding pour l'effet "card"
+  background: white; // S'assurer que le background reste visible
+  border-radius: 10px; // Arrondi des coins pour un effet "card"
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Ombre plus marquée
+  margin-right: 10px;
+  z-index: 1050; // Assure que le header est toujours au-dessus
+  background-color: white;
+}
+
+.tool-container {
+  padding-top: 450px;
+}

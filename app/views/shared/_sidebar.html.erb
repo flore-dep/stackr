@@ -11,16 +11,16 @@
       <div class="sb-menu-bg">
         <div class="container"  data-dropdown-target="menu">
           <%= link_to user_path(current_user) do %>
-            <span class="dropdown-item"><i class="fa-solid fa-user-tie me-2"></i>Personnal Stack</span>
+            <span class=<%= request.path == user_path(current_user) ? "sidebar-active-tab" : "dropdown-item" %>><i class="fa-solid fa-user-tie me-2"></i>Personnal Stack</span>
           <% end %>
           <%= link_to team_path(current_user.team) do %>
-            <span class="dropdown-item"><i class="fa-solid fa-people-group me-2"></i>Team Stack</span>
+            <span class=<%= request.path == team_path(current_user.team) ? "sidebar-active-tab" : "dropdown-item" %>><i class="fa-solid fa-people-group me-2"></i>Team Stack</span>
           <% end %>
           <%= link_to organization_path do %>
-            <span class="dropdown-item"><i class="fa-solid fa-building me-2"></i></i>Organization Stack</span>
+            <span class=<%= request.path == organization_path ? "sidebar-active-tab" : "dropdown-item"%>><i class="fa-solid fa-building me-2"></i></i>Organization Stack</span>
           <% end %>
-          <%= link_to tools_path(@tools) do %>
-            <span class="dropdown-item"><i class="fa-solid fa-cart-arrow-down me-2"></i>Stackr Store</span>
+          <%= link_to tools_path do %>
+            <span class=<%= request.path == tools_path ? "sidebar-active-tab" : "dropdown-item"%>><i class="fa-solid fa-cart-arrow-down me-2"></i>Stackr Store</span>
           <% end %>
         </div>
       </div>

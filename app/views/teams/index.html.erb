@@ -8,7 +8,7 @@
       <%= link_to team_path(team), class:'text-decoration-none text-dark' do %>
         <div class="card-background team-card">
           <div class="top-card-banner">
-            <p class="team-title" style="background-color: rgb(<%= 200 + rand(56) %>, <%= 200 + rand(56) %>, <%= 200 + rand(56) %>);">
+            <p class="team-title" style="background-color: rgb(<%= random_rgb_color %>);">
               <%= team.name.upcase %>
             </p>
           </div>
