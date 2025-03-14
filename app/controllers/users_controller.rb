@@ -33,9 +33,8 @@ class UsersController < ApplicationController
     @team = current_user.organization.teams.find(params[:team_id])
     @user.team = @team
     if @user.save
-      @
+      @user.team.
       redirect_to plan_licenses(plan_id)
-      redirect_to team_path(@team)
     end
   end
 
