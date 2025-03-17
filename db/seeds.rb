@@ -165,4 +165,10 @@ end
 
 puts "Created Licenses"
 
+puts "Creating one more tool without plan"
+
+tool = Tool.create!(name: "Tool without plan", category: categories.sample, description: "Tool test", long_description: "This is a tool test")
+
+puts "Tool created"
+
 puts "Seeding complete"

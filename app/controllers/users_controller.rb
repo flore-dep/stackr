@@ -28,11 +28,11 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @team = current_user.organization.teams.find(params[:team_id])
     @user.team = @team
-    if @user.save!
-      redirect_to team_path(@team)
+    if @user.save
+      inheritance(@user)
+      redirect_to user_path(@user)
     end
   end
-
   def destroy
     @user = User.find(params[:id])
     @team = @user.team
@@ -42,7 +42,33 @@ class UsersController < ApplicationController
 
   private
 
+  def inheritance(new_user)
+    @scope_to_attribute = new_user.team.scopes
+    @scope_to_attribute.each do |scope|
+      License.create(
+        user_id: new_user.id,
+        scope_id: scope.id,
+        plan_id: scope.plan_id,
+        start_date: new_user.start_date,
+        end_date: license_end_date(new_user, scope),
+        status: "Approved",
+        access_type: "User"
+      )
+    end
+  end
+
+
+  def license_end_date(new_user, scope)
+    if new_user.end_date.nil?
+      Scope.max_end_date(scope)
+    else
+      new_user.end_date
+    end
+  end
+
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :role, :start_date, :end_date, :password)
   end
 end
+
+# hehehe trying to push again
