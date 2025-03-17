@@ -2,8 +2,12 @@
   <div class="d-flex justify-content-between">
     <div class="team-name-card">
       <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
-      <% manager = @team.users.where(role: "Manager").first %>
-      <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.first_name %> </p>
+      <% if @team.users.where(role: "Manager").empty? %>
+        <p class="mb-3"> Founder panel </p>
+      <% else %>
+        <% manager = @team.users.where(role: "Manager").first %>
+        <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
+      <% end %>
       <h3><b><%= @team.cost %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
@@ -55,7 +59,11 @@
               <%= f.input :first_name %>
               <%= f.input :last_name %>
               <%= f.input :email %>
-              <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
+              <% if current_user.role == "Founder" %>
+                <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
+              <% elsif current_user.role == "Manager" %>
+                <%= f.input :role, collection: %w[Employee], selected: "Employee" %>
+              <% end %>
               <%= f.input :password %>
               <%= f.input :start_date %>
               <%= f.input :end_date %>
