@@ -41,13 +41,16 @@
             <p class="card-text text-muted mb-3"><%= tool.description %></p>
           </div>
 
-          <% if local_assigns[:context] == "organization" %>
-          <div>
-            <p class="card-text mb-0 fw-bold">
-              <span class="text-success me-3"><%= tool.plans.first.formula[0]%> </span>
-              <span class="text-muted small"> <%= tool.plans.first.formula[1] %>€ / month</span>
-            </p>
-          </div>
+          <% if local_assigns[:context] == "organization"  %>
+            <% if tool.plans.empty? %>
+            <% else %>
+              <div>
+                <p class="card-text mb-0 fw-bold">
+                  <span class="text-success me-3"><%= tool.plans.first.formula[0]%> </span>
+                  <span class="text-muted small"> <%= tool.plans.first.formula[1] %>€ / month</span>
+                </p>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
