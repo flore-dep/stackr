@@ -6,10 +6,19 @@ class Team < ApplicationRecord
   has_many :plans, -> { distinct }, through: :licenses
   has_many :tools, -> { distinct }, through: :plans
 
+  include PgSearch::Model
+
   validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true
 
-
+  pg_search_scope :team_search,
+    against: [ :name ],
+    associated_against: {
+      tools: [ :name ],
+    },
+    using: {
+      tsearch: { prefix: true }
+    }
   # def tools
   #   tools = self.licenses.map do |license|
   #     license.tool

@@ -1,6 +1,19 @@
-<div class="orga-search-bar">
+<div class="orga-search-bar position-relative">
   <%= form_with(url: organization_path, method: :get, local: true, class: "d-flex", role: "search") do |form| %>
-    <%= form.text_field :query, class: "form-control me-2 orga-search-field", style: "width: 500px;", placeholder: "Search a software...", aria_label: "Search" %>
+    <%= form.text_field :search, class: "form-control me-2 orga-search-field", style: "width: 500px;", placeholder: "Search a team/software...", aria_label: "Search" %>
+
+    <button class="btn btn-outline-dark me-2" type="button" data-bs-toggle="collapse" data-bs-target="#teamDropdown" aria-expanded="false" aria-controls="teamDropdown">
+      <i class="fa-solid fa-filter"></i>
+    </button>
+    <div class="collapse dropdown-menu-teams p-3" id="teamDropdown" style="z-index: 1000;">
+        <%= form.collection_check_boxes :teams, ["Marketing", "Sales", "Operations", "Human ressources", "Tech", "Data", "Produit", "Founder"], :to_s, :to_s do |b| %>
+          <div class="form-check">
+            <%= b.check_box class: "form-check-input" %>
+            <%= b.label class: "form-check-label" %>
+          </div>
+        <% end %>
+    </div>
+
     <%= form.submit "Search", class: "btn btn-outline-success" %>
   <% end %>
 </div>
@@ -8,19 +21,18 @@
 <div class="container mt-4">
   <div class="d-flex justify-content-between p-3 mx-5">
     <h3 class="m-0"><%= current_user.organization.name %> Stack</h3>
-    <%= link_to "Back", root_path, class: "btn btn-dark" %>
   </div>
 
   <div class="orga-card-container">
-    <% current_user.organization.tools.pluck(:category).uniq.each do |category| %>
-      <% tools_in_category = @tools.select { |tool| tool.category.include?(category) } %>
-      <% unless tools_in_category.empty? %>
+    <% @teams.uniq.each do |team| %>
+      <% tools_in_team = team.tools %>
+      <% unless tools_in_team.empty? %>
         <div class="mt-4 ms-4">
-          <h5><b class="border-bottom"><%= category.upcase %></b></h5>
+          <h5><b class="border-bottom"><%= team.name.upcase %></b></h5>
         </div>
         <div class="my-5">
           <div class="category-slider">
-            <% tools_in_category.each do |tool| %>
+            <% tools_in_team.each do |tool| %>
               <%= render "shared/test_software_card", tool: tool, context: "organization" %>
             <% end %>
           </div>
