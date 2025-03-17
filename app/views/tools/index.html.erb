@@ -38,7 +38,7 @@
         </div>
         <div class="my-5">
           <div class="category-slider">
-            <% @tools.first(5).each do |tool| %>
+            <% @tools.each do |tool| %>
               <%= render "shared/test_software_card", tool: tool %>
             <% end %>
           </div>
