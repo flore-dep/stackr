@@ -3,7 +3,7 @@
     <% if @tool.logo.attached? %>
       <%= cl_image_tag @tool.logo.key, class: "img-fluid rounded-circle p-1" %>
     <% else %>
-      <%= image_tag "logos/default-logo.jpg", class: "img-fluid rounded-circle p-1" %>
+      <%= image_tag "default-logo.jpg", class: "img-fluid rounded-circle p-1" %>
     <% end %>
   </div>
   <div class="d-flex flex-column flex-grow-1 ms-5">
