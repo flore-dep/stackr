@@ -44,8 +44,8 @@ class UsersController < ApplicationController
   private
 
   def inheritance(new_user)
-    @scope_to_attribute = new_user.team.scopes
-    @scope_to_attribute.each do |scope|
+    scope_to_attribute = new_user.team.scopes
+    scope_to_attribute.each do |scope|
       License.create(
         user_id: new_user.id,
         scope_id: scope.id,
@@ -58,10 +58,9 @@ class UsersController < ApplicationController
     end
   end
 
-
   def license_end_date(new_user, scope)
     if new_user.end_date.nil?
-      Scope.max_end_date(scope)
+      Scope.max_end_date(scope)[0][1]
     else
       new_user.end_date
     end
