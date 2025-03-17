@@ -1,0 +1,32 @@
+.orga-card-container {
+  margin: 0px 30px;
+}
+
+.orga-search-bar {
+  margin: 20px 0px;
+  display: flex;
+  justify-content: center;
+
+}
+
+.orga-search-field {
+  border: 1px solid grey;
+}
+
+.dropdown-menu-teams {
+  transition: 0.3s;
+  position: absolute;
+  top: 110%;
+  right: 234px;
+  background-color: white;
+  border: 1px solid grey
+}
+
+.dropdown-menu-category {
+  transition: 0.3s;
+  position: absolute;
+  top: 110%;
+  right: 217px;
+  background-color: white;
+  border: 1px solid grey
+}

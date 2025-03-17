@@ -14,10 +14,16 @@ class Tool < ApplicationRecord
   pg_search_scope :global_search,
     against: [ :name, :category ],
     associated_against: {
-      plans: [ :status ]
+      plans: [ :status ],
     },
     using: {
       tsearch: { prefix: true }
     }
 
-  end
+    def teams
+      Team.joins(organization: { plans: :tool })
+          .where(plans: { tool_id: id })
+          .distinct
+    end
+
+end

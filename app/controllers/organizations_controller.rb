@@ -11,9 +11,11 @@ class OrganizationsController < ApplicationController
     authorize @organization
 
     @tools = @organization.tools
+    @teams = @organization.teams
 
-    if params[:query].present?
-      @tools = Tool.global_search("%#{params[:query]}%")
-    end
+    @selected_teams = Array(params[:teams]).reject(&:blank?)
+
+    @teams = @teams.team_search(params[:search]) if params[:search].present?
+    @teams = @teams.where(name: @selected_teams) if @selected_teams.present?
   end
 end
