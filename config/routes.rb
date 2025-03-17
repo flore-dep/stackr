@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'scopes/archive_licenses'
   root to: "pages#home"
   devise_for :users
 
@@ -13,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :plans, only: :show do
     resources :licenses, only: :create
+    get "archive", to: "scopes#archive_licenses"
   end
 
 
