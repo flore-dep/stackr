@@ -19,5 +19,5 @@ class Tool < ApplicationRecord
       tsearch: { prefix: true }
     }
 
-  
+
   end

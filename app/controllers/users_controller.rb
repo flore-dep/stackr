@@ -33,12 +33,36 @@ class UsersController < ApplicationController
     @team = current_user.organization.teams.find(params[:team_id])
     @user.team = @team
     if @user.save
-      @user.team.
+      inheritance(@user)
       redirect_to plan_licenses(plan_id)
     end
   end
 
+  def inheritance(new_user)
+    @scope_to_attribute = new_user.team.scopes
+    @scope_to_attribute.each do |scope|
+      License.create(
+        user_id: new_user.id,
+        scope_id: scope.id,
+        plan_id: scope.plan_id,
+        start_date: new_user.start_date,
+        end_date: new_user.end_date,
+        status: "Approved",
+        access_type: "User"
+      )
+      @est = Scope.max_end_date(scope)
+    end
+      @raise
+  end
+
   private
+
+
+  # def license_end_date(new_user, scope)
+  #   if new_user.end_date.nil?
+  #   else
+  #   end
+  # end
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :role, :start_date, :end_date, :password)
