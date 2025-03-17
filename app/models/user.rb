@@ -40,8 +40,10 @@ class User < ApplicationRecord
   private
 
   def not_before
-    if start_date.present? && end_date.present? && end_date <= start_date
-      errors.add(:end_date, "end date must be after start date")
+    if start_date.present? && end_date.present?
+      if end_date <= start_date
+        errors.add(:end_date, "end date must be after start date")
+      end
     end
   end
 end

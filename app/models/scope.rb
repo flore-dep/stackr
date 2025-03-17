@@ -8,6 +8,6 @@ class Scope < ApplicationRecord
   validates :plan, presence: true, uniqueness: { scope: :team}
   validates :team, presence: true
 
-  scope :max_end_date, ->(scope) {select("max(licenses.end_date) as end_date").joins(:licenses).where(id: scope.id)}
+  scope :max_end_date, ->(scope) {joins(:licenses).where(id: scope.id).order('licenses.end_date DESC').pluck('licenses.id', 'licenses.end_date')}
 
 end
