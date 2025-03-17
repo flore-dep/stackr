@@ -5,14 +5,16 @@ class PlansController < ApplicationController
   def create
     @plan = Plan.new(plan_params)
     @tool = Tool.find(params[:tool_id])
+    @plan.tool = @tool
     @plan.organization = current_user.organization
 
     formula_key = params[:plan][:formula]
     formulas = JSON.parse(@tool.formulas)
     @plan.formula = { formula_key => formulas[formula_key] }
+    @plan.status = "Pending"
     raise
-    
-    if @plan.save
+
+    if @plan.save!
       redirect_to team_path(@team)
     else
       render :new
