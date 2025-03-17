@@ -2,7 +2,8 @@
   <div class="d-flex justify-content-between">
     <div class="team-name-card">
       <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
-      <p class="mb-3"> Managed by Frankie Sullivan</p>
+      <% manager = @team.users.where(role: "Manager").first %>
+      <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.first_name %> </p>
       <h3><b>300$ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
