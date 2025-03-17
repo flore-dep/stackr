@@ -33,11 +33,12 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     end
   end
+
   def destroy
     @user = User.find(params[:id])
-    @team = @user.team
     @user.update!(end_date: user_params[:end_date])
-    redirect_to team_path(@team)
+    killing_licenses(@user, user_params[:end_date])
+    redirect_to user_path(@user)
   end
 
   private
@@ -63,6 +64,12 @@ class UsersController < ApplicationController
       Scope.max_end_date(scope)
     else
       new_user.end_date
+    end
+  end
+
+  def killing_licenses(killed_user, end_date)
+    killed_user.licenses.each do |license|
+      license.update!(end_date: end_date)
     end
   end
 
