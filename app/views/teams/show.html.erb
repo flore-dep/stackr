@@ -52,13 +52,13 @@
         <div class="container mt-5">
           <%= simple_form_for [@team, User.new] do |f| %>
             <div class="form-inputs">
-              <%= f.input :first_name %>
-              <%= f.input :last_name %>
-              <%= f.input :email %>
-              <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
+              <%= f.input :first_name, required: true %>
+              <%= f.input :last_name, required: true %>
+              <%= f.input :email, required: true %>
               <%= f.input :password %>
-              <%= f.input :start_date %>
-              <%= f.input :end_date %>
+              <%= f.input :start_date, required: true %>
+              <%= f.input :end_date, required: false, include_blank: true %>
+              <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
             </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>

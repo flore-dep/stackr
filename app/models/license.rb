@@ -36,7 +36,7 @@ class License < ApplicationRecord
   def no_dates_overlap
     return unless user && plan && start_date && end_date
 
-    conflicts = License.where(user: user, plan: plan, status: ["Approved", "Pending"]).none? do |license|
+    conflicts = License.where(user: user, plan: plan, status: ["Approved", "Pending"]).where.not(id: id).none? do |license|
       license.start_date < end_date && license.end_date > start_date
     end
 
