@@ -68,7 +68,12 @@ class UsersController < ApplicationController
 
   def killing_licenses(killed_user, end_date)
     killed_user.licenses.each do |license|
-      license.update!(end_date: end_date)
+      if license.status == "Approved"
+        license.update!(end_date: end_date)
+      elsif license.status == "Pending"
+        license.update!(status: "Declined")
+      else
+      end
     end
   end
 
