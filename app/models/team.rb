@@ -9,6 +9,15 @@ class Team < ApplicationRecord
   validates :name, presence: true, uniqueness: { scope: :organization }, length: {minimum: 1}
   validates :organization, presence: true
 
+  def cost
+    self.licenses.sum do |license|
+      if Time.now.between?(license.start_date, license.end_date) && license.status == "Approved"
+        license.plan.formula[1]
+      else
+        0
+      end
+    end
+  end
 
   # def tools
   #   tools = self.licenses.map do |license|
