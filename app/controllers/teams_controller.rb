@@ -9,6 +9,7 @@ class TeamsController < ApplicationController
     @team = Team.find(params[:id])
     authorize @team
     @licenses = current_user.team.licenses
+    @all_licenses = current_user.team.all_licenses
     @tools = current_user.team.tools.
       select("tools.*, min(licenses.start_date) as start_date, max(licenses.end_date) as end_date").
       joins(plans: :licenses).

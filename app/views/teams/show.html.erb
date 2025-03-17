@@ -3,7 +3,7 @@
     <div class="team-name-card">
       <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
       <% manager = @team.users.where(role: "Manager").first %>
-      <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.first_name %> </p>
+      <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
       <h3><b><%= @team.cost %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
@@ -13,6 +13,7 @@
   <div data-controller="navbar">
     <%= render "shared/account_navbar", active_tab: 'members', display_selector: true%>
 
+      <!-- MEMBERS -->
     <div data-navbar-target="membersPart">
       <% @team.users.active.each do |member| %>
        <%= render "shared/members", member: member, display_selector: true %>
@@ -27,12 +28,46 @@
       </div>
     </div>
 
-    <div data-navbar-target="licensesPart" class='d-none'>
-      <div class="d-flex flex-wrap ms-5">
-        <% @licenses.each do |license| %>
+
+    <!-- LICENSES -->
+    <div data-navbar-target="licensesPart" data-controller="license-subnavbar" class='d-none'>
+    <!-- seconde navbar -->
+      <div class="d-flex justify-content-between align-items-center pb-5 px-5">
+    <!-- Boutons à gauche -->
+        <div class="d-flex gap-3">
+          <button class="btn btn-outline-warning active" data-license-subnavbar-target="pending" data-action="click->license-subnavbar#setPending">Pending</button>
+          <button class="btn btn-outline-success" data-license-subnavbar-target="approved" data-action="click->license-subnavbar#setApproved">Approved</button>
+          <button class="btn btn-outline-danger" data-license-subnavbar-target="declined" data-action="click->license-subnavbar#setDeclined">Declined</button>
+        </div>
+    <!-- Toggle à droite -->
+        <div class="form-check form-switch" data-license-subnavbar-target="toggle" data-action="click->license-subnavbar#toggleToggle">
+          <input class="form-check-input" type="checkbox" id="toggleSwitch">
+          <label class="form-check-label" for="toggleSwitch">Active</label>
+        </div>
+      </div>
+
+
+      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="pendingLicenses">
+        <% @all_licenses.where(status: "Pending").each do |license| %>
           <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
+      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="approvedActiveLicenses">
+        <% @all_licenses.where("licenses.start_date <= ? AND licenses.end_date > ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
+          <%= render 'shared/license_card', license: license %>
+        <% end %>
+      </div>
+      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="approvedPastLicenses">
+        <% @all_licenses.where("licenses.start_date > ? OR licenses.end_date <= ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
+          <%= render 'shared/license_card', license: license %>
+        <% end %>
+      </div>
+      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="declinedLicenses">
+        <% @all_licenses.where(status: "Declined").each do |license| %>
+          <%= render 'shared/license_card', license: license %>
+        <% end %>
+      </div>
+
     </div>
   </div>
 </div>
