@@ -18,6 +18,7 @@ export default class extends Controller {
   };
 
   setComing() {
+    console.log("hello from coming")
     this.reset();
     this.comingTarget.classList.add('active');
     this.comingMembersTarget.classList.remove('d-none')

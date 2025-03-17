@@ -17,7 +17,10 @@ class User < ApplicationRecord
   validates :start_date, presence: true
   validate :not_before
 
-  scope :active, -> { where('end_date IS NULL OR end_date >= ?', Date.today) }
+  scope :past, -> { where('end_date IS NOT NULL AND end_date < ?', Date.today) }
+  scope :active, -> { where('start_date <= ? AND (end_date IS NULL OR end_date > ?)', Date.today, Date.today) }
+  scope :coming, -> { where('start_date > ?', Date.today) }
+
 
   def tools
     tools = self.licenses.map do |license|
