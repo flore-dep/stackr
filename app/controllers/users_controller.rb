@@ -30,7 +30,7 @@ class UsersController < ApplicationController
     @user.team = @team
     if @user.save
       inheritance(@user)
-      redirect_to plan_licenses(plan_id)
+      redirect_to user_path(@user)
     end
   end
   def destroy
@@ -50,21 +50,21 @@ class UsersController < ApplicationController
         scope_id: scope.id,
         plan_id: scope.plan_id,
         start_date: new_user.start_date,
-        end_date: new_user.end_date,
+        end_date: license_end_date(new_user, scope),
         status: "Approved",
         access_type: "User"
       )
-      @est = Scope.max_end_date(scope)
     end
-      @raise
   end
 
 
-  # def license_end_date(new_user, scope)
-  #   if new_user.end_date.nil?
-  #   else
-  #   end
-  # end
+  def license_end_date(new_user, scope)
+    if new_user.end_date.nil?
+      Scope.max_end_date(scope)
+    else
+      new_user.end_date
+    end
+  end
 
   def user_params
     params.require(:user).permit(:email, :first_name, :last_name, :role, :start_date, :end_date, :password)
