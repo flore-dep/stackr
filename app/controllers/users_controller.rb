@@ -33,18 +33,19 @@ class UsersController < ApplicationController
       redirect_to user_path(@user)
     end
   end
+
   def destroy
     @user = User.find(params[:id])
-    @team = @user.team
     @user.update!(end_date: user_params[:end_date])
-    redirect_to team_path(@team)
+    killing_licenses(@user, user_params[:end_date])
+    redirect_to user_path(@user)
   end
 
   private
 
   def inheritance(new_user)
-    @scope_to_attribute = new_user.team.scopes
-    @scope_to_attribute.each do |scope|
+    scope_to_attribute = new_user.team.scopes
+    scope_to_attribute.each do |scope|
       License.create(
         user_id: new_user.id,
         scope_id: scope.id,
@@ -57,12 +58,22 @@ class UsersController < ApplicationController
     end
   end
 
-
   def license_end_date(new_user, scope)
     if new_user.end_date.nil?
-      Scope.max_end_date(scope)
+      Scope.max_end_date(scope)[0][1]
     else
       new_user.end_date
+    end
+  end
+
+  def killing_licenses(killed_user, end_date)
+    killed_user.licenses.each do |license|
+      if license.status == "Approved"
+        license.update!(end_date: end_date)
+      elsif license.status == "Pending"
+        license.update!(status: "Declined")
+      else
+      end
     end
   end
 
