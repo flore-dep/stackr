@@ -1,4 +1,5 @@
 class Tool < ApplicationRecord
+  CATEGORIES = ["Productivity", "Project Management", "Communication", "CRM"]
   has_many :plans, dependent: :destroy
   has_many :reviews
   has_one_attached :logo
@@ -6,7 +7,7 @@ class Tool < ApplicationRecord
   include PgSearch::Model
 
   validates :name, presence: true, uniqueness: { case_sensitive: false }, length: { minimum: 1 }
-  validates :category, presence: true, inclusion: { in: ["Productivity", "Project Management", "Communication", "CRM"] }
+  validates :category, presence: true, inclusion: { in: CATEGORIES }
   validates :formulas, presence: true
   validates :access_types, presence: true
 
@@ -18,6 +19,5 @@ class Tool < ApplicationRecord
     using: {
       tsearch: { prefix: true }
     }
-
 
   end

@@ -22,7 +22,7 @@ puts "Database cleaned"
 
 puts "Creating Organization..."
 
-organization = Organization.create!(name: "Stackr Inc")
+organization = Organization.create!(name: "Mistral AI")
 
 puts "Created Organization"
 
@@ -50,18 +50,24 @@ bar = TTY::ProgressBar.new("Users :bar :percent", total: total_users, width: 50,
 # Create users per team
 teams.each do |team|
   team_size.times do
-    user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Employee", team: team, start_date: "2025-01-01")
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+    user = User.create!(first_name: first_name, last_name: last_name, email: "#{first_name}-#{last_name}@mistral.com", password: "test12345", role: "Employee", team: team, start_date: "2025-01-01")
     bar.advance
   end
-  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Manager", team: team, start_date: "2025-01-01")
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  user = User.create!(first_name: first_name, last_name: last_name, email: "#{first_name}-#{last_name}@mistral.com", password: "test12345", role: "Manager", team: team, start_date: "2025-01-01")
   bar.advance
 end
 
 # Create founders
-User.create!(first_name: "John", last_name: "Stackrman", email: "js@stackr.com", password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
+User.create!(first_name: "John", last_name: "Stackrman", email: "js@mistral.com", password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
 bar.advance
 founder_size.times do
-  user = User.create!(first_name: Faker::Name.first_name, last_name: Faker::Name.last_name, email: Faker::Internet.email, password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
+  first_name = Faker::Name.first_name
+  last_name = Faker::Name.last_name
+  user = User.create!(first_name: first_name, last_name: last_name, email: "#{first_name}-#{last_name}@mistral.com", password: "test12345", role: "Founder", team: founders, start_date: "2025-01-01")
   bar.advance
 end
 
@@ -158,5 +164,11 @@ end
 
 
 puts "Created Licenses"
+
+puts "Creating one more tool without plan"
+
+tool = Tool.create!(name: "Tool without plan", category: categories.sample, description: "Tool test", long_description: "This is a tool test")
+
+puts "Tool created"
 
 puts "Seeding complete"

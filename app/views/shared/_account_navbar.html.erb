@@ -2,9 +2,12 @@
   <% if active_tab == "members" %>
     <div class="team-navbar-item nvbactive" data-navbar-target="members" data-action="click->navbar#fire">Members</div>
   <% end %>
-  <div class="team-navbar-item <%= "nvbactive" if active_tab == "tools"%>" data-navbar-target="tools" data-action="click->navbar#fire">Tools</div>
+  <div class="team-navbar-item <%= "nvbactive" if active_tab == "tools" %>" data-navbar-target="tools" data-action="click->navbar#fire">Tools</div>
   <div class="team-navbar-item" data-navbar-target="licenses" data-action="click->navbar#fire">Licenses</div>
-  <% unless current_user.role == "Employee" %>
-  <div class="add ms-auto" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa-solid fa-plus icon-add-user"></i></div>
+
+  <% if active_tab == "members" %>
+    <div class="add ms-auto" data-navbar-target="memberIcon" data-bs-toggle="modal" data-bs-target="#membersModal"><i class="fa-solid fa-plus icon-add-user"></i></div>
   <% end %>
+  <div class="add ms-auto <%= "d-none" unless active_tab == "tools" %>" data-navbar-target="toolIcon" data-bs-toggle="modal" data-bs-target="#toolsModal"><i class="fa-solid fa-plus icon-add-user"></i></div>
+  <div class="add ms-auto d-none" data-navbar-target="licenseIcon" data-bs-toggle="modal" data-bs-target="#licensesModal"><i class="fa-solid fa-plus icon-add-user"></i></div>
 </div>

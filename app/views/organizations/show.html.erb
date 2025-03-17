@@ -21,7 +21,7 @@
         <div class="my-5">
           <div class="category-slider">
             <% tools_in_category.each do |tool| %>
-              <%= render "shared/test_software_card", tool: tool %>
+              <%= render "shared/test_software_card", tool: tool, context: "organization" %>
             <% end %>
           </div>
         </div>
