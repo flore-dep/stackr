@@ -83,24 +83,11 @@
   <div class="tab-content mt-4">
 
     <div id="reviews" class="tab-pane fade show active" data-tool-navbar-target="reviewsData">
-      <% if @tool.reviews.any? %>
       <div class="d-flex flex-column align-items-center rounded gap-3">
         <% @tool.reviews.each do |review| %>
-        <div class="card shadow-sm p-4 d-flex flex-column bg-white" style="width: 80%; text-align: left; min-height: auto; border: none;">
-          <div class="d-flex align-items-center mb-3">
-            <%= image_tag("Kermit.JPG", width: "50", class: "rounded-circle me-3") %>
-            <div>
-              <div class="d-flex align-items-center" style="font-size: 18px;"><span class="fw-bold me-2"><%= review.username %></span><span class="text-muted" style="font-size: 14px;"><%= review.rating %>/5 <i class="fa-solid fa-star text-warning"></i></span></div>
-            </div>
-          </div>
-          <p class="text-break text-muted" style="font-size: 16px;"><%= review.content %></p>
-          <p class="text-muted text-end" style="font-size: 12px; font-style: italic;">Posted on <%= review.created_at %></p>
-        </div>
+          <%= render "shared/reviews", review: review, display_selector: true %>
         <% end %>
       </div>
-      <% else %>
-      <p class="text-muted text-center">This product has not been reviewed yet</p>
-      <% end %>
     </div>
 
     <div id="members" class="tab-pane fade show active" data-tool-navbar-target="membersData">
