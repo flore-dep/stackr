@@ -18,9 +18,9 @@
 
   <!-- NAVBAR -->
   <div data-controller="navbar" class="controller">
-    <%= render "shared/account_navbar", active_tab: 'members', display_selector: true%>
+    <%= render "shared/account_navbar", active_tab: 'members', display_selector: true %>
 
-  <!-- MEMBERS PART -->
+    <!-- MEMBERS PART -->
     <div data-navbar-target="membersPart" data-controller="member-subnavbar">
       <!-- Secondary Navbar -->
       <div class="d-flex justify-content-between align-items-center pb-5 px-5">
@@ -99,12 +99,11 @@
     </div>
 
 
-
-<!-- DASHBOARD -->
+    <!-- DASHBOARD -->
     <div data-navbar-target="dashboardPart" class='d-none'>
     <!-- data -->
-      <div class="d-flex flex-wrap ms-5 d-none">
-        <%= render "shared/dashboard" %>
+      <div class="d-flex flex-wrap ms-5">
+        <%= line_chart({"2025-01-01" => @team.cost, "2025-01-02" => @team.cost}) %>
       </div>
     </div>
   </div>

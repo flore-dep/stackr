@@ -53,6 +53,7 @@ gem "devise"
 gem "pundit"
 gem "pg_search"
 gem "chartkick"
+gem "groupdate"
 
 group :development, :test do
   gem "dotenv-rails"
