@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'scopes/archive_licenses'
-  root to: "pages#home"
+  root to: "pages#prank"
+  # root to: "pages#home"
   devise_for :users
 
   resource :dashboard, only: :show
