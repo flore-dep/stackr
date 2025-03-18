@@ -14,3 +14,10 @@
 .tool-container {
   padding-top: 450px;
 }
+
+.card-hover:hover {
+  background-color: rgb(230, 230, 230) !important; /* Changement de couleur au hover */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2) !important; /* Ajout d’une ombre */
+  cursor: pointer; /* Curseur en mode clic */
+  transition: all 0.3s ease-in-out; /* Animation fluide */
+}
