@@ -369,6 +369,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   faker
+  faraday
   font-awesome-sass (~> 6.1)
   groupdate
   importmap-rails
