@@ -13,7 +13,10 @@
       <h3><b><%= @team.cost %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
-     <%= link_to "Back to all teams", teams_path, class: "text-dark fs-5 align-self-end" %>
+    <div class="d-flex flex-column align-self-end">
+      <%= link_to "Back", :back, class: "fs-5 align-self-end nav-links" %>
+      <%= link_to "View all teams", teams_path, class: "fs-5 nav-links" %>
+    </div>
   </div>
 
   <!-- NAVBAR -->
@@ -72,7 +75,7 @@
     <!-- Toggle -->
         <div class="form-check form-switch" data-license-subnavbar-target="toggle" data-action="click->license-subnavbar#toggleToggle">
           <input class="form-check-input" type="checkbox" id="toggleSwitch">
-          <label class="form-check-label" for="toggleSwitch">Active</label>
+          <label class="form-check-label" style="width: 46px;" for="toggleSwitch">Active</label>
         </div>
       </div>
     <!-- data -->
