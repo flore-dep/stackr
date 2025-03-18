@@ -23,4 +23,14 @@ class LicensesController < ApplicationController
   def license_params
     params.require(:license).permit(:start_date, :end_date, :status, :access_type)
   end
+
+  def accept
+    @license = License.find(params[:id])
+    @license.update(status: "Approved")
+  end
+
+  def reject
+    @license = License.find(params[:id])
+    @license.update(status: "Declined")
+  end
 end

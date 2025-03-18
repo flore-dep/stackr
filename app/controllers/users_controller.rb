@@ -31,15 +31,16 @@ class UsersController < ApplicationController
     authorize @user
     if @user.save
       inheritance(@user)
-      redirect_to user_path(@user)
+      redirect_to team_path(@user.team)
     end
   end
 
   def destroy
     @user = User.find(params[:id])
+    authorize @user
     @user.update!(end_date: user_params[:end_date])
     killing_licenses(@user, user_params[:end_date])
-    redirect_to user_path(@user)
+    redirect_to team_path(@user.team)
   end
 
   private
