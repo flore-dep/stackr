@@ -3,6 +3,7 @@ class PlansController < ApplicationController
   skip_after_action :verify_policy_scoped
 
   def create
+    @team = current_user.team
     @plan = Plan.new(plan_params)
     @tool = Tool.find(params[:tool_id])
     @plan.tool = @tool
@@ -15,9 +16,9 @@ class PlansController < ApplicationController
     # raise
 
     if @plan.save!
-      redirect_to tool_path(@tool)
+      redirect_to team_path(@team)
     else
-      render :new
+      redirect_to tool_path(@tool)
     end
   end
 
