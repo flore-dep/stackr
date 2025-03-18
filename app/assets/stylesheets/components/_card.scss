@@ -80,3 +80,20 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   display: flex;
   align-items: center;
 };
+
+.icon-as-btn {
+  font-size: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+};
+
+#accept-btn {
+  color: $green;
+  margin: 2px;
+};
+
+#reject-btn {
+  color: $red;
+  margin: 2px;
+};
