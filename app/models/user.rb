@@ -17,7 +17,7 @@ class User < ApplicationRecord
   validates :start_date, presence: true
   validate :not_before
 
-  scope :past, -> { where('end_date IS NOT NULL AND end_date < ?', Date.today) }
+  scope :past, -> { where('end_date IS NOT NULL AND end_date <= ?', Date.today) }
   scope :active, -> { where('start_date <= ? AND (end_date IS NULL OR end_date > ?)', Date.today, Date.today) }
   scope :coming, -> { where('start_date > ?', Date.today) }
 
@@ -44,7 +44,7 @@ class User < ApplicationRecord
 
   def not_before
     if start_date.present? && end_date.present?
-      if end_date <= start_date
+      if end_date < start_date
         errors.add(:end_date, "end date must be after start date")
       end
     end

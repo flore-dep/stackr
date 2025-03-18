@@ -8,7 +8,7 @@
         <p class="mb-2"><i class="fa-solid fa-briefcase me-2"></i><%= @user.team.organization.name %></p>
         <p class="mb-2"><i class="fa-solid fa-people-group me-2"></i><%= @user.team.name %></p>
         <p><i class="fa-solid fa-envelope me-2"></i><%= @user.email %></p>
-        <div class="d-flex justify-content-end">
+        <div class="d-flex justify-content-end <%= "d-none" unless @user.id == current_user.id %>">
           <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success me-2" %>
           <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
         </div>
