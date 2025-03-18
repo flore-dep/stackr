@@ -8,4 +8,15 @@ class ScopesController < ApplicationController
     flash[:notice] = "Vos licenses ont été archivées"
     redirect_to team_path(current_user.team)
   end
+
+  def create
+    @team = current_user.team
+    @scope = Scope.new(team_id: params[:team_id], plan_id: params[:scope][:plan_id])
+    if @scope.save
+      flash[:notice] = "#{@scope.tool.name} added to your stack"
+    else
+      flash[:notice] = "Error trying to add #{@scope.tool.name} to your stack"
+    end
+      redirect_to team_path(@team)
+  end
 end
