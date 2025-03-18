@@ -3,6 +3,7 @@ class Team < ApplicationRecord
   has_many :users
   has_many :scopes
   has_many :licenses, through: :scopes
+  has_many :all_licenses, through: :users, source: :licenses
   has_many :plans, -> { distinct }, through: :licenses
   has_many :tools, -> { distinct }, through: :plans
 

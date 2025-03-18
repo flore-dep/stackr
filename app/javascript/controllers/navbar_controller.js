@@ -14,7 +14,7 @@ export default class extends Controller {
     "licenseIcon" ]
 
   connect() {
-    console.log(this.hasMembersPartTarget)
+    console.log(this.hasMembersPartTarget, this.hasToolsPartTarget, this.hasLicensesPartTarget)
   }
 
   fire(event) {
@@ -22,6 +22,7 @@ export default class extends Controller {
     this.removeActiveClasses()
     event.currentTarget.classList.add("nvbactive")
     this.showPartial(event.currentTarget)
+    console.log(event.currentTarget)
   }
 
   hideAllPartials() {

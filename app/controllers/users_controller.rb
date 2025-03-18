@@ -1,12 +1,10 @@
 class UsersController < ApplicationController
 
-  # WARNING - regles pundit à changer
-  skip_after_action :verify_authorized
-  skip_after_action :verify_policy_scoped
-
   def index
-    @users = current_user.organization.users
+    @users = policy_scope(User)
+    authorize @users
     @teams = current_user.organization.teams
+    authorize @teams
     if params[:q].present?
       @users = Team.find(params[:q]).users
     end
@@ -14,6 +12,7 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user.organization.users.find(params[:id])
+    authorize @user
     @licenses = @user.licenses
     @tools = current_user.team.tools.
       select("tools.*, min(licenses.start_date) as start_date, max(licenses.end_date) as end_date").
@@ -28,6 +27,8 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
     @team = current_user.organization.teams.find(params[:team_id])
     @user.team = @team
+
+    authorize @user
     if @user.save
       inheritance(@user)
       redirect_to user_path(@user)
