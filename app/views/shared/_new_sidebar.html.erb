@@ -1,0 +1,50 @@
+<div>
+  <div class="sidebar sidebar-small"
+       data-controller="expand"
+       data-expand-target="sidebar"
+       data-action="mouseover->expand#expand mouseleave->expand#retract">
+    <div class="top-element">
+      <%= link_to root_path, class: "sb-top-content" do %>
+        <%= image_tag "mistral-logo.jpg", style:"border-radius: 10px" %>
+        <h3 class="sidebar-title"><%= current_user.organization.name %></h3>
+      <% end %>
+    </div>
+
+    <div class="sidebar-menu">
+      <%= link_to user_path(current_user) do %>
+        <span class=<%= request.path == user_path(current_user) ? "sidebar-active-tab" : "dropdown-item collapsed" %>>
+          <i class="fa-solid fa-user-tie sb-icon"></i>
+          <span class="menu-text">Personnal Stack</span>
+        </span>
+      <% end %>
+      <%= link_to team_path(current_user.team) do %>
+        <span class=<%= request.path == team_path(current_user.team) ? "sidebar-active-tab" : "dropdown-item collapsed" %>>
+          <i class="fa-solid fa-people-group"></i>
+          <span class="menu-text">Team Stack</span>
+        </span>
+      <% end %>
+      <%= link_to organization_path do %>
+        <span class=<%= request.path == organization_path ? "sidebar-active-tab" : "dropdown-item collapsed"%>>
+          <i class="fa-solid fa-building"></i>
+          <span class="menu-text">Organization Stack</span>
+        </span>
+      <% end %>
+      <%= link_to tools_path do %>
+        <span class=<%= request.path == tools_path ? "sidebar-active-tab" : "dropdown-item collapsed"%>>
+          <i class="fa-solid fa-cart-arrow-down"></i>
+          <span class="menu-text">Stackr Store</span>
+        </span>
+      <% end %>
+    </div>
+
+    <div class="bottom-element">
+      <%= image_tag "default-logo.jpg", class: "img-footer" %>
+      <%= link_to user_path(current_user) do %>
+        <p>
+          <%= current_user.first_name %>
+          <%= current_user.last_name %>
+        </p>
+      <% end %>
+    </div>
+  </div>
+</div>

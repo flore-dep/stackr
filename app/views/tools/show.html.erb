@@ -70,26 +70,36 @@
   </div>
 </div>
 
-<div class="container w-100 my-5 mt-4">
-  <h4 class="text-center m-3">Reviews</h4>
-  <% if @tool.reviews.any? %>
-    <div class="d-flex flex-column align-items-center rounded gap-3">
-      <% @tool.reviews.each do |review| %>
-        <div class="card shadow-sm p-4 d-flex flex-column bg-white" style="width: 80%; text-align: left; min-height: auto; border: none;">
-          <div class="d-flex align-items-center mb-3">
-            <%= image_tag("Kermit.JPG", width: "50", class: "rounded-circle me-3") %>
-            <div>
-              <div class="d-flex align-items-center" style="font-size: 18px;"><span class="fw-bold me-2"><%= review.username %></span><span class="text-muted" style="font-size: 14px;"><%= review.rating %>/5 <i class="fa-solid fa-star text-warning"></i></span></div>
-            </div>
-          </div>
-          <p class="text-break text-muted" style="font-size: 16px;"><%= review.content %></p>
-          <p class="text-muted text-end" style="font-size: 12px; font-style: italic;">Posted on <%= review.created_at %></p>
+<!-- Navbar Section (Tabs) -->
+<div data-controller="tool-navbar">
+      <div class="d-flex justify-content-between align-items-center py-3 px-5">
+        <!-- Buttons -->
+        <div class="d-flex gap-3">
+          <button class="btn btn-outline-success px-4 active" data-tool-navbar-target="reviews" data-action="click->tool-navbar#displayReviews">Reviews</button>
+          <button class="btn btn-outline-success px-4" data-tool-navbar-target="members" data-action="click->tool-navbar#displayMembers">Members</button>
+          <button class="btn btn-outline-success px-4" data-tool-navbar-target="cost" data-action="click->tool-navbar#displayCost">Cost</button>
         </div>
-      <% end %>
+      </div>
+
+  <!-- Content Sections (Hidden by Default) -->
+  <div class="tab-content mt-4">
+
+    <div id="reviews" class="tab-pane fade show active" data-tool-navbar-target="reviewsData">
+      <div class="d-flex flex-column align-items-center rounded gap-3">
+        <% @tool.reviews.each do |review| %>
+          <%= render "shared/reviews", review: review, display_selector: true %>
+        <% end %>
+      </div>
     </div>
-  <% else %>
-    <p class="text-muted text-center">This product has not been reviewed yet</p>
-  <% end %>
+
+    <div id="members" class="tab-pane fade show active" data-tool-navbar-target="membersData">
+        <% @users.each do |member| %>
+          <%= render "shared/members", member: member, display_selector: true %>
+        <% end %>
+    </div>
+    <div id="cost" class="tab-pane fade show active" data-tool-navbar-target="costData">
+    </div>
+  </div>
 </div>
 
 <!-- Modale Subscription -->
