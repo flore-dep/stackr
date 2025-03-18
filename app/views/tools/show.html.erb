@@ -117,7 +117,13 @@
       </div>
       <div class="modal-body">
         <div class="container mt-5">
-          <%= simple_form_for @tool do |f| %>
+          <%= simple_form_for [ @plan, License.new ], url: plan_licenses_path(@tool.plans[0]), method: :post do |f| %>
+            <%= f.hidden_field :plan_id, value: @plan.id %>
+            <div class="form-inputs">
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+              <%= f.input :access_type, collection: License::ACCESS_TYPE, selected: "User" %>
+            </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Request", class: "btn btn-success mt-4 mb-2" %>
             </div>
