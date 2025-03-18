@@ -12,8 +12,6 @@
   </head>
 
   <body>
-    <%= yield %>
-  <% if current_user == "flore" %>
     <% if user_signed_in? %>
       <%= render "shared/new_sidebar" %>
       <div class="main">
@@ -22,6 +20,5 @@
     <% else %>
       <%= yield %>
     <% end %>
-  <% end %>
   </body>
 </html>
