@@ -10,12 +10,12 @@ class PlansController < ApplicationController
 
     formula_key = params[:plan][:formula]
     formulas = JSON.parse(@tool.formulas)
-    @plan.formula = { formula_key => formulas[formula_key] }
+    @plan.formula = { formula_key => formulas[formula_key] }.to_a.flatten
     @plan.status = "Pending"
-    raise
+    # raise
 
     if @plan.save!
-      redirect_to team_path(@team)
+      redirect_to tool_path(@tool)
     else
       render :new
     end
