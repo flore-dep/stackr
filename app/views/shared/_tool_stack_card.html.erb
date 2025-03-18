@@ -16,6 +16,7 @@
         <p class='card-title'><%=tool.name%></p>
         <p><%=tool.start_date%> - <%=tool.end_date%> </p>
         <p><%=plan.formula[1]%> €/month </p>
+        <%=link_to 'Destroy all licenses',  plan_archive_path(plan.id)%>
       </div>
   </div>
 <% end %>

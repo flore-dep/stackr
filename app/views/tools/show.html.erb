@@ -3,7 +3,7 @@
     <% if @tool.logo.attached? %>
       <%= cl_image_tag @tool.logo.key, class: "img-fluid rounded-circle p-1" %>
     <% else %>
-      <%= image_tag "logos/default-logo.jpg", class: "img-fluid rounded-circle p-1" %>
+      <%= image_tag "default-logo.jpg", class: "img-fluid rounded-circle p-1" %>
     <% end %>
   </div>
   <div class="d-flex flex-column flex-grow-1 ms-5">
@@ -20,7 +20,23 @@
       <% else %>
         <span class="me-1">No ratings</span>
       <% end %>
-      <button class="btn btn-success ms-auto me-4">Subscribe</button>
+
+
+        <% if current_user.licenses.joins(:plan).exists?(plans: { tool_id: @tool }) %>
+          <button type="button" class="btn btn-secondary disabled ms-auto me-4">
+            You already have a licence for this tool
+          </button>
+        <% elsif current_user.organization.plans.exists?(tool_id: @tool) %>
+          <button type="button" class="btn btn-success ms-auto me-4" data-bs-toggle="modal" data-bs-target="#licenseModal">
+            Resquest for a licence
+          </button>
+        <% else %>
+          <button type="button" class="btn btn-success ms-auto me-4" data-bs-toggle="modal" data-bs-target="#subModal">
+            Subscribe to this tool
+          </button>
+        <% end %>
+
+
     </div>
     <p class="mt-3"><%= @tool.description %></p>
     <% category_tag = @tool.category.downcase.gsub(' ', '_') %>
@@ -30,13 +46,18 @@
     <p class="mt-3"><%= @tool.long_description %></p>
 
     <!-- Formules Section - Aligner horizontalement avec taille fixe -->
-    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap">
+    <div class="d-flex justify-content-center gap-3 mt-4 flex-wrap" data-controller="tool-modal">
       <% JSON.parse(@tool.formulas).to_a.each do |formula| %>
-        <div class="card px-4 py-3 shadow-sm m-3" style="width: 200px; height: 120px; border: none; background-color:rgb(245, 245, 245); display: flex; flex-direction: column; justify-content: center; align-items: center;">
+        <div class="card px-4 py-3 shadow-sm m-3" style="width: 200px; height: 120px; border: none; background-color:rgb(245, 245, 245); display: flex; flex-direction: column; justify-content: center; align-items: center;"
+          data-action="click->tool-modal#openModal"
+          data-tool-modal-plan-value="<%= formula[0] %>"
+          data-tool-modal-price-value="<%= formula[1] %>"
+          >
           <p class="m-0 text-center fw-bold" style="font-size: 24px;"><%= formula[0] %></p>
           <p class="m-0 text-center text-muted" style="font-size: 16px;"><%= formula[1] %>€ / month</p>
         </div>
       <% end %>
+      <%= render 'shared/plan_details' %>
     </div>
   </div>
 </div>
@@ -61,4 +82,53 @@
   <% else %>
     <p class="text-muted text-center">This product has not been reviewed yet</p>
   <% end %>
+</div>
+
+<!-- Modale Subscription -->
+<div class="modal fade" id="subModal" tabindex="-1" aria-labelledby="subModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="subModalLabel">⚙️ Request <%= @tool.name %> for your stack</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for Plan.new, url: tool_plans_path(@tool), method: :post do |f| %>
+            <div class="form-inputs">
+              <%= f.input :formula,
+                as: :select,
+                collection: JSON.parse(@tool.formulas).map { |key, value| [key, key] },
+                prompt: "Choose a plan"
+              %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Request", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modale Licensing -->
+<div class="modal fade" id="licenseModal" tabindex="-1" aria-labelledby="licenseModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="licenseModalLabel">⚙️ Request <%= @tool.name %> for your stack</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for @tool do |f| %>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Request", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
