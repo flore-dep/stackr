@@ -14,5 +14,7 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @plan = Plan.new
     @plan_organization = @tool.plans.where(organization: current_user.organization).first
+    tool_user_list = @plan_organization.licenses.pluck(:user_id).uniq
+    @users = User.where(id: tool_user_list)
   end
 end

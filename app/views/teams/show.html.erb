@@ -13,10 +13,7 @@
       <h3><b><%= @team.cost %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
-    <div class="d-flex flex-column align-self-end">
-      <%= link_to "Back", :back, class: "fs-5 align-self-end nav-links" %>
-      <%= link_to "View all teams", teams_path, class: "fs-5 nav-links" %>
-    </div>
+     <%= link_to "Back to all teams", teams_path, class: "text-dark fs-5 align-self-end" %>
   </div>
 
   <!-- NAVBAR -->
@@ -75,7 +72,7 @@
     <!-- Toggle -->
         <div class="form-check form-switch" data-license-subnavbar-target="toggle" data-action="click->license-subnavbar#toggleToggle">
           <input class="form-check-input" type="checkbox" id="toggleSwitch">
-          <label class="form-check-label" style="width: 46px;" for="toggleSwitch">Active</label>
+          <label class="form-check-label" for="toggleSwitch">Active</label>
         </div>
       </div>
     <!-- data -->
@@ -151,11 +148,10 @@
       </div>
       <div class="modal-body">
         <div class="container mt-5">
-          <%= simple_form_for [ Tool.new ] do |f| %>
+          <%= simple_form_for [@team, User.new] do |f| %>
             <div class="form-inputs">
-              <%= f.input :name %>
-              <%= f.input :category, collection: Tool::CATEGORIES %>
-              <%= f.input :formulas, collection: [ "Free", "Business", "Enterprise" ] %>
+              <%= f.input :first_name %>
+              <%= f.input :role %>
             </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Add tool", class: "btn btn-success mt-4 mb-2" %>
@@ -177,8 +173,9 @@
       </div>
       <div class="modal-body">
         <div class="container mt-5">
-          <%= simple_form_for [ User.new ] do |f| %>
+          <%= simple_form_for [@team, User.new] do |f| %>
             <div class="form-inputs">
+              <%= f.input :first_name %>
               <%= f.input :start_date %>
               <%= f.input :end_date %>
             </div>
