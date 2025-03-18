@@ -25,6 +25,7 @@ Rails.application.routes.draw do
 
   resources :teams, only: %i[index show create] do
     resources :users, only: %i[create]
+    resources :scopes, only: %i[create]
   end
 
   resources :tools, only: %i[index show] do
