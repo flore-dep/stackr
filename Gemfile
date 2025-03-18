@@ -29,6 +29,8 @@ gem "dotenv-rails"
 gem "cloudinary"
 gem 'tty-progressbar'
 gem 'faraday'
+gem "chartkick"
+gem "groupdate"
 
 group :development, :test do
   # gem "dotenv-rails"
