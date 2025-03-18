@@ -14,6 +14,8 @@ class ToolsController < ApplicationController
     @tool = Tool.find(params[:id])
     @plan = @tool.plans.find_by(id: params[:plan_id]) if params[:plan_id].present?
     @plan_organization = @tool.plans.where(organization: current_user.organization).first
+    tool_user_list = @plan_organization.licenses.pluck(:user_id).uniq
+    @users = User.where(id: tool_user_list)
 
     # Si aucun plan n'est trouvé -> création d'un nouveau plan
     if @plan.nil?
