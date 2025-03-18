@@ -103,11 +103,11 @@
 
 
 
-<!-- LICENSES -->
+<!-- DASHBOARD -->
     <div data-navbar-target="dashboardPart" class='d-none'>
     <!-- data -->
       <div class="d-flex flex-wrap ms-5 d-none">
-        <%= pie_chart License.group(:status).count %>
+        <%= render "shared/dashboard" %>
       </div>
     </div>
   </div>
