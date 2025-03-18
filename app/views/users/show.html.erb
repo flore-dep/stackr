@@ -17,24 +17,75 @@
       </div>
         <%= link_to "View all collaborators", users_path, class: "text-dark fs-5 align-self-end" %>
     </div>
-  </div>
 
-  <div data-controller="navbar">
-    <%= render "shared/account_navbar", active_tab: "tools" %>
+    <div data-controller="navbar">
+      <%= render "shared/personnal_navbar", active_tab: "tools" %>
 
-    <div data-navbar-target="toolsPart">
-      <div class="d-flex flex-wrap ms-5">
-        <% @tools.each do |tool| %>
-          <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
-        <% end %>
+      <div data-navbar-target="toolsPart">
+        <div class="d-flex flex-wrap ms-5">
+          <% @tools.each do |tool| %>
+            <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
+          <% end %>
+        </div>
+      </div>
+
+      <div data-navbar-target="licensesPart" class='d-none'>
+        <div class="d-flex flex-wrap ms-5">
+          <% @licenses.each do |license| %>
+            <%= render 'shared/license_card', license: license%>
+          <% end %>
+        </div>
       </div>
     </div>
+  </div>
+</div>
 
-    <div data-navbar-target="licensesPart" class='d-none'>
-      <div class="d-flex flex-wrap ms-5">
-        <% @licenses.each do |license| %>
-          <%= render 'shared/license_card', license: license%>
-        <% end %>
+<!-- Modale Tools -->
+<div class="modal fade" id="toolsModal" tabindex="-1" aria-labelledby="toolsModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="toolsModalLabel">⚙️ Add a tool to your team</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for [@team, User.new] do |f| %>
+            <div class="form-inputs">
+              <%= f.input :first_name %>
+              <%= f.input :role %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Add tool", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Licenses -->
+<div class="modal fade" id="licensesModal" tabindex="-1" aria-labelledby="licensesModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="licensesModalLabel">📄 Add a subscription to your team</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="container mt-5">
+          <%= simple_form_for [@team, User.new] do |f| %>
+            <div class="form-inputs">
+              <%= f.input :first_name %>
+              <%= f.input :start_date %>
+              <%= f.input :end_date %>
+            </div>
+            <div class="form-actions text-center">
+              <%= f.button :submit, "Add subscription", class: "btn btn-success mt-4 mb-2" %>
+            </div>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>
