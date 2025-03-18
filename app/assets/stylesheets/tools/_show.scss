@@ -14,3 +14,23 @@
 .tool-container {
   padding-top: 450px;
 }
+
+.plan {
+  border: none;
+  border-radius: 8px;
+  background-color:rgb(245, 245, 245);
+  padding: 10px;
+  transition: all 0.3s ease-in-out;
+
+  &:hover {
+    box-shadow: 0px 4px 10px rgba(27, 186, 112, 0.4); // Ombre avec la couleur du bord
+    transform: scale(1.2);
+    cursor: pointer;
+  }
+}
+
+.plan--custom {
+  background-color: rgb(217, 217, 217);
+  border: 20px;
+  border-color: var(--plan-border-color, #1bba70) !important; // Utilisation de CSS variables
+}

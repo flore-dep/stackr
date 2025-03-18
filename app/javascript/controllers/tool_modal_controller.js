@@ -9,6 +9,7 @@ export default class extends Controller {
   openModal(event) {
     const modal = new bootstrap.Modal(document.getElementById("toolModal"));
     const plan = event.currentTarget.dataset.toolModalPlanValue;
+    const current = event.currentTarget.dataset.toolModalCurrentValue;
     document.getElementById("modal-title").innerText = `${plan} plan`;
 
     const allFeatures = [
@@ -41,6 +42,13 @@ export default class extends Controller {
 
     // Injection dans la modale
     document.getElementById("feature-list").innerHTML = listHtml;
+
+    if (plan === current) {
+      document.getElementById("message-footer").innerText = 'This is your current plan!';
+    } else {
+      document.getElementById("message-footer").innerText = ''
+    }
+
     modal.show();
   }
 }

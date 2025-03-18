@@ -13,5 +13,6 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     @plan = Plan.new
+    @plan_organization = @tool.plans.where(organization: current_user.organization).first
   end
 end
