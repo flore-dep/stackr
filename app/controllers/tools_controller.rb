@@ -13,6 +13,7 @@ class ToolsController < ApplicationController
   def show
     @tool = Tool.find(params[:id])
     @plan = @tool.plans.find_by(id: params[:plan_id]) if params[:plan_id].present?
+    @plan_organization = @tool.plans.where(organization: current_user.organization).first
 
     # Si aucun plan n'est trouvé -> création d'un nouveau plan
     if @plan.nil?
