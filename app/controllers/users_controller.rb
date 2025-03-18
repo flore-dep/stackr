@@ -31,8 +31,10 @@ class UsersController < ApplicationController
     authorize @user
     if @user.save
       inheritance(@user)
-      redirect_to team_path(@user.team)
+      add_user_github(@user)
+      redirect_to user_path(@user)
     end
+
   end
 
   def destroy
@@ -40,7 +42,18 @@ class UsersController < ApplicationController
     authorize @user
     @user.update!(end_date: user_params[:end_date])
     killing_licenses(@user, user_params[:end_date])
+    remove_user_github
     redirect_to team_path(@user.team)
+  end
+
+  def add_user_github(user)
+    start = GithubApi.new
+    start.invite_user(user)
+  end
+
+  def remove_user_github
+    start = GithubApi.new
+    start.remove_user
   end
 
   private
