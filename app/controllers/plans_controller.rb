@@ -17,7 +17,7 @@ class PlansController < ApplicationController
     if @plan.save!
       redirect_to tool_path(@tool)
     else
-      render :new
+      redirect_to tools_path
     end
   end
 
