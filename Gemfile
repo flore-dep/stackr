@@ -52,6 +52,7 @@ gem "sassc-rails"
 gem "devise"
 gem "pundit"
 gem "pg_search"
+gem "chartkick"
 
 group :development, :test do
   gem "dotenv-rails"
