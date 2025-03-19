@@ -181,7 +181,7 @@ tool_name = "GitHub"
 tool_description = "Plateforme de gestion de versions et de collaboration pour les développeurs. GitHub facilite l'hébergement, le suivi des modifications et le travail en équipe sur des projets de développement logiciel."
 tool_long_description = "GitHub est une plateforme de développement collaboratif basée sur Git, permettant aux développeurs de gérer leurs projets, suivre les modifications du code et collaborer efficacement. Grâce à ses fonctionnalités de contrôle de versions, de gestion des pull requests et d'intégration continue, GitHub est un outil clé pour les équipes de développement logiciel. Il offre également un espace d’hébergement pour les dépôts publics et privés, ainsi qu’une large gamme d’outils pour l’automatisation, la sécurité et la documentation des projets. Avec une communauté mondiale de millions de développeurs, GitHub favorise l'open source et l'innovation en facilitant le partage et l’amélioration du code à grande échelle."
 tool_url = "https://github.com/"
-tool_logo = "https://w7.pngwing.com/pngs/203/560/png-transparent-github-logo-thumbnail.png"
+tool_logo = "https://download.logo.wine/logo/GitHub/GitHub-Logo.wine.png"
 
 github = Tool.create!(name: tool_name, category: categories.sample, description: tool_description, long_description: tool_long_description, website: tool_url)
 begin
