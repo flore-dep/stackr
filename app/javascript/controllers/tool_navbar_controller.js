@@ -17,12 +17,14 @@ export default class extends Controller {
   displayMembers(){
     this.reset();
     this.membersTarget.classList.add('active');
+    this.membersDataTarget.classList.remove('d-none');
     this.membersDataTarget.classList.add('active');
   };
 
   displayCost(){
     this.reset();
     this.costTarget.classList.add('active');
+    this.costDataTarget.classList.remove('d-none');
     this.costDataTarget.classList.add('active');
   };
 
