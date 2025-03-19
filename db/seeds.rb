@@ -187,7 +187,7 @@ github = Tool.create!(name: tool_name, category: categories.sample, description:
 begin
   file = URI.open(tool_logo)
   github.logo.attach(io: file, filename: "default-logo.jpg", content_type: "image/jpeg")
-rescue OpenURI::HTTPError, Errno::ENOENT =>
+rescue OpenURI::HTTPError, Errno::ENOENT => e
   puts "⚠️ Erreur lors du téléchargement du logo"
 end
 
