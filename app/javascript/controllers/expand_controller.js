@@ -1,7 +1,7 @@
 import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
-  static targets = ["sidebar"];
+  static targets = ["sidebar", "main"];
 
   connect() {
     const isSidebarExpanded = localStorage.getItem("sidebarExpanded") === "true";
@@ -16,6 +16,7 @@ export default class extends Controller {
   expand() {
     console.log("expand");
     this.sidebarTarget.classList.add("expanded");
+    this.mainTarget.classList.add("expanded");
 
     localStorage.setItem("sidebarExpanded", true);
   }
@@ -23,6 +24,7 @@ export default class extends Controller {
   retract() {
     console.log("retract");
     this.sidebarTarget.classList.remove("expanded");
+    this.mainTarget.classList.remove("expanded");
 
     localStorage.setItem("sidebarExpanded", false);
   }

@@ -15,7 +15,6 @@
         <div class="d-flex flex-column"></div>
       </div>
       <div class="d-flex flex-column align-self-end">
-        <%= link_to "Back", :back, class: "fs-5 align-self-end nav-links" %>
         <%= link_to "View all collaborators", users_path, class: "fs-5 nav-links" %>
       </div>
     </div>
@@ -24,7 +23,7 @@
       <%= render "shared/personnal_navbar", active_tab: "tools" %>
 
       <div data-navbar-target="toolsPart">
-        <div class="d-flex flex-wrap ms-5">
+        <div class="d-flex flex-wrap justify-content-center">
           <% @tools.each do |tool| %>
             <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
           <% end %>
@@ -32,9 +31,9 @@
       </div>
 
       <div data-navbar-target="licensesPart" class='d-none'>
-        <div class="d-flex flex-wrap ms-5">
+        <div class="d-flex flex-wrap justify-content-center">
           <% @licenses.each do |license| %>
-            <%= render 'shared/license_card', license: license%>
+            <%= render 'shared/license_card', license: license %>
           <% end %>
         </div>
       </div>

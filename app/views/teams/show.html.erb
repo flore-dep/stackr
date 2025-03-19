@@ -13,7 +13,7 @@
       <h3><b><%= @team.cost %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
-     <%= link_to "Back to all teams", teams_path, class: "text-dark fs-5 align-self-end" %>
+     <%= link_to "View all teams", teams_path, class: "nav-links fs-5 align-self-end" %>
   </div>
 
   <!-- NAVBAR -->
@@ -51,7 +51,7 @@
 
 
     <div data-navbar-target="toolsPart" class='d-none'>
-      <div class="d-flex flex-wrap ms-5">
+      <div class="d-flex flex-wrap justify-content-center">
         <% @tools.each do |tool| %>
           <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
         <% end %>
@@ -76,22 +76,22 @@
         </div>
       </div>
     <!-- data -->
-      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="pendingLicenses">
+      <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="pendingLicenses">
         <% @all_licenses.where(status: "Pending").each do |license| %>
           <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
-      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="approvedActiveLicenses">
+      <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="approvedActiveLicenses">
         <% @all_licenses.where("licenses.start_date <= ? AND licenses.end_date > ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
           <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
-      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="approvedPastLicenses">
+      <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="approvedPastLicenses">
         <% @all_licenses.where("licenses.start_date > ? OR licenses.end_date <= ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
           <%= render 'shared/license_card', license: license %>
         <% end %>
       </div>
-      <div class="d-flex flex-wrap ms-5 d-none" data-license-subnavbar-target="declinedLicenses">
+      <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="declinedLicenses">
         <% @all_licenses.where(status: "Declined").each do |license| %>
           <%= render 'shared/license_card', license: license %>
         <% end %>
@@ -101,11 +101,13 @@
 
     <!-- DASHBOARD -->
     <div data-navbar-target="dashboardPart" class='d-none'>
-    <!-- data -->
-      <div class="d-flex flex-wrap ms-5">
+    <!-- cancelled
+      <div class="d-flex flex-wrap mx-5 justify-content-center">
         <%= line_chart({"2025-01-01" => 5, Date.today => Tool.count}) %>
       </div>
+     -->
     </div>
+
   </div>
 </div>
 
