@@ -199,7 +199,7 @@ github_plan = Plan.create!(organization: organization, tool: github, formula: JS
 github_scope = Scope.create!(team: tech, plan: github_plan)
 
 tech.users.each do |user|
-  license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: github_plan)
+  license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: github_plan, scope: github_scope)
 end
 
 puts "Tool created"
