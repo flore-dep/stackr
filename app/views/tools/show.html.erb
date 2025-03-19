@@ -92,12 +92,12 @@
       </div>
     </div>
 
-    <div id="members" class="tab-pane fade show active" data-tool-navbar-target="membersData">
+    <div id="members" class="tab-pane fade show d-none" data-tool-navbar-target="membersData">
         <% @users.each do |member| %>
           <%= render "shared/members", member: member, display_selector: true %>
         <% end %>
     </div>
-    <div id="cost" class="tab-pane fade show active" data-tool-navbar-target="costData">
+    <div id="cost" class="tab-pane fade show d-none" data-tool-navbar-target="costData">
     </div>
   </div>
 </div>

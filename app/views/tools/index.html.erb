@@ -24,7 +24,7 @@
     <h3 class="m-0">Find your crush</h3>
   </div>
 
-    <div class="orga-card-container">
+    <div class="orga-card-container <%= "d-none" unless params[:search].nil? || params[:categories].nil? %>">
       <div class="mt-4 ms-4">
         <h5><b class="border-bottom">Top 3 apps of the month</b></h5>
       </div>

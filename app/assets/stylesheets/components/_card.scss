@@ -1,18 +1,55 @@
 a {
   text-decoration: none;
   color: $gray;
-};
+}
+
+p {
+  margin: 0;
+}
+
+.software-card {
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.15);
+  }
+}
 
 .card-background {
   background-color: $light-gray;
   box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
   border-radius: 15px;
-};
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 
-.card-title {
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+.licence-card-background {
+  background-color: $light-gray;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
+}
+
+
+.tool-card-title {
   font-weight: 700;
+  font-size: 30px;
   font-family: $headers-font;
-};
+  color: #333;
+  margin-bottom: 10px;
+}
 
 .team-card {
   width: 300px;
@@ -24,17 +61,18 @@ a {
   flex-direction: column;
   align-content: center;
   overflow: hidden;
-};
-
-$random-color: rgba(random(256), random(256), random(256), 0.3);
+  border-radius: 15px;
+  background: white;
+}
 
 .team-title {
   border-radius: 90px;
   margin: 30px;
   padding: 16px 5px;
   font-weight: 700;
-  border: 1px solid rgba(0, 0, 0, 0.1)
-};
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background-color: rgba(random(256), random(256), random(256), 0.3);
+}
 
 .tool-stack-card {
   display: grid;
@@ -43,23 +81,60 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   width: 500px;
   height: 250px;
   margin: 10px;
-};
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
 
 .tool-stack-gray-part {
   background-color: $google-gray;
   border-radius: 15px 0px 0px 15px;
   height: 100%;
-  padding: 0px 10px;
-};
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 
 .tool-stack-infos-part {
-  padding: 5px;
-};
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+    p {
+    margin: 5px 0;
+    color: #666;
+  }
+
+  .card-title {
+  font-size: 18px;
+  color: #333;
+  }
+
+  .card-dates {
+  font-size: 14px;
+  color: #666;
+  }
+
+  .card-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1EDD88;
+  }
+}
+
+.top-team-card-banner {
+  background-color: rgb(242, 242, 242);
+  margin-bottom: 14px;
+}
 
 .top-card-banner {
   background-color: rgb(236, 236, 236);
   margin-bottom: 14px;
-};
+}
 
 .license-inline-card {
   display: grid;
@@ -67,43 +142,136 @@ $random-color: rgba(random(256), random(256), random(256), 0.3);
   gap: 10px;
   width: 1020px;
   height: 100px;
-};
-
-.license-inline-infos {
-  padding-top: 10px;
-  & p {
-    margin-bottom: 0px;
-  };
-};
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  align-items: center;
+}
 
 .center-element {
   display: flex;
   align-items: center;
-};
+}
 
 .icon-as-btn {
   font-size: 40px;
   display: flex;
   justify-content: center;
   align-items: center;
-};
+}
 
 #accept-btn {
   color: $green;
   margin: 2px;
-};
+  transition: color 0.3s ease;
+}
+
+#accept-btn:hover {
+  color: darken($green, 10%);
+}
 
 #reject-btn {
   color: $red;
   margin: 2px;
-};
+  transition: color 0.3s ease;
+}
 
-.destroy-links {
-  color: red;
-  border-bottom: 1px solid rgba(255, 0, 0, 0.1);
-  transition: 0.5s;
+#reject-btn:hover {
+  color: darken($red, 10%);
+}
 
-  &:hover {
-    border-bottom: 1px solid rgb(255, 0, 0);
-  }
+.destroy-link {
+  font-size: 12px;
+}
+
+.tool-logo-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.team-tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+}
+
+.team-tag {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: white;
+  font-weight: 500;
+  background-color: rgba(115, 88, 223, 0.8);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.card-category {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.card-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.formula-label {
+  font-size: 12px;
+  color: #999;
+  margin-bottom: 5px;
+}
+
+.formula-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+.formula-price {
+  font-size: 16px;
+  font-weight: 500;
+  color: #1EDD88;
+}
+
+.user-name {
+  font-size: 14px;
+  color: #333;
+  margin: 0;
+}
+
+.sticker {
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 500;
+  color: white;
+  margin-left: 8px;
+}
+
+.pending-sticker {
+  background-color: #FFA500;
+}
+
+.accepted-sticker {
+  background-color: #1EDD88;
+}
+
+.rejected-sticker {
+  background-color: #FF4D4D;
+}
+
+.creation-date {
+  font-size: 14px;
+  color: #666;
+  margin: 0;
 }
