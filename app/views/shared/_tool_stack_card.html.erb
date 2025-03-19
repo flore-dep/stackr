@@ -2,7 +2,11 @@
   <div class="card-background tool-stack-card">
     <div class="tool-stack-gray-part">
       <div class="tool-logo-container">
-        <%= cl_image_tag tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "img-fluid rounded-circle shadow-sm" %>
+        <% if tool.logo.attached? %>
+            <%= cl_image_tag tool.logo.key, transformation: [{ crop: "lfill", width: 110, height: 110, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "img-fluid rounded-circle shadow-sm" %>
+          <% else %>
+            <%= image_tag "default-logo.jpg", class: "img-fluid rounded-circle shadow-sm mb-3" %>
+          <% end %>
       </div>
 
       <div class="team-tags-container">
