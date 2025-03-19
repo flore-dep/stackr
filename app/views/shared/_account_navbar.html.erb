@@ -4,7 +4,6 @@
   <% end %>
   <button class="btn team-navbar-item <%= "nvbactive" if active_tab == "tools" %>" data-navbar-target="tools" data-action="click->navbar#fire">Tools</button>
   <button class="btn team-navbar-item" data-navbar-target="licenses" data-action="click->navbar#fire">Licenses</button>
-  <button class="btn team-navbar-item" data-navbar-target="dashboard" data-action="click->navbar#fire">Dashboard</button>
 
   <div class="ms-auto <%= "d-none" if current_user.role == "Employee" %>">
     <% if active_tab == "members" %>

@@ -6,17 +6,15 @@ export default class extends Controller {
     "members",
     "tools",
     "licenses",
-    "dashboard",
     "membersPart",
     "toolsPart",
     "licensesPart",
-    "dashboardPart",
     "memberIcon",
     "toolIcon",
     "licenseIcon" ]
 
   connect() {
-    console.log(this.hasMembersPartTarget, this.hasToolsPartTarget, this.hasLicensesPartTarget, this.hasDashboardPartTarget)
+    console.log(this.hasMembersPartTarget, this.hasToolsPartTarget, this.hasLicensesPartTarget)
   }
 
   fire(event) {
@@ -34,7 +32,6 @@ export default class extends Controller {
     }
     this.toolsPartTarget.classList.add("d-none")
     this.licensesPartTarget.classList.add("d-none")
-    this.dashboardPartTarget.classList.add("d-none")
     this.toolIconTarget.classList.add("d-none")
     this.licenseIconTarget.classList.add("d-none")
   }
@@ -46,7 +43,6 @@ export default class extends Controller {
 
     this.toolsTarget.classList.remove("nvbactive")
     this.licensesTarget.classList.remove("nvbactive")
-    this.dashboardTarget.classList.remove("nvbactive")
   }
 
   showPartial(button) {
@@ -59,8 +55,6 @@ export default class extends Controller {
     } else if (button === this.licensesTarget) {
       this.licensesPartTarget.classList.remove("d-none")
       this.licenseIconTarget.classList.remove("d-none")
-    } else if (button === this.dashboardTarget) {
-      this.dashboardPartTarget.classList.remove("d-none")
     }
   }
 }
