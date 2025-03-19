@@ -21,6 +21,5 @@ class TeamsController < ApplicationController
 
     @remaining_team_plans = Plan.where(organization: current_user.organization).where.not(id: current_user.team.plans.pluck(:id))
 
-    raise
   end
 end
