@@ -23,9 +23,11 @@
       <%= render "shared/personnal_navbar", active_tab: "tools" %>
 
       <div data-navbar-target="toolsPart">
-        <div class="d-flex flex-wrap justify-content-center">
+        <div class="row">
           <% @tools.each do |tool| %>
-            <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
+            <div class="col-5 mx-auto">
+              <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
+            </div>
           <% end %>
         </div>
       </div>
@@ -33,7 +35,7 @@
       <div data-navbar-target="licensesPart" class='d-none'>
         <div class="d-flex flex-wrap justify-content-center">
           <% @licenses.each do |license| %>
-            <%= render 'shared/license_card', license: license %>
+            <%= render 'shared/license_card', license: license, past: nil %>
           <% end %>
         </div>
       </div>

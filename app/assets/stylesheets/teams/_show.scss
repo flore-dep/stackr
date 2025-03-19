@@ -28,12 +28,11 @@
   align-items: center;
   padding: 10px 30px;
   margin: 40px 0px;
-
 }
 
 .add {
   font-size: larger;
-  font-weight: bolder
+  font-weight: bolder;
 }
 
 .team-navbar-item {
@@ -44,10 +43,11 @@
   margin-right: 20px;
   transition: 0.3s;
 
-  &:hover{
+  &:hover {
     background-color: rgb(206, 247, 214);
   }
 }
+
 
 .nvbactive {
   background-color: rgb(222, 250, 227);
@@ -56,11 +56,18 @@
 .team-member-card {
   position: relative;
   background-color: rgb(249, 251, 249);
-  border: 1px solid rgb(223, 223, 223);
-  padding: 10px 20px;
+  box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.2);
+  padding: 20px;
   margin-bottom: 10px;
   border-radius: 8px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+  }
 }
+
 
 .icon-member {
   position: absolute;
@@ -82,4 +89,44 @@
     background-color: rgb(235, 235, 235);
     border-radius: 50%;
   }
+}
+
+.member-link {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+.avatar-large {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.member-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.member-role {
+  font-size: 14px;
+  color: #666;
+}
+
+.end-date, .start-date {
+  font-size: 14px;
+  color: #666;
+}
+
+.separator {
+  font-size: 14px;
+  color: #666;
+}
+
+.member-selector i {
+  font-size: 16px;
 }
