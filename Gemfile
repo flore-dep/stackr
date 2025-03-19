@@ -54,3 +54,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "feedjira"
+gem 'httparty'
+gem 'nokogiri'
