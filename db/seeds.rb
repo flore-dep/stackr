@@ -55,8 +55,13 @@ teams.each do |team|
     user = User.create!(first_name: first_name, last_name: last_name, email: "#{first_name}-#{last_name}@mistral.com", password: "test12345", role: "Employee", team: team, start_date: "2025-01-01")
     bar.advance
   end
-  first_name = Faker::Name.first_name
-  last_name = Faker::Name.last_name
+  if team == tech
+    first_name = "victor"
+    last_name = "benhamou"
+  else
+    first_name = Faker::Name.first_name
+    last_name = Faker::Name.last_name
+  end
   user = User.create!(first_name: first_name, last_name: last_name, email: "#{first_name}-#{last_name}@mistral.com", password: "test12345", role: "Manager", team: team, start_date: "2025-01-01")
   bar.advance
 end
@@ -109,6 +114,11 @@ Tool.all.each do |tool|
   plan = Plan.create!(organization: organization, tool: tool, formula: JSON.parse(tool.formulas).to_a.sample, status: "Approved")
 end
 
+# delete plans
+["Sellsy", "Notion", "Slack","Mailchimp","HubSpot"].each do |tool|
+  Plan.where(tool: Tool.where(name: tool).first).destroy_all
+end
+
 puts "Created Plans"
 
 puts "Creating Scopes..."
@@ -128,7 +138,7 @@ end
 
 teams.each do |team|
   plans = main_plans.dup
-  5.times do
+  (6..12).to_a.sample.times do
     plan = plans.sample
     scope = Scope.create!(team: team, plan: plan)
     plans.delete(plan)
@@ -154,7 +164,7 @@ marketing.users.each do |user|
 end
 
 # Creation de licenses individuelles pending/declined pour l'équipe sales
-sales.users.each do |user|
+tech.users.each do |user|
   subset_plans.each do |plan|
     ["Declined","Pending"].each do |status|
       license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: status, access_type: "User", plan: plan)
@@ -167,7 +177,21 @@ puts "Created Licenses"
 
 puts "Creating one more tool without plan"
 
-tool = Tool.create!(name: "Tool without plan", category: categories.sample, description: "Tool test", long_description: "This is a tool test")
+p assigned = tech.scopes.any? do |scope|
+  scope.tool.name == "GitHub"
+end
+
+unless assigned
+    if Plan.where(tool: Tool.where(name: "GitHub")).any?
+      new_plan = Plan.where(tool: Tool.where(name: "GitHub"))
+    else
+      new_plan = Plan.create!(organization: organization, tool: Tool.where(name: "GitHub").first, formula: JSON.parse(tool.formulas).to_a.sample, status: "Approved")
+    end
+    new_scope = Scope.create!(team: tech, plan: new_plan)
+    tech.users.each do |user|
+      license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: new_plan, scope: new_scope)
+    end
+end
 
 puts "Tool created"
 
