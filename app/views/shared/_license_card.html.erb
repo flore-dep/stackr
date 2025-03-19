@@ -1,6 +1,10 @@
 <div class="card-background license-inline-card m-2 w-100">
   <div class="m-2 d-flex flex-s">
+  <% if past == true %>
+    <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto", effect: "grayscale"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+  <% else %>
     <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+  <% end %>
   </div>
 
   <div class="license-inline-infos">

@@ -78,22 +78,22 @@
     <!-- data -->
       <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="pendingLicenses">
         <% @all_licenses.where(status: "Pending").each do |license| %>
-          <%= render 'shared/license_card', license: license %>
+          <%= render 'shared/license_card', license: license, past: false %>
         <% end %>
       </div>
       <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="approvedActiveLicenses">
         <% @all_licenses.where("licenses.start_date <= ? AND licenses.end_date > ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
-          <%= render 'shared/license_card', license: license %>
+          <%= render 'shared/license_card', license: license, past: false %>
         <% end %>
       </div>
       <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="approvedPastLicenses">
         <% @all_licenses.where("licenses.start_date > ? OR licenses.end_date <= ?", Time.now, Time.now).where(status: "Approved").each do |license| %>
-          <%= render 'shared/license_card', license: license %>
+          <%= render 'shared/license_card', license: license, past: true %>
         <% end %>
       </div>
       <div class="d-flex flex-wrap mx-5 d-none" data-license-subnavbar-target="declinedLicenses">
         <% @all_licenses.where(status: "Declined").each do |license| %>
-          <%= render 'shared/license_card', license: license %>
+          <%= render 'shared/license_card', license: license, past: false %>
         <% end %>
       </div>
     </div>

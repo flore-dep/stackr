@@ -33,7 +33,7 @@
       <div data-navbar-target="licensesPart" class='d-none'>
         <div class="d-flex flex-wrap justify-content-center">
           <% @licenses.each do |license| %>
-            <%= render 'shared/license_card', license: license %>
+            <%= render 'shared/license_card', license: license, past: nil %>
           <% end %>
         </div>
       </div>
