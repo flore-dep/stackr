@@ -3,14 +3,14 @@ a {
 }
 
 .main {
-  margin-left: 250px;
+  margin-left: 80px;
   padding: 0px 10px;
   transition: margin-left 0.3s ease;
+}
 
-  &:hover {
-    margin-left: 80px;
-    padding: 0px 10px;
-  }
+.main.expanded {
+  margin-left: 250px;
+  padding: 0px 10px;
 }
 
 .sidebar {
@@ -91,7 +91,7 @@ a {
 }
 
 .dropdown-item:hover {
-  color: #1EDD88;
+  color: #8afcc8;
 }
 
 .sidebar-active-tab {
