@@ -10,6 +10,7 @@
   <div class="col-lg-6 mx-auto">
     <p class="lead mb-5">
       ADD SOME FUN HERE
+      <%= line_chart License.group_by_month(:start_date, range: 1.year.ago..Time.now).count %>
     </p>
     <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
       <button type="button" class="btn btn-success btn-lg px-4 gap-3">Primary button</button>
