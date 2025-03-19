@@ -1,19 +1,22 @@
 
 <div data-controller="users-filter" class="container">
-    <div class="line">
-      <h1 class="m-5 mb-2 ms-0"> Collaborators of <%= current_user.organization.name %></h1>
-    </div>
-
-  <div class="d-flex justify-content-end mt-5 me-3">
-    <div class="dropdown">
-      <%= simple_form_for :filter, url: users_path, data: { users_filter_target: 'form' } do |f| %>
-        <%= f.input :team, label: false, class:'select', collection: current_user.organization.teams { |team| team.name}, input_html: { data: { users_filter_target: 'team', action: "change->users-filter#filter"}} %>
-        <%= f.button :submit, style:"display: none" %>
-      <% end %>
-    </div>
+  <div class="line mb-5">
+    <h1 class="m-5 mb-2 ms-0"> Collaborators of <%= current_user.organization.name %></h1>
   </div>
 
   <div data-users-filter-target="UsersList" class="mt-4">
+      <div class="d-flex justify-content-between mt-5 me-3">
+        <h1 class="ms-3 mb-4">
+          <%= Team.find_by(id: params[:q]).name unless Team.find_by(id: params[:q]).nil? %>
+        </h1>
+        <div class="dropdown">
+          <%= simple_form_for :filter, url: users_path, data: { users_filter_target: 'form' } do |f| %>
+            <%= f.label "Filter by team", required: false, class: "mb-1" %>
+            <%= f.input :team, label: false, class:'select', collection: current_user.organization.teams { |team| team.name}, input_html: { data: { users_filter_target: 'team', action: "change->users-filter#filter"}} %>
+            <%= f.button :submit, style:"display: none" %>
+          <% end %>
+        </div>
+      </div>
       <%= render partial: 'shared/members', collection: @users, as: :member, locals: {display_selector: false} %>
   </div>
 </div>
