@@ -49,11 +49,13 @@
       </div>
     </div>
 
-
+  <!-- TOOLS -->
     <div data-navbar-target="toolsPart" class='d-none'>
-      <div class="d-flex flex-wrap justify-content-center">
+      <div class="row justify-content-center">
         <% @tools.each do |tool| %>
-          <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
+          <div class="col-5 mx-auto">
+            <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
+          </div>
         <% end %>
       </div>
     </div>
