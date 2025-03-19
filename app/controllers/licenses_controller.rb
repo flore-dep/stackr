@@ -21,13 +21,13 @@ class LicensesController < ApplicationController
   def accept
     @license = License.find(params[:id])
     @license.update!(status: "Approved")
-    redirect_to team_path(@team)
+    redirect_to team_path(current_user.team)
   end
 
   def reject
     @license = License.find(params[:id])
     @license.update!(status: "Declined")
-    redirect_to team_path(@team)
+    redirect_to team_path(current_user.team)
   end
 
   private

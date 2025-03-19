@@ -13,7 +13,7 @@ class GithubApi
       req.body = {
         "email" => "#{user.email}",
         "role" => "direct_member",
-        "team_ids" =>  [12538247]}
+        "team_ids" =>  [12548001]}
         .to_json
     end
   end
