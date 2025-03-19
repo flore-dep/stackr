@@ -186,7 +186,7 @@ tool_logo = "https://w7.pngwing.com/pngs/203/560/png-transparent-github-logo-thu
 github = Tool.create!(name: tool_name, category: categories.sample, description: tool_description, long_description: tool_long_description, website: tool_url)
 begin
   file = URI.open(tool_logo)
-  github.logo.attach(io: file, filename: "default_logo.jpg", content_type: "image/jpeg")
+  github.logo.attach(io: file, filename: "default_logo.jpeg", content_type: "image/jpeg")
 rescue OpenURI::HTTPError, Errno::ENOENT => e
   puts "⚠️ Erreur lors du téléchargement du logo"
 end
