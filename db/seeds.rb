@@ -175,22 +175,31 @@ end
 
 puts "Created Licenses"
 
-puts "Creating one more tool without plan"
+puts "Creating GITHUB"
 
-p assigned = tech.scopes.any? do |scope|
-  scope.tool.name == "GitHub"
+tool_name = "GitHub"
+tool_description = "Plateforme de gestion de versions et de collaboration pour les développeurs. GitHub facilite l'hébergement, le suivi des modifications et le travail en équipe sur des projets de développement logiciel."
+tool_long_description = "GitHub est une plateforme de développement collaboratif basée sur Git, permettant aux développeurs de gérer leurs projets, suivre les modifications du code et collaborer efficacement. Grâce à ses fonctionnalités de contrôle de versions, de gestion des pull requests et d'intégration continue, GitHub est un outil clé pour les équipes de développement logiciel. Il offre également un espace d’hébergement pour les dépôts publics et privés, ainsi qu’une large gamme d’outils pour l’automatisation, la sécurité et la documentation des projets. Avec une communauté mondiale de millions de développeurs, GitHub favorise l'open source et l'innovation en facilitant le partage et l’amélioration du code à grande échelle."
+tool_url = "https://github.com/"
+tool_logo = "https://w7.pngwing.com/pngs/203/560/png-transparent-github-logo-thumbnail.png"
+
+github = Tool.create!(name: tool_name, category: categories.sample, description: tool_description, long_description: tool_long_description, website: tool_url)
+begin
+  file = URI.open(tool_logo)
+  github.logo.attach(io: file, filename: "default_logo.jpg", content_type: "image/jpeg")
+rescue OpenURI::HTTPError, Errno::ENOENT => e
+  puts "⚠️ Erreur lors du téléchargement du logo"
 end
 
-unless assigned
-    if Plan.where(tool: Tool.where(name: "GitHub")).any?
-      new_plan = Plan.where(tool: Tool.where(name: "GitHub"))
-    else
-      new_plan = Plan.create!(organization: organization, tool: Tool.where(name: "GitHub").first, formula: JSON.parse(tool.formulas).to_a.sample, status: "Approved")
-    end
-    new_scope = Scope.create!(team: tech, plan: new_plan)
-    tech.users.each do |user|
-      license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: new_plan, scope: new_scope)
-    end
+10.times do
+  review = Review.create(username: "#{Faker::Name.first_name}#{Faker::Name.last_name}",content: Faker::Quotes::Shakespeare.hamlet_quote,rating: (0..5).to_a.sample, tool: github)
+end
+
+github_plan = Plan.create!(organization: organization, tool: github, formula: JSON.parse(github.formulas).to_a.sample, status: "Approved")
+github_scope = Scope.create!(team: tech, plan: github_plan)
+
+tech.users.each do |user|
+  license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: github_plan)
 end
 
 puts "Tool created"
