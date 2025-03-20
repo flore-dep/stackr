@@ -20,7 +20,8 @@
 
     <div class="tool-stack-infos-part">
       <h3 class="tool-card-title"><%= tool.name %></h3>
-      <p class="card-dates"><%= tool.start_date %> - <%= tool.end_date %></p>
+      <p class="card-dates"> 🗓️ Start date : <%= tool.start_date.strftime("%B %d, %Y") %></p>
+      <p class="card-dates">🗓️ End date    : <%= tool.end_date.strftime("%B %d, %Y") %></p>
       <p class="card-price"><%= plan.formula[1] %> €/month</p>
       <%= link_to 'Destroy all licenses', plan_archive_path(plan.id), class: "btn btn-outline-danger align-self-end mt-auto destroy-link #{ "d-none" if current_user.role == "Employee" }" %>
     </div>
