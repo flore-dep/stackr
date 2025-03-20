@@ -374,3 +374,50 @@ Team.where(name: "Sales").first.users.each do |user|
 end
 
 puts "#{License.count} licenses created!"
+
+puts "Smile, you're on camera"
+
+users_to_update = {
+  "Kim" => {
+    related_user: User.find_by(first_name: "Kim"),
+    picture: "https://www.nadlani.si/uploads/2022/04/kim-kardashian-prikazna.png"
+  },
+  "Paris" => {
+    related_user: User.find_by(first_name: "Paris"),
+    picture: "https://d1rig8ldkblbsy.cloudfront.net/app/uploads/2021/07/28112344/paris-hilton-shuts-down-pregnancy-rumours-256x256.jpg"
+  },
+  "Kylie" => {
+    related_user: User.find_by(first_name: "Kylie"),
+    picture: "https://www.leparisien.fr/resizer/F8TP5VIr7-wbjlYlBVZ5AVgrLIo=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/leparisien/6KP2BP4AHRA2HN4QVPI6YZAO5E.jpg"
+  },
+  "Khloé" => {
+    related_user: User.find_by(first_name: "Khloé"),
+    picture: "https://www.lfm.ch/wp-content/uploads/2025/01/khloe-kardashian-june-15-2022-in-los-angeles-california-getty.jpg"
+  },
+  "Jeffree" => {
+    related_user: User.find_by(first_name: "Jeffree"),
+    picture: "https://www.nadlani.si/uploads/2022/04/kim-kardashian-prikazna.png"
+  },
+  "Addison" => {
+    related_user: User.find_by(first_name: "Addison"),
+    picture: "https://d1ccp1bhyyxewc.cloudfront.net/018d5513-1f20-70a5-87d9-3b2fd5c9d9cb/square/crop/018d5513-2439-7492-945f-38b7deb60f2c/i.jpeg"
+  },
+  "Bella" => {
+    related_user: User.find_by(first_name: "Bella"),
+    picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Bella_Thorne_2012.jpg/220px-Bella_Thorne_2012.jpg"
+  }
+}
+
+users_to_update.each do |user, properties|
+  if cloudinary_storage
+    begin
+      file = URI.open(properties[:picture])
+      properties[:related_user].picture.attach(io: file, filename: "default-pp.jpg", content_type: "image/jpeg")
+    rescue OpenURI::HTTPError, Errno::ENOENT => e
+      puts "⚠️ Erreur lors du téléchargement du logo"
+    next
+    end
+  end
+end
+
+puts "Shooting over"

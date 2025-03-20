@@ -3,7 +3,11 @@
     <div class="d-flex justify-content-between">
       <div class="d-flex">
         <%= link_to user_path(member), class: "member-link" do %>
-          <%= image_tag "default-pp.jpg", class: "avatar-large" %>
+          <% if member.picture.attached? %>
+            <%= cl_image_tag member.picture.key, transformation: [{ crop: "lfill", width: 60, height: 60, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "avatar-large" %>
+          <% else %>
+           <%= image_tag "default-pp.jpg", class: "avatar-large" %>
+          <% end %>
           <div class="ms-4 align-content-center">
             <div class="fw-bold member-name">
               <%= member.first_name %>
