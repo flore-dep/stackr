@@ -33,7 +33,12 @@
   </div>
 
   <div class="center-element justify-content-between">
-    <p class="user-name"><i class="fa-solid fa-user-tie"></i> <%= license.user.first_name %> <%= license.user.last_name %></p>
+    <% if license.user.picture.attached? %>
+      <%= cl_image_tag license.user.picture.key, transformation: [{ crop: "lfill", width: 30, height: 30, quality: "auto", fetch_format: "auto"}, {radius: 30}], class: "img-footer" %>
+    <% else %>
+      <%= image_tag "default-pp.jpg", class: "img-footer" %>
+    <% end %>
+    <p class="user-name"><%= license.user.first_name %> <%= license.user.last_name %></p>
     <% sticker_status = "sticker-#{license.status.downcase}" %>
     <p class="sticker <%= sticker_status %>"><%= license.status %></p>
   </div>
