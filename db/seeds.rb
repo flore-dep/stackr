@@ -354,7 +354,12 @@ puts "Creating licenses..."
 
 Scope.all.each do |scope|
   scope.team.users.each do |user|
-    License.create!(user: user, scope: scope, plan: scope.plan, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User")
+    year = [2024,2025].sample
+    month = (1..12).to_a.sample
+    day = (1..28).to_a.sample
+    start_date = Time.new(year, month, day)
+    end_date = Time.new(year + 1, month, day)
+    License.create!(user: user, scope: scope, plan: scope.plan, start_date: start_date, end_date: end_date, status: "Approved", access_type: "User")
   end
 end
 
