@@ -379,32 +379,32 @@ puts "Smile, you're on camera"
 
 users_to_update = {
   "Kim" => {
-    related_user: User.find_by(first_name: "Kim"),
-    picture: "https://www.nadlani.si/uploads/2022/04/kim-kardashian-prikazna.png"
+    related_user: User.find_by(first_name: "Kim", last_name:"Kardashian"),
+    picture: "https://avatars.githubusercontent.com/u/192353225?v=4"
   },
   "Paris" => {
     related_user: User.find_by(first_name: "Paris"),
     picture: "https://d1rig8ldkblbsy.cloudfront.net/app/uploads/2021/07/28112344/paris-hilton-shuts-down-pregnancy-rumours-256x256.jpg"
   },
   "Kylie" => {
-    related_user: User.find_by(first_name: "Kylie"),
-    picture: "https://www.leparisien.fr/resizer/F8TP5VIr7-wbjlYlBVZ5AVgrLIo=/932x582/cloudfront-eu-central-1.images.arcpublishing.com/leparisien/6KP2BP4AHRA2HN4QVPI6YZAO5E.jpg"
+    related_user: User.find_by(first_name: "Kylie", last_name: "Jenner"),
+    picture: "https://avatars.githubusercontent.com/u/83162519?v=4"
   },
   "Khloé" => {
-    related_user: User.find_by(first_name: "Khloé"),
+    related_user: User.find_by(first_name: "Khloé", last_name:"Kardashian"),
     picture: "https://www.lfm.ch/wp-content/uploads/2025/01/khloe-kardashian-june-15-2022-in-los-angeles-california-getty.jpg"
   },
   "Jeffree" => {
-    related_user: User.find_by(first_name: "Jeffree"),
+    related_user: User.find_by(first_name: "Jeffree", last_name:"Star"),
     picture: "https://www.nadlani.si/uploads/2022/04/kim-kardashian-prikazna.png"
   },
   "Addison" => {
-    related_user: User.find_by(first_name: "Addison"),
+    related_user: User.find_by(first_name: "Addison", last_name:"Rae"),
     picture: "https://d1ccp1bhyyxewc.cloudfront.net/018d5513-1f20-70a5-87d9-3b2fd5c9d9cb/square/crop/018d5513-2439-7492-945f-38b7deb60f2c/i.jpeg"
   },
   "Bella" => {
-    related_user: User.find_by(first_name: "Bella"),
-    picture: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Bella_Thorne_2012.jpg/220px-Bella_Thorne_2012.jpg"
+    related_user: User.find_by(first_name: "Bella", last_name:"Thorne"),
+    picture: "https://avatars.githubusercontent.com/u/195684103?v=4"
   }
 }
 
