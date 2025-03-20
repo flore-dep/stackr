@@ -3,21 +3,25 @@
 
 <%= image_tag "vieux.jpeg", class: "prank-hover" %>
 -->
-
 <div class="px-4 py-5 my-5 text-center">
   <%= image_tag "stackr-dark.svg", class: "d-block mx-auto mb-4", width:"72" %>
   <h1 class="display-5 fw-bold text-body-emphasis mb-5"><%= current_user.organization.name.upcase %></h1>
-  <div class="col-lg-6 mx-auto">
-    <p class="lead mb-5">
-      ADD SOME FUN HERE
-      <%= area_chart @chart_data, xtitle: "Month", ytitle: "Tools Number", colors: ["#b00", "#666", "#00b"] %>
-      <%= column_chart @cost_data, xtitle: "Month", ytitle: "Total Costs", colors: ["#b00", "#666", "#00b"] %>
-      <%= line_chart @license_data, xtitle: "Month", ytitle: "Active Licenses", colors: ["#b00"] %>
-      <%= pie_chart @category_data, title: "Tools by Categories" %>
-    </p>
-    <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+  <%# <div class="col-lg-6 mx-auto"> %>
+    <p class="lead mb-5"><strong>Ces quelques graphs?</strong></p>
+      <div class="app-card mb-3 transition-all software-card" style="width: 1450px; height: 400px; border-radius: 15px; overflow: hidden;">
+        <%= line_chart @cost_data, title: "Costs/Month", xtitle: "Month", ytitle: "Total Costs", colors: ["purple", "gray", "blue", "green", "yellow", "red", "orange", "brown"] %>
+      </div>
+      <div class="row">
+      <div class="col-6 app-card mx-1 transition-all software-card" style="width: 45rem; height: 400px; border-radius: 15px; overflow: hidden;">
+        <%= pie_chart @category_data, title: "Tools by Categories" %>
+      </div>
+      <div class="col-6 app-card mx-1 transition-all software-card" style="width: 45rem; height: 400px; border-radius: 15px; overflow: hidden;">
+        <%= line_chart @license_data, title: "Active Licenses/Month", xtitle: "Month", ytitle: "Active Licenses", colors: ["#b00"] %>
+      </div>
+      </div>
+    </div>
+    <!--<div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
       <button type="button" class="btn btn-success btn-lg px-4 gap-3">Primary button</button>
       <button type="button" class="btn btn-outline-success btn-lg px-4">Secondary</button>
-    </div>
-  </div>
-</div>
+    </div>-->
+  <%# </div> %>
