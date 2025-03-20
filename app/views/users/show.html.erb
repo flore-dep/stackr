@@ -3,7 +3,11 @@
     <div class="d-flex justify-content-between">
       <div class="team-name-card">
         <h2 class="mb-3 fw-bold"> <b><%= @user.first_name.capitalize %></b> <%= @user.last_name.upcase %></h2>
-        <%= image_tag "default-pp.jpg", class: "fixed-user-img-card" %>
+        <% if @user.picture.attached? %>
+           <%= cl_image_tag @user.picture.key, transformation: [{ crop: "lfill", width: 60, height: 60, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "fixed-user-img-card" %>
+        <% else %>
+          <%= image_tag "default-pp.jpg", class: "fixed-user-img-card" %>
+        <% end %>
         <div class="d-flex flex-column">
           <p class="mb-2"><i class="fa-solid fa-user-tie me-2"></i><%= @user.role %></p>
           <p class="mb-2"><i class="fa-solid fa-briefcase me-2"></i><%= @user.team.organization.name %></p>
