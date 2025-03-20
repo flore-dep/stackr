@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :plans, through: :licenses
 
   has_one :organization, through: :team
-  has_one :picture
 
   validates :first_name, presence: true, length: { minimum: 1}
   validates :last_name, presence: true, length: { minimum: 1}
