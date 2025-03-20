@@ -41,8 +41,8 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     authorize @user
     @user.update!(end_date: user_params[:end_date])
-    killing_licenses(@user, user_params[:end_date])
     remove_user_github
+    killing_licenses(@user, user_params[:end_date])
     redirect_to team_path(@user.team)
   end
 
