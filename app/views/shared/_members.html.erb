@@ -21,17 +21,13 @@
       </div>
 
       <div class="d-flex align-items-center">
-        <%License.per_user(member).first(7).each do |license| %>
-          <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 30, height: 30, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "software-icon m-0" %>
+        <% License.per_user(member).first(7).each do |license| %>
+          <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 40, height: 40, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "img-fluid rounded-circle shadow-sm me-2" %>
         <% end %>
-        <% if member.licenses.count == 0 %>
-          <div class="col-12 justify-content-center">
-            <p class="">No tools in this team</p>
-          </div>
-        <% elsif member.licenses.count > 7 %>
-          <div class="col-3 m-2">
-            <p class="software-counter-icon m-0">+<%= ( member.licenses.count - 7) %></p>
-          </div>
+        <% if License.per_user(member).count == 0 %>
+          <p class="justify-content-center m-0">No tools in this team</p>
+        <% elsif License.per_user(member).count > 7 %>
+          <p class="software-counter-icon m-0">+<%= (License.per_user(member).count - 7) %></p>
         <% end %>
       </div>
 
