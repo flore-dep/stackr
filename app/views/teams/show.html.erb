@@ -10,7 +10,7 @@
         <% manager = @team.users.where(role: "Manager").first %>
         <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
       <% end %>
-      <h3><b><%= @team.cost %>€ / month</b></h3>
+      <h3><b><%= @team.cost.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>€ / month</b></h3>
       <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
     </div>
      <%= link_to "View all teams", teams_path, class: "nav-links fs-5 align-self-end" %>
