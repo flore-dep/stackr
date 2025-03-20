@@ -7,6 +7,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
@@ -37,8 +38,8 @@
               <span class="menu-text">Team Stack</span>
             </span>
           <% end %>
-          <%= link_to organization_path do %>
-            <span class=<%= request.path == organization_path ? "sidebar-active-tab" : "dropdown-item collapsed"%>>
+          <%= link_to teams_path do %>
+            <span class=<%= request.path == teams_path ? "sidebar-active-tab" : "dropdown-item collapsed"%>>
               <i class="fa-solid fa-building"></i>
               <span class="menu-text">Organization Stack</span>
             </span>

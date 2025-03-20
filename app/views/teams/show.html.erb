@@ -60,7 +60,7 @@
   <!-- TOOLS -->
     <div data-navbar-target="toolsPart" class='d-none'>
       <div class="row justify-content-center">
-        <% @tools.each do |tool| %>
+        <% @active_tools.each do |tool| %>
           <div class="col-5 mx-auto">
             <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
           </div>
@@ -145,8 +145,8 @@
                 <%= f.input :role, collection: %w[Employee], selected: "Employee" %>
               <% end %>
               <%= f.input :password %>
-              <%= f.input :start_date, required: true %>
-              <%= f.input :end_date, required: false, include_blank: true %>
+              <%= f.input :start_date, as: :string, required: true, input_html: { data: { controller: "datepicker-team-member" } } %>
+              <%= f.input :end_date, as: :string, required: false, include_blank: true, input_html: { data: { controller: "datepicker-team-member" } } %>
             </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
@@ -196,7 +196,7 @@
           <div class="container mt-5">
             <%= simple_form_for member, method: :delete do |f| %>
               <div class="form-inputs">
-                <%= f.input :end_date, html5: true %>
+                <%= f.input :end_date, as: :string, required: true, include_blank: true, input_html: { data: { controller: "datepicker-team-member-departure" } } %>
               </div>
               <div class="form-actions text-center">
                 <%= f.button :submit, "Set departure", data: { turbo_confirm: "Are you sure?" }, class: "btn btn-success mt-4 mb-2" %>
