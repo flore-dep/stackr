@@ -11,7 +11,7 @@
     <p class="lead mb-5"><strong>Ces quelques graphs?</strong></p>
     <div class="row">
       <div class="col-6">
-        <%= column_chart @cost_data, title: "Costs/Month", xtitle: "Month", ytitle: "Total Costs", colors: ["purple", "gray", "blue", "green", "yellow", "red", "orange", "brown"] %>
+        <%= line_chart @cost_data, title: "Costs/Month", xtitle: "Month", ytitle: "Total Costs", colors: ["purple", "gray", "blue", "green", "yellow", "red", "orange", "brown"] %>
       </div>
       <div class="col-6">
         <%= pie_chart @category_data, title: "Tools by Categories" %>
