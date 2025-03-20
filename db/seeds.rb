@@ -181,27 +181,50 @@ tool_name = "GitHub"
 tool_description = "Plateforme de gestion de versions et de collaboration pour les développeurs. GitHub facilite l'hébergement, le suivi des modifications et le travail en équipe sur des projets de développement logiciel."
 tool_long_description = "GitHub est une plateforme de développement collaboratif basée sur Git, permettant aux développeurs de gérer leurs projets, suivre les modifications du code et collaborer efficacement. Grâce à ses fonctionnalités de contrôle de versions, de gestion des pull requests et d'intégration continue, GitHub est un outil clé pour les équipes de développement logiciel. Il offre également un espace d’hébergement pour les dépôts publics et privés, ainsi qu’une large gamme d’outils pour l’automatisation, la sécurité et la documentation des projets. Avec une communauté mondiale de millions de développeurs, GitHub favorise l'open source et l'innovation en facilitant le partage et l’amélioration du code à grande échelle."
 tool_url = "https://github.com/"
-tool_logo = "https://w7.pngwing.com/pngs/203/560/png-transparent-github-logo-thumbnail.png!"
+tool_logo = "https://w7.pngwing.com/pngs/203/560/png-transparent-github-logo-thumbnail.png"
 
 github = Tool.create!(name: tool_name, category: categories.sample, description: tool_description, long_description: tool_long_description, website: tool_url)
+
+# Attach logo with improved error handling
 begin
   file = URI.open(tool_logo)
-  github.logo.attach(io: file, filename: "default-logo.jpg", content_type: "image/jpeg")
-rescue OpenURI::HTTPError, Errno::ENOENT => e
-  puts "⚠️ Erreur lors du téléchargement du logo"
+  github.logo.attach(io: file, filename: "github-logo.jpg", content_type: "image/jpeg")
+  puts "✅ Logo attached successfully for GitHub"
+rescue OpenURI::HTTPError => e
+  puts "⚠️ HTTP Error while downloading the logo: #{e.message}"
+rescue Errno::ENOENT => e
+  puts "⚠️ File not found error: #{e.message}"
+rescue StandardError => e--
+  puts "⚠️ An unexpected error occurred: #{e.message}"
 end
 
+# Create reviews
 10.times do
-  review = Review.create(username: "#{Faker::Name.first_name}#{Faker::Name.last_name}",content: Faker::Quotes::Shakespeare.hamlet_quote,rating: (0..5).to_a.sample, tool: github)
+  Review.create!(
+    username: "#{Faker::Name.first_name}#{Faker::Name.last_name}",
+    content: Faker::Quotes::Shakespeare.hamlet_quote,
+    rating: (0..5).to_a.sample,
+    tool: github
+  )
 end
 
+# Create plan and scope
 github_plan = Plan.create!(organization: organization, tool: github, formula: JSON.parse(github.formulas).to_a.sample, status: "Approved")
 github_scope = Scope.create!(team: tech, plan: github_plan)
 
+# Assign licenses to users
 tech.users.each do |user|
-  license = License.create!( user: user, start_date: "2025-01-01", end_date: "2026-01-01", status: "Approved", access_type: "User", plan: github_plan, scope: github_scope)
+  License.create!(
+    user: user,
+    start_date: "2025-01-01",
+    end_date: "2026-01-01",
+    status: "Approved",
+    access_type: "User",
+    plan: github_plan,
+    scope: github_scope
+  )
 end
 
-puts "Tool created"
+puts "✅ GitHub tool created successfully"
 
 puts "Seeding complete"
