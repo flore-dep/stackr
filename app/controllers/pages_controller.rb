@@ -24,21 +24,35 @@ class PagesController < ApplicationController
   end
 
   def costs_per_month
-    object = []
-    (1..12).each do |m|
-      sub = []
-      date = Time.new(2025, m, 1)
-      sub.push(date)
-      licenses = License.where("start_date <= ? AND end_date > ?", date, date)
-      cost = 0
-      licenses.each do |l|
-        cost += l.plan.formula[1]
+    tab = []
+    Team.all.each do |team|
+      (1..12).each do |m|
+        date = Time.new(2025, m, 1)
+        licenses = team.licenses.where("start_date <= ? AND end_date > ?", date, date)
+        cost = 0
+        licenses.each do |l|
+          cost += l.plan.formula[1]
+        end
+        obj = {:name => team.name, :data => { date => cost}}
+        tab.push(obj)
       end
-      sub.push(cost)
-      object.push(sub)
     end
 
-    @cost_data = object
+    cd = tab
+    # cd = [
+    #   {:name=>"MR", :data=>{"Sun, 01 Jan 2017"=>44}},
+    #   {:name=>"CT", :data=>{"Sun, 01 Jan 2017"=>7}},
+    #   {:name=>"US", :data=>{"Sun, 01 Jan 2017"=>1}},
+    #   {:name=>"MR", :data=>{"Wed, 01 Feb 2017"=>41}},
+    #   {:name=>"CT", :data=>{"Wed, 01 Feb 2017"=>4}},
+    #   {:name=>"CT", :data=>{"Wed, 01 Mar 2017"=>6}},
+    #   {:name=>"XR", :data=>{"Wed, 01 Mar 2017"=>1}},
+    #   {:name=>"US", :data=>{"Sat, 01 Apr 2017"=>1}}
+    #   ]
+    cost = cd.each_with_object({}) do |g,h|
+      h.update(g[:name]=>g) { |_,n,o| { name: n[:name], data: n[:data].merge(o[:data]) } }
+    end
+    @cost_data = cost.values
   end
 
   def active_licenses_per_month
