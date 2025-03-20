@@ -4,28 +4,32 @@
       <div class="team-name-card">
         <h2 class="mb-3 fw-bold"> <b><%= @user.first_name.capitalize %></b> <%= @user.last_name.upcase %></h2>
         <%= image_tag "default-pp.jpg", class: "fixed-user-img-card" %>
-        <p class="mb-2"><i class="fa-solid fa-user-tie me-2"></i><%= @user.role %></p>
-        <p class="mb-2"><i class="fa-solid fa-briefcase me-2"></i><%= @user.team.organization.name %></p>
-        <p class="mb-2"><i class="fa-solid fa-people-group me-2"></i><%= @user.team.name %></p>
-        <p><i class="fa-solid fa-envelope me-2"></i><%= @user.email %></p>
-        <div class="d-flex justify-content-end <%= "d-none" unless @user.id == current_user.id %>">
-          <%= link_to "Edit info", edit_user_registration_path, class: "btn btn-success me-2" %>
-          <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn btn-dark" %>
+        <div class="d-flex flex-column">
+          <p class="mb-2"><i class="fa-solid fa-user-tie me-2"></i><%= @user.role %></p>
+          <p class="mb-2"><i class="fa-solid fa-briefcase me-2"></i><%= @user.team.organization.name %></p>
+          <p class="mb-2"><i class="fa-solid fa-people-group me-2"></i><%= @user.team.name %></p>
+          <div class="d-flex justify-content-between">
+            <p><i class="fa-solid fa-envelope me-2"></i><%= @user.email %></p>
+            <div class="d-flex <%= "d-none" unless @user.id == current_user.id %>">
+              <%= link_to "Edit info", edit_user_registration_path, class: "btn user-btn me-2" %>
+              <%= button_to "Log Out", destroy_user_session_path, method: :delete, class: "btn user-btn" %>
+            </div>
+          </div>
         </div>
-        <div class="d-flex flex-column"></div>
-      </div>
-      <div class="d-flex flex-column align-self-end">
-        <%= link_to "View all collaborators", users_path, class: "fs-5 nav-links" %>
       </div>
     </div>
 
     <div data-controller="navbar">
       <%= render "shared/personnal_navbar", active_tab: "tools" %>
 
+    <div class="d-flex justify-content-end mt-2 mb-4">
+      <%= link_to "View all collaborators", users_path, class: "fs-5 nav-links" %>
+    </div>
+
       <div data-navbar-target="toolsPart">
         <div class="row">
           <% @tools.each do |tool| %>
-            <div class="col-5 mx-auto">
+            <div class="col-5 mx-auto p-0">
               <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
             </div>
           <% end %>

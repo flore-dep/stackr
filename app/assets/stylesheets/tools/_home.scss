@@ -1,0 +1,12 @@
+.search-btn-store {
+  border: solid 1px rgba(1,0,197,1);
+  color: rgba(1,0,197,1);
+  border-radius: 2px;
+  transition: 0.3s;
+
+  &:hover {
+    background: linear-gradient(90deg, rgba(116,0,122,1) 0%, rgba(1,0,197,1) 0%, rgba(0, 98, 255, 1) 100%);
+    color: white;
+    background-clip: padding-box;
+  }
+}

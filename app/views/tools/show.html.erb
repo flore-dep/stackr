@@ -38,7 +38,7 @@
 
 
     </div>
-    <p class="mt-3"><%= @tool.description %></p>
+    <!-- <p class="mt-3"><%= @tool.description %></p> -->
     <% category_tag = @tool.category.downcase.gsub(' ', '_') %>
     <div class="card category-tag <%= category_tag %> rounded-pill px-3 py-2" style="width: 200px;">
       <p class="m-0 text-center" style="font-size: 16px;"><%= @tool.category %></p>
