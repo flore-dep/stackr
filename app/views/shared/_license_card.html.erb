@@ -36,7 +36,7 @@
     <% if license.user.picture.attached? %>
       <%= cl_image_tag license.user.picture.key, transformation: [{ crop: "lfill", width: 30, height: 30, quality: "auto", fetch_format: "auto"}, {radius: 30}], class: "img-footer" %>
     <% else %>
-      <%= image_tag "default-pp.jpg", class: "img-footer" %>
+      <i class="fa-solid fa-user"></i>
     <% end %>
     <p class="user-name"><%= license.user.first_name %> <%= license.user.last_name %></p>
     <% sticker_status = "sticker-#{license.status.downcase}" %>
