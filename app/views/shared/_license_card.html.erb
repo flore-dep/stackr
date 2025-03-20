@@ -1,9 +1,13 @@
 <div class="licence-card-background license-inline-card m-2 w-100">
   <div class="m-2 d-flex flex-s">
-  <% if past == true %>
-    <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto", effect: "grayscale"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+  <% if license.tool.logo.attached? %>
+    <% if past == true %>
+      <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto", effect: "grayscale"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+    <% else %>
+      <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+    <% end %>
   <% else %>
-    <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 70, height: 70, quality: "auto", fetch_format: "auto"},  {radius: 10}], class: "img-fluid rounded-circle shadow-sm m-2" %>
+    <%= image_tag "default-logo.jpg", class: "img-fluid rounded-circle shadow-sm mb-3" %>
   <% end %>
   </div>
 
@@ -30,7 +34,7 @@
 
   <div class="center-element justify-content-between">
     <p class="user-name"><i class="fa-solid fa-user-tie"></i> <%= license.user.first_name %> <%= license.user.last_name %></p>
-    <% sticker_status = "#{license.status.downcase}-sticker" %>
+    <% sticker_status = "sticker-#{license.status.downcase}" %>
     <p class="sticker <%= sticker_status %>"><%= license.status %></p>
   </div>
 
