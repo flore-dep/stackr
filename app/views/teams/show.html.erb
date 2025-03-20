@@ -1,19 +1,27 @@
 <div class="m-5">
 
   <!-- CARD -->
-  <div class="d-flex justify-content-between">
+  <div class="d-flex justify-content-center">
     <div class="team-name-card">
-      <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
-      <% if @team.users.where(role: "Manager").empty? %>
-        <p class="mb-3"> Founder panel </p>
-      <% else %>
-        <% manager = @team.users.where(role: "Manager").first %>
-        <p class="mb-3"> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
-      <% end %>
-      <h3><b><%= @team.cost %>€ / month</b></h3>
-      <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+      <div class="d-flex justify-content-between align-items-center">
+        <div class="d-flex flex-column gap-3 p-2">
+          <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
+          <% if @team.users.where(role: "Manager").empty? %>
+            <div class="d-flex align-items-center gap-3">
+              <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+              <p> Founder panel </p>
+            </div>
+          <% else %>
+          <div class="d-flex align-items-center gap-3">
+            <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+            <% manager = @team.users.where(role: "Manager").first %>
+            <p> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
+          </div>
+          <% end %>
+        </div>
+        <h3 class="me-5 fs-2"><b><%= @team.cost.to_s.reverse.gsub(/(\d{3})(?=\d)/, '\\1,').reverse %>€ / month</b></h3>
+      </div>
     </div>
-     <%= link_to "View all teams", teams_path, class: "nav-links fs-5 align-self-end" %>
   </div>
 
   <!-- NAVBAR -->
@@ -23,12 +31,12 @@
     <!-- MEMBERS PART -->
     <div data-navbar-target="membersPart" data-controller="member-subnavbar">
       <!-- Secondary Navbar -->
-      <div class="d-flex justify-content-between align-items-center pb-5 px-5">
+      <div class="subbar">
         <!-- Buttons -->
         <div class="d-flex gap-3">
-          <button class="btn btn-outline-warning active" data-member-subnavbar-target="coming" data-action="click->member-subnavbar#setComing">Coming</button>
-          <button class="btn btn-outline-success" data-member-subnavbar-target="active" data-action="click->member-subnavbar#setActive">Active</button>
-          <button class="btn btn-outline-danger" data-member-subnavbar-target="gone" data-action="click->member-subnavbar#setGone">Gone</button>
+          <button class="btn member-com active" data-member-subnavbar-target="coming" data-action="click->member-subnavbar#setComing">Coming</button>
+          <button class="btn member-act" data-member-subnavbar-target="active" data-action="click->member-subnavbar#setActive">Active</button>
+          <button class="btn member-gone" data-member-subnavbar-target="gone" data-action="click->member-subnavbar#setGone">Gone</button>
         </div>
       </div>
       <!-- DATA -->
@@ -51,7 +59,7 @@
 
   <!-- TOOLS -->
     <div data-navbar-target="toolsPart" class='d-none'>
-      <div class="row justify-content-center">
+      <div class="row justify-content-center mt-4">
         <% @active_tools.each do |tool| %>
           <div class="col-5 mx-auto">
             <%= render 'shared/tool_stack_card', tool: tool, plan: @plans_by_tool_id[tool.id] %>
@@ -64,17 +72,17 @@
     <!-- LICENSES -->
     <div data-navbar-target="licensesPart" data-controller="license-subnavbar" class='d-none'>
     <!-- secondary navbar  -->
-      <div class="d-flex justify-content-between align-items-center pb-5 px-5">
+      <div class="subbar">
     <!-- buttons -->
         <div class="d-flex gap-3">
-          <button class="btn btn-outline-warning active" data-license-subnavbar-target="pending" data-action="click->license-subnavbar#setPending">Pending</button>
-          <button class="btn btn-outline-success" data-license-subnavbar-target="approved" data-action="click->license-subnavbar#setApproved">Approved</button>
-          <button class="btn btn-outline-danger" data-license-subnavbar-target="declined" data-action="click->license-subnavbar#setDeclined">Declined</button>
+          <button class="btn member-com active" data-license-subnavbar-target="pending" data-action="click->license-subnavbar#setPending">Pending</button>
+          <button class="btn member-act" data-license-subnavbar-target="approved" data-action="click->license-subnavbar#setApproved">Approved</button>
+          <button class="btn member-gone" data-license-subnavbar-target="declined" data-action="click->license-subnavbar#setDeclined">Declined</button>
         </div>
     <!-- Toggle -->
         <div class="form-check form-switch" data-license-subnavbar-target="toggle" data-action="click->license-subnavbar#toggleToggle">
           <input class="form-check-input" type="checkbox" id="toggleSwitch">
-          <label class="form-check-label" for="toggleSwitch">Active</label>
+          <label class="form-check-label" style="width: 3rem;" for="toggleSwitch">Active</label>
         </div>
       </div>
     <!-- data -->
