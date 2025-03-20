@@ -15,12 +15,24 @@
           </div>
         <% end %>
       </div>
-      <div class="d-flex align-self-center pe-4">
-        <% if member.end_date.nil? == false %>
-          <em class="text-secondary end-date">End date: <%= member.end_date %></em>
-          <em class="text-secondary mx-2 separator"> | </em>
+
+      <div>
+        <%License.per_user(member).first(7).each do |license| %>
+          <%= cl_image_tag license.tool.logo.key, transformation: [{ crop: "lfill", width: 30, height: 30, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "img-fluid rounded-circle shadow-sm" %>
         <% end %>
-        <em class="text-secondary start-date">Start date: <%= member.start_date %></em>
+      </div>
+
+      <div class="d-flex align-self-center pe-4">
+        <div class="d-flex flex-column">
+          <% if member.end_date.nil? == false %>
+            <em class="text-secondary align-items-end label-date-format">End date</em>
+            <em style="color: #F38A6C"> <%= member.end_date %></em>
+          <% end %>
+        </div>
+        <div class="d-flex flex-column ms-3">
+          <em class="text-secondary align-items-end label-date-format"> Start date 🗓️  </em>
+          <em> <%= member.start_date %> </em>
+        </div>
       </div>
       <% unless current_user.role == "Employee" %>
         <%= link_to "#", class: "icon-member", data: { bs_toggle: "modal", bs_target: "##{dom_id(member, :removeModal)}" } do %>

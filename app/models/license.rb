@@ -20,6 +20,8 @@ class License < ApplicationRecord
   validate :end_date_after_start_date
   validate :no_dates_overlap
 
+  scope :per_user, ->(user) {where(user_id: user.id)}
+
   private
 
   def access_type_in_tool_access_types

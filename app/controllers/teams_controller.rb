@@ -17,9 +17,9 @@ class TeamsController < ApplicationController
       where(plans: { organization_id: current_user.organization.id }).
       group("tools.id")
 
+    @active_tools = @tools.select { |tool| tool.end_date > Date.today }
     @plans_by_tool_id = Plan.where(tool_id: @tools.map(&:id), organization_id: current_user.organization.id).index_by(&:tool_id)
 
     @remaining_team_plans = Plan.where(organization: current_user.organization).where.not(id: current_user.team.plans.pluck(:id))
-
   end
 end
