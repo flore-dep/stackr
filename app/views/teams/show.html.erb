@@ -7,13 +7,17 @@
         <div class="d-flex flex-column gap-3 p-2">
           <h2 class="mb-3 fw-bold"> <%= @team.name %> Team</h2>
           <% if @team.users.where(role: "Manager").empty? %>
+            <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
             <div class="d-flex align-items-center gap-3">
-              <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
               <p> Founder panel </p>
             </div>
           <% else %>
           <div class="d-flex align-items-center gap-3">
-            <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+            <% if @team.users.find_by(role: "Manager").picture.attached? %>
+              <%= cl_image_tag @team.users.find_by(role: "Manager").picture.key, transformation: [{ crop: "lfill", width: 60, height: 60, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "fixed-img-card" %>
+            <% else %>
+              <%= image_tag "default-pp.jpg", class: "fixed-img-card" %>
+            <% end %>
             <% manager = @team.users.where(role: "Manager").first %>
             <p> Managed by <%= manager.first_name + " " + manager.last_name %> </p>
           </div>

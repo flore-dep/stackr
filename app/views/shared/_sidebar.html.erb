@@ -27,7 +27,11 @@
     </div>
 
     <div class="bottom-element">
-      <%= image_tag "default-logo.jpg", class: "img-footer" %>
+      <% if current_user.picture.attached? %>
+        <%= cl_image_tag current_user.picture.key, transformation: [{ crop: "lfill", width: 60, height: 60, quality: "auto", fetch_format: "auto"}, {radius: 10}], class: "img-footer" %>
+      <% else %>
+        <%= image_tag "default-logo.jpg", class: "img-footer" %>
+      <% end %>
       <%= link_to user_path(current_user) do %>
       <p>
         <%= current_user.first_name %>
