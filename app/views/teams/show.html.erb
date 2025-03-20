@@ -136,8 +136,10 @@
         <div class="container mt-5">
           <%= simple_form_for [@team, User.new] do |f| %>
             <div class="form-inputs">
-              <%= f.input :first_name %>
-              <%= f.input :last_name %>
+              <div class="d-flex gap-3">
+              <%= f.input :first_name, wrapper_html: { class: "flex-fill" }%>
+              <%= f.input :last_name, wrapper_html: { class: "flex-fill" }%>
+              </div>
               <%= f.input :email %>
               <% if current_user.role == "Founder" %>
                 <%= f.input :role, collection: %w[Founder Manager Employee], selected: "Employee" %>
@@ -145,8 +147,10 @@
                 <%= f.input :role, collection: %w[Employee], selected: "Employee" %>
               <% end %>
               <%= f.input :password %>
-              <%= f.input :start_date, as: :string, required: true, input_html: { data: { controller: "datepicker-team-member" } } %>
-              <%= f.input :end_date, as: :string, required: false, include_blank: true, input_html: { data: { controller: "datepicker-team-member" } } %>
+              <div class="d-flex gap-3">
+              <%= f.input :start_date, as: :string, required: true, input_html: { data: { controller: "datepicker-team-member" } }, wrapper_html: { class: "flex-fill" } %>
+              <%= f.input :end_date, as: :string, required: false, include_blank: true, input_html: { data: { controller: "datepicker-team-member" } }, wrapper_html: { class: "flex-fill" } %>
+              </div>
             </div>
             <div class="form-actions text-center">
               <%= f.button :submit, "Add member", class: "btn btn-success mt-4 mb-2" %>
