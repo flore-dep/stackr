@@ -38,7 +38,7 @@
 
 
     </div>
-    <p class="mt-3"><%= @tool.description %></p>
+    <!-- <p class="mt-3"><%= @tool.description %></p> -->
     <% category_tag = @tool.category.downcase.gsub(' ', '_') %>
     <div class="card category-tag <%= category_tag %> rounded-pill px-3 py-2" style="width: 200px;">
       <p class="m-0 text-center" style="font-size: 16px;"><%= @tool.category %></p>
@@ -144,8 +144,8 @@
               <%= simple_form_for [@plan_organization, License.new], url: plan_licenses_path(@tool.plans[0]), method: :post do |f| %>
                 <%= f.hidden_field :plan_id, value: @plan_organization.id %>
                 <div class="form-inputs">
-                  <%= f.input :start_date %>
-                  <%= f.input :end_date %>
+                  <%= f.input :start_date, as: :string, required: true, input_html: { data: { controller: "datepicker-tool-license" } } %>
+                  <%= f.input :end_date, as: :string, required: true, input_html: { data: { controller: "datepicker-tool-license" } } %>
                   <%= f.input :access_type, collection: License::ACCESS_TYPE, selected: "User" %>
                 </div>
                 <div class="form-actions text-center">

@@ -164,23 +164,23 @@ p {
 }
 
 #accept-btn {
-  color: $green;
-  margin: 2px;
+  color: rgb(0, 0, 255);
+  margin: 0.2rem;
   transition: color 0.3s ease;
-}
 
-#accept-btn:hover {
-  color: darken($green, 10%);
+  &:hover {
+    color: rgba(1,0,197,1);
+  }
 }
 
 #reject-btn {
-  color: $red;
+  color: rgb(30, 30, 30);
   margin: 2px;
   transition: color 0.3s ease;
-}
 
-#reject-btn:hover {
-  color: darken($red, 10%);
+  &:hover {
+    color: black;
+  }
 }
 
 .destroy-link {
@@ -261,16 +261,20 @@ p {
   margin-left: 8px;
 }
 
-.pending-sticker {
-  background-color: #FFA500;
+.sticker-pending {
+  color: white;
+  background-color: rgb(24, 112, 255);
 }
 
-.accepted-sticker {
-  background-color: #1EDD88;
+.sticker-approved {
+  color: white;
+
+  background-color: rgba(1,0,197,1);
 }
 
-.rejected-sticker {
-  background-color: #FF4D4D;
+.sticker-declined {
+  color: white;
+  background-color: black
 }
 
 .creation-date {

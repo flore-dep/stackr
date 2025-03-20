@@ -1,56 +1,72 @@
 .team-name-card {
-  background-color: rgb(249, 251, 249);
-  border: 1px solid rgb(223, 223, 223);
+  background-color: rgb(40, 40, 41);
+  color: white;
   border-radius: 10px;
   position: relative;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
-  padding: 20px;
-  padding-left: 30px;
-  width: 600px;
+  width: 100%;
+  padding: 1.2rem;
+  padding-left: 2rem;
 }
 
 .fixed-img-card {
-  position: absolute;
-  width: 60px;
+  width: 3.5rem;
   border-radius: 50%;
   border: 1px solid white;
-  bottom: 30px;
-  right: 40px;
 }
+
 
 .team-navbar {
   display: flex;
-  background-color: rgb(118, 217, 136);
   width: 100%;
-  height: 60px;
-  border-radius: 16px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  height: 3.5rem; //56px
   align-items: center;
-  padding: 10px 30px;
-  margin: 40px 0px;
+  padding: 1rem 0; //16px
+  margin: 1.2rem 0; //20px
+}
+
+.team-navbar-line {
+  border-bottom: 2px solid rgba(40, 40, 40, 0.3);
 }
 
 .add {
   font-size: larger;
   font-weight: bolder;
+  height: 100%;
 }
 
 .team-navbar-item {
-  background-color: rgb(169, 226, 181);
-  padding: 4px 12px;
+  color: white;
+  background-color: rgba(0, 98, 255, 1);
+  opacity: 0.4;
+  padding: 0.25rem 1rem;
   font-size: 20px;
-  border-radius: 10px;
+  border-radius: 75px 75px;
   margin-right: 20px;
   transition: 0.3s;
+  background-clip: padding-box;
 
   &:hover {
-    background-color: rgb(206, 247, 214);
+    color: white;
+    opacity: 1;
+    background: linear-gradient(90deg, rgba(116,0,122,1) 0%, rgba(1,0,197,1) 0%, rgba(0, 98, 255, 1) 100%);
+    background-clip: padding-box;
+    transition: 0.3s;
   }
 }
 
-
 .nvbactive {
-  background-color: rgb(222, 250, 227);
+  opacity: 1;
+  color: white;
+  background: linear-gradient(90deg, rgba(116,0,122,1) 0%, rgba(1,0,197,1) 0%, rgba(0, 98, 255, 1) 100%);
+  background-clip: padding-box;
+}
+
+.subbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
 }
 
 .team-member-card {
@@ -67,7 +83,6 @@
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
   }
 }
-
 
 .icon-member {
   position: absolute;
@@ -117,10 +132,9 @@
   color: #666;
 }
 
-.end-date, .start-date {
-  font-size: 14px;
-  color: #666;
-}
+.label-date-format {
+  font-size: 12px;
+};
 
 .separator {
   font-size: 14px;
@@ -129,4 +143,44 @@
 
 .member-selector i {
   font-size: 16px;
+}
+
+.icon-add-user {
+  display: flex;
+  color: white;
+  background-color: rgba(0, 98, 255, 1);
+  opacity: 0.4;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  transition: 0.3s;
+  font-size: 20px;
+
+  &:hover {
+    color: white;
+    opacity: 1;
+    background: linear-gradient(90deg, rgba(116,0,122,1) 0%, rgba(1,0,197,1) 0%, rgba(0, 98, 255, 1) 100%);
+    background-clip: padding-box;
+    cursor: pointer;
+  }
+}
+
+.member-com {
+  background-color: rgba(0, 98, 255, 1);
+  border-radius: 75px 75px;
+  color: white;
+}
+
+.member-act {
+  background-color: rgba(1,0,197,1);
+  border-radius: 75px 75px;
+  color: white;
+}
+
+.member-gone {
+  background-color: rgb(0, 0, 0);
+  border-radius: 75px 75px;
+  color: white;
 }

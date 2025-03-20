@@ -14,3 +14,14 @@
   border-radius: 50%;
   width: 85px;
 }
+
+.user-btn {
+  border: solid 1px white;
+  border-radius: 75px 75px;
+  color: white;
+
+  &:hover {
+    background-color: white;
+    color: #282829;
+  }
+}
