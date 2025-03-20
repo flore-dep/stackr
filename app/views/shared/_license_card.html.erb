@@ -34,7 +34,7 @@
 
   <div class="center-element justify-content-between">
     <p class="user-name"><i class="fa-solid fa-user-tie"></i> <%= license.user.first_name %> <%= license.user.last_name %></p>
-    <% sticker_status = "#{license.status.downcase}-sticker" %>
+    <% sticker_status = "sticker-#{license.status.downcase}" %>
     <p class="sticker <%= sticker_status %>"><%= license.status %></p>
   </div>
 
