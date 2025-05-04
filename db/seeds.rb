@@ -26,7 +26,7 @@ puts "Database cleaned"
 
 puts "Creating Organization..."
 
-organization = Organization.create!(name: "Mistral AI")
+organization = Organization.create!(name: "Koncrete")
 
 puts "#{Organization.count} organizations created!"
 
@@ -53,7 +53,7 @@ people_data = {
   },
   "Tech" => {
     employees: [["Paris", "Hilton"], ["Kylie", "Jenner"], ["Khloé", "Kardashian"], ["Jeffree", "Star"], ["Addison", "Rae"], ["Bella", "Thorne"]],
-    manager: ["Kim", "Kardashian"]
+    manager: ["Fabio", "Pagiaro"]
   },
   "Data" => {
     employees: [["Silvio", "Berlusconi"], ["Nicolas", "Sarkozy"], ["Richard", "Nixon"], ["Jair", "Bolsonaro"]],
@@ -78,7 +78,7 @@ people_data.each do |team_name, people|
   team = Team.create!(name: team_name, organization: organization)
   first_name = people[:manager][0]
   last_name = people[:manager][1]
-  email = first_name.downcase+"."+last_name.downcase+"@mistral.com"
+  email = first_name.downcase+"."+last_name.downcase+"@koncrete.com"
   User.create!(first_name: first_name, last_name: last_name, email: email, password: "test12345", role: "Manager", team: team, start_date: "2024-01-01")
   bar.advance(people: first_name + " " + last_name)
   people[:employees].each do |employee|
@@ -378,9 +378,9 @@ puts "#{License.count} licenses created!"
 puts "Smile, you're on camera"
 
 users_to_update = {
-  "Kim" => {
-    related_user: User.find_by(first_name: "Kim", last_name:"Kardashian"),
-    picture: "https://avatars.githubusercontent.com/u/192353225?v=4"
+  "Fabio" => {
+    related_user: User.find_by(first_name: "Fabio", last_name:"Pagiaro"),
+    picture: "https://media.licdn.com/dms/image/v2/D4E03AQEdpyZHHLE0fg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1666072676685?e=1752105600&v=beta&t=eQa9u4xjvSbb9bTs1X33VrO4vpVVI7oNJwcJHy1FinI"
   },
   "Paris" => {
     related_user: User.find_by(first_name: "Paris"),
